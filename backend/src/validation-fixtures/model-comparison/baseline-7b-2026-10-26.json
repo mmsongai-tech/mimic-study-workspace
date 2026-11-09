@@ -1,0 +1,3108 @@
+{
+ "schema_version": "1.0.0",
+ "model": "qwen2.5:7b-instruct-q4_K_M",
+ "platform_commit": "7829b58",
+ "created": "2026-10-26T08:16:29+08:00",
+ "note": "Aggregate outcomes of the 7B baseline, produced with clarify=random for the held-out sets and no clarify for the 20 tuning questions. No patient-level data. Public copy: n, estimates and intervals removed (MIMIC-derived results stay with credentialed people).",
+ "questions": {
+  "H-A01": {
+   "set": "heldout1",
+   "question": "In patients with community-acquired pneumonia, is aspirin treatment associated with 28-day mortality?",
+   "category": "T1",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "community-acquired pneumonia",
+     "exposure": "Aspirin therapy",
+     "outcome": "28-day mortality",
+     "index": "hospital admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H-A02": {
+   "set": "heldout1",
+   "question": "In ICU patients with acute respiratory failure, is metformin use associated with in-hospital mortality?",
+   "category": "T1",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute respiratory failure",
+     "exposure": "Metformin use",
+     "outcome": "In-hospital mortality",
+     "index": "ICU admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Acute Respiratory Failure",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H-A03": {
+   "set": "heldout1",
+   "question": "In adults with sepsis, is prophylactic proton pump inhibitor use associated with 28- and 90-day all-cause mortality?",
+   "category": "T1",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis",
+     "exposure": "Proton pump inhibitors",
+     "outcome": "All-Cause Mortality",
+     "index": "hospital admission",
+     "method": "survival.cox"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H-A04": {
+   "set": "heldout1",
+   "question": "In patients with ARDS, is early prophylactic heparin use associated with in-hospital mortality?",
+   "category": "T1",
+   "our_class": "null",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "ARDS",
+     "exposure": "prophylactic heparin",
+     "outcome": "In-hospital mortality",
+     "index": "hospital admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "prophylactic heparin",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H-A05": {
+   "set": "heldout1",
+   "question": "In patients with sepsis, is hydrocortisone treatment associated with 90-day mortality?",
+   "category": "T1",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis",
+     "exposure": "Hydrocortisone",
+     "outcome": "30-day mortality",
+     "index": "hospital admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H-A06": {
+   "set": "heldout1",
+   "question": "In ICU patients with delirium, is haloperidol use associated with 28-day mortality?",
+   "category": "T1",
+   "our_class": "null",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "delirium",
+     "exposure": "Haloperidol use",
+     "outcome": "28-day mortality",
+     "index": "ICU admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H-A07": {
+   "set": "heldout1",
+   "question": "In cirrhotic patients, is early unfractionated heparin use associated with 30-day mortality?",
+   "category": "T1",
+   "our_class": "null",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "cirrhotic",
+     "exposure": "unfractionated heparin use",
+     "outcome": "30-day mortality",
+     "index": "hospital admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "unfractionated heparin use",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H-A08": {
+   "set": "heldout1",
+   "question": "In critically ill adults with acute ischemic stroke, is early acetaminophen use associated with 30- and 90-day mortality?",
+   "category": "T1",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute ischemic stroke",
+     "exposure": "acetaminophen use",
+     "outcome": "mortality",
+     "index": "hospital admission",
+     "method": "survival.cox"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Acute Ischemic Stroke",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H-A09": {
+   "set": "heldout1",
+   "question": "In adults with septic shock, how do methylprednisolone and hydrocortisone compare for 30-day mortality?",
+   "category": "T2",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "septic shock, methylprednisolone and hydrocortisone",
+     "exposure": "Methylprednisolone",
+     "outcome": "30-day mortality",
+     "index": "hospital admission",
+     "method": "treatment.iptw"
+    },
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "septic shock, methylprednisolone and hydrocortisone",
+     "exposure": "Hydrocortisone",
+     "outcome": "30-day mortality",
+     "index": "hospital admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H-A10": {
+   "set": "heldout1",
+   "question": "In patients with sepsis-associated acute kidney injury, how do propofol, midazolam and their combination compare for 30-day mortality?",
+   "category": "T2",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis-associated acute kidney injury, propofol, midazolam and their combination",
+     "exposure": "Propofol",
+     "outcome": "30-day mortality",
+     "index": "hospital admission",
+     "method": "treatment.iptw"
+    },
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis-associated acute kidney injury, propofol, midazolam and their combination",
+     "exposure": "Midazolam",
+     "outcome": "30-day mortality",
+     "index": "hospital admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Sepsis-associated acute kidney injury",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H-A11": {
+   "set": "heldout1",
+   "question": "In adults with sepsis, how do empirical piperacillin/tazobactam and cefepime compare for 90-day mortality?",
+   "category": "T2",
+   "our_class": "stop_unmapped",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_UNMAPPED",
+     "population": "sepsis, piperacillin/tazobactam or cefepime (not both)",
+     "exposure": "Piperacillin/Tazobactam ratio",
+     "outcome": "30-day mortality",
+     "index": "hospital admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H-A12": {
+   "set": "heldout1",
+   "question": "In adults with septic shock, how do norepinephrine plus phenylephrine and norepinephrine plus vasopressin compare for in-hospital mortality?",
+   "category": "T2",
+   "our_class": "stop_map",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "method",
+     "blocker": "NO_METHOD_READY",
+     "population": "septic shock, norepinephrine plus phenylephrine or norepinephrine plus vasopressin (not both)",
+     "exposure": "Norepinephrine and Phenylephrine",
+     "outcome": "In-hospital mortality",
+     "index": "hospital admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Norepinephrine and Phenylephrine",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    },
+    {
+     "term": "Norepinephrine plus Vasopressin",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    },
+    {
+     "term": "Norepinephrine and Phenylephrine",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H-B01": {
+   "set": "heldout1",
+   "question": "In adults with sepsis, is the platelet count in the first 24 hours of ICU admission associated with 28-day mortality?",
+   "category": "T3",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis",
+     "exposure": "platelet count",
+     "outcome": "28-day mortality",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H-B02": {
+   "set": "heldout1",
+   "question": "In adults with sepsis, is the blood urea nitrogen to albumin ratio in the first 24 hours of ICU admission associated with 30-day mortality?",
+   "category": "T3",
+   "our_class": "null",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis",
+     "exposure": "blood urea nitrogen",
+     "outcome": "30-day mortality",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H-B03": {
+   "set": "heldout1",
+   "question": "In critically ill adults with pneumonia, is the glucose-to-platelet ratio in the first 24 hours of ICU admission associated with 30-day mortality?",
+   "category": "T3",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "pneumonia",
+     "exposure": "Glucose",
+     "outcome": "30-day mortality",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H-B04": {
+   "set": "heldout1",
+   "question": "In critically ill adults with acute myocardial infarction, is arterial lactate in the first 24 hours of ICU admission associated with hospital mortality?",
+   "category": "T3",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute myocardial infarction",
+     "exposure": "arterial lactate",
+     "outcome": "Hospital mortality",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H-B05": {
+   "set": "heldout1",
+   "question": "In critically ill adults with non-traumatic subarachnoid hemorrhage, is serum sodium within 24 hours of admission associated with ICU and in-hospital mortality?",
+   "category": "T3",
+   "our_class": "null",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "non-traumatic subarachnoid hemorrhage",
+     "exposure": "serum sodium",
+     "outcome": "ICU mortality",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    },
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "non-traumatic subarachnoid hemorrhage",
+     "exposure": "serum sodium",
+     "outcome": "In-hospital mortality",
+     "index": "ICU admission",
+     "method": "tests.unadjusted"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Non-traumatic subarachnoid hemorrhage",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H-B06": {
+   "set": "heldout1",
+   "question": "In critically ill adults with acute kidney injury, is glycemic variability on the first day of ICU admission associated with 30-day ICU mortality?",
+   "category": "T3",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute kidney injury",
+     "exposure": "Glycemic Variability",
+     "outcome": "30-day ICU mortality",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H-B07": {
+   "set": "heldout1",
+   "question": "In ICU patients with diastolic heart failure, is mean body temperature in the first 24 hours associated with 28-day ICU mortality and in-hospital mortality?",
+   "category": "T3",
+   "our_class": "stop_map",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "method",
+     "blocker": "NO_METHOD_READY",
+     "population": "diastolic heart failure",
+     "exposure": "Body Temperature",
+     "outcome": "28-day ICU mortality",
+     "index": "ICU admission",
+     "method": null
+    },
+    {
+     "status": "blocked",
+     "stage": "method",
+     "blocker": "NO_METHOD_READY",
+     "population": "diastolic heart failure",
+     "exposure": "Body Temperature",
+     "outcome": "In-hospital mortality",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Diastolic Heart Failure",
+     "chosen": "define",
+     "options": [
+      "define",
+      "broader",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H-B08": {
+   "set": "heldout1",
+   "question": "In adults with sepsis in the ICU, is the absolute lymphocyte count at ICU admission associated with 28-day mortality?",
+   "category": "T3",
+   "our_class": "stop_map",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "sepsis",
+     "exposure": "Absolute Lymphocyte Count",
+     "outcome": "28-day mortality",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Absolute Lymphocyte Count",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H-B09": {
+   "set": "heldout1",
+   "question": "In ICU patients with acute myocardial infarction and no overt bleeding, is an in-hospital drop in hemoglobin from admission associated with 180-day mortality?",
+   "category": "T4",
+   "our_class": "opposite",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute myocardial infarction and no overt bleeding",
+     "exposure": "Hemoglobin drop",
+     "outcome": "180-day mortality",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Acute myocardial infarction without overt bleeding",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    },
+    {
+     "term": "Hemoglobin drop",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H-B10": {
+   "set": "heldout1",
+   "question": "In adult ICU patients, is lactate clearance between the first 24 hours and later in the ICU stay associated with delirium?",
+   "category": "T4",
+   "our_class": "opposite",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": null,
+     "exposure": "Lactate clearance rate",
+     "outcome": "Delirium",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    },
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_UNMAPPED",
+     "population": null,
+     "exposure": "ICU stay duration",
+     "outcome": "Delirium",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Lactate clearance rate",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H-C01": {
+   "set": "heldout1",
+   "question": "How well can in-hospital death be predicted in adults with heart failure from age, respiratory rate, blood gas, platelet, albumin, bilirubin, lactate and similar baseline values?",
+   "category": "T5",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "heart failure",
+     "exposure": "Age",
+     "outcome": "in-hospital death",
+     "index": "hospital admission",
+     "method": "prediction.logistic"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "blood gas",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H-C02": {
+   "set": "heldout1",
+   "question": "Can 28-day mortality after ICU discharge be predicted in patients with sepsis-induced cardiomyopathy from severity score, age, comorbidity index, lactate and a few labs?",
+   "category": "T5",
+   "our_class": "stop_map",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "sepsis-induced cardiomyopathy",
+     "exposure": "Severity Score",
+     "outcome": "28-day mortality after ICU discharge",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Sepsis-induced cardiomyopathy",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    },
+    {
+     "term": "Severity Score",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    },
+    {
+     "term": "28-day mortality after ICU discharge",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H-C03": {
+   "set": "heldout1",
+   "question": "How well do routine ICU admission variables predict in-hospital death in ICU patients with catheter-associated urinary tract infection?",
+   "category": "T5",
+   "our_class": "stop_ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_UNMAPPED",
+     "population": "catheter-associated urinary tract infection",
+     "exposure": "Routine variables",
+     "outcome": "in-hospital death",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H-C04": {
+   "set": "heldout1",
+   "question": "Can acute kidney injury be predicted in patients with acute pancreatitis from baseline clinical variables?",
+   "category": "T5",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute pancreatitis",
+     "exposure": "Heart rate",
+     "outcome": "Acute Kidney Injury",
+     "index": "hospital admission",
+     "method": "prediction.logistic"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H-C05": {
+   "set": "heldout1",
+   "question": "Is the association between red cell distribution width and 30-day mortality in critically ill patients with acute cholangitis different between men and women?",
+   "category": "T7",
+   "our_class": "stop_ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "method",
+     "blocker": "NO_METHOD_READY",
+     "population": "acute cholangitis",
+     "exposure": "Red cell distribution width",
+     "outcome": "30-day mortality",
+     "index": "hospital admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H-C06": {
+   "set": "heldout1",
+   "question": "Is early ondansetron use associated with lower 30-day mortality in ventilated ARDS patients, and does the association depend on dose, age or sex?",
+   "category": "T7",
+   "our_class": "null",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "ventilated ARDS",
+     "exposure": "Ondansetron use",
+     "outcome": "30-day mortality",
+     "index": "hospital admission",
+     "method": "regression.adjusted"
+    },
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "ventilated ARDS",
+     "exposure": "Ondansetron use",
+     "outcome": "30-day mortality",
+     "index": "hospital admission",
+     "method": "modification.interaction"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H-C07": {
+   "set": "heldout1",
+   "question": "Is acetaminophen use associated with lower 30-day mortality in critically ill patients with pulmonary embolism, and is the effect partly mediated by body temperature?",
+   "category": "T7",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "pulmonary embolism",
+     "exposure": "acetaminophen use",
+     "outcome": "mortality",
+     "index": "hospital admission",
+     "method": "mediation.mediate"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H-C08": {
+   "set": "heldout1",
+   "question": "Does the association between the triglyceride-glucose index and acute kidney injury in critically ill coronary artery disease patients differ by use of antidiabetic or lipid-lowering drugs?",
+   "category": "T7",
+   "our_class": "stop_unmapped",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_UNMAPPED",
+     "population": "coronary artery disease",
+     "exposure": "Triglycerides",
+     "outcome": "Acute Kidney Injury",
+     "index": "hospital admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H-C09": {
+   "set": "heldout1",
+   "question": "Is starting sertraline instead of citalopram or escitalopram in hospital associated with fewer ECG safety events within 7 days?",
+   "category": "OUT",
+   "our_class": "stop_ok",
+   "unanswered": [
+    "“ECG safety events”: ECG recordings and ECG-derived events (QT interval, rhythm strips) are in a separate dataset (MIMIC"
+   ],
+   "plans": [],
+   "mapping_clarifications": []
+  },
+  "H-C10": {
+   "set": "heldout1",
+   "question": "Is dipeptidyl peptidase-4 inhibitor exposure before admission associated with different liver marker trends and death in septic adults with type 2 diabetes compared with metformin?",
+   "category": "OUT",
+   "our_class": "stop_ok",
+   "unanswered": [
+    "“dipeptidyl peptidase-4 inhibitor exposure before”: An exposure asked before admission cannot be answered: MIMIC-IV reco",
+    "“dipeptidyl peptidase-4 inhibitor exposure before”: An exposure asked before admission cannot be answered: MIMIC-IV reco"
+   ],
+   "plans": [],
+   "mapping_clarifications": []
+  },
+  "H-C11": {
+   "set": "heldout1",
+   "question": "What glucocorticoid dosing strategy should be recommended for patients with sepsis?",
+   "category": "OUT",
+   "our_class": "stop_ok",
+   "unanswered": [
+    "“What glucocorticoid dosing strategy should be recommended for patients with sepsis?”: A question that asks what should "
+   ],
+   "plans": [],
+   "mapping_clarifications": []
+  },
+  "H-C12": {
+   "set": "heldout1",
+   "question": "Can an in-hospital death prediction model for children with sepsis be built from first-day ICU data and tested in other hospitals?",
+   "category": "OUT",
+   "our_class": "stop_ok",
+   "unanswered": [
+    "“children sepsis”: MIMIC-IV contains adult patients only (age 18 or over), so children, newborns and adolescents cannot "
+   ],
+   "plans": [],
+   "mapping_clarifications": []
+  },
+  "H2-A01": {
+   "set": "heldout2",
+   "question": "In adults with sepsis-associated acute kidney injury who need CRRT, is furosemide given before CRRT associated with 28-day mortality?",
+   "category": "T1",
+   "our_class": "null",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis-associated acute kidney injury who need CRRT",
+     "exposure": "Furosemide before CRRT",
+     "outcome": "28-day mortality",
+     "index": "hospital admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Furosemide before CRRT",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H2-A02": {
+   "set": "heldout2",
+   "question": "In patients with non-traumatic subarachnoid hemorrhage, is nimodipine use associated with 28-day mortality?",
+   "category": "T1",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "non-traumatic subarachnoid hemorrhage",
+     "exposure": "Nimodipine",
+     "outcome": "28-day mortality",
+     "index": "hospital admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H2-A03": {
+   "set": "heldout2",
+   "question": "In critically ill patients with acute kidney injury, is clopidogrel use during the ICU stay associated with 30-day mortality?",
+   "category": "T1",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute kidney injury",
+     "exposure": "Clopidogrel",
+     "outcome": "30-day mortality",
+     "index": "ICU admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H2-A04": {
+   "set": "heldout2",
+   "question": "In ICU patients with acute respiratory failure, is thiamine supplementation associated with in-hospital and ICU mortality?",
+   "category": "T1",
+   "our_class": "opposite",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute respiratory failure",
+     "exposure": "Thiamine Supplementation",
+     "outcome": "In-hospital mortality",
+     "index": "ICU admission",
+     "method": "treatment.iptw"
+    },
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute respiratory failure",
+     "exposure": "Thiamine Supplementation",
+     "outcome": "ICU mortality",
+     "index": "ICU admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Thiamine Supplementation",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H2-A05": {
+   "set": "heldout2",
+   "question": "In ICU patients with acute pancreatitis and acute kidney injury, is intravenous vitamin C associated with 30-day mortality?",
+   "category": "T1",
+   "our_class": "null",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute pancreatitis and acute kidney injury",
+     "exposure": "Intravenous Vitamin C",
+     "outcome": "30-day mortality",
+     "index": "ICU admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Intravenous Vitamin C",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H2-A06": {
+   "set": "heldout2",
+   "question": "In critically ill patients aged 60 and older, is pregabalin use associated with delirium?",
+   "category": "T1",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "aged 60 and older",
+     "exposure": "Pregabalin use",
+     "outcome": "Delirium",
+     "index": "hospital admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H2-A07": {
+   "set": "heldout2",
+   "question": "In ICU patients with sepsis, is ketamine administration associated with ICU mortality?",
+   "category": "T1",
+   "our_class": "opposite",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis",
+     "exposure": "Ketamine administration",
+     "outcome": "ICU mortality",
+     "index": "ICU admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Ketamine administration",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H2-A08": {
+   "set": "heldout2",
+   "question": "In patients with cardiogenic shock with severe acidemia and hyperlactatemia, is early 8.4% sodium bicarbonate associated with in-hospital mortality?",
+   "category": "T1",
+   "our_class": "stop_map",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "cardiogenic shock severe acidemia and hyperlactatemia",
+     "exposure": "Sodium bicarbonate 8.4%",
+     "outcome": "In-hospital mortality",
+     "index": "hospital admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Severe cardiogenic shock with acidemia and hyperlactatemia",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H2-A09": {
+   "set": "heldout2",
+   "question": "In ICU patients with atrial fibrillation and rapid ventricular rate, how do diltiazem and metoprolol compare for heart rate below 110 within one hour of the first dose?",
+   "category": "T2",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "atrial fibrillation and rapid ventr lar rate, diltiazem and metoprolol",
+     "exposure": "Diltiazem",
+     "outcome": "Heart Rate",
+     "index": "ICU admission",
+     "method": "treatment.iptw"
+    },
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "atrial fibrillation and rapid ventr lar rate, diltiazem and metoprolol",
+     "exposure": "Metoprolol",
+     "outcome": "Heart Rate",
+     "index": "ICU admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Atrial Fibrillation with Rapid Ventricular Response",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H2-A10": {
+   "set": "heldout2",
+   "question": "In patients with pulmonary embolism treated with systemic alteplase, how do low-dose (50 mg or less) and high-dose alteplase compare for 7-day mortality?",
+   "category": "T2",
+   "our_class": "fail",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "failed",
+     "stage": "analysis",
+     "blocker": "METHOD_FAILED",
+     "population": "pulmonary embolism",
+     "exposure": "Alteplase",
+     "outcome": "7-day mortality",
+     "index": "hospital admission",
+     "method": "regression.rcs"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Alteplase",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H2-A12": {
+   "set": "heldout2",
+   "question": "In adults with sepsis who develop new-onset atrial fibrillation in the ICU, how do an early beta-blocker and other antiarrhythmic drugs compare for 28-day mortality?",
+   "category": "T2",
+   "our_class": "null",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis who develop new-onset atrial fibrillation, early beta-blocker and other antiarrhythmic drugs",
+     "exposure": "Early beta-blocker use",
+     "outcome": "28-day mortality",
+     "index": "ICU admission",
+     "method": "treatment.iptw"
+    },
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis who develop new-onset atrial fibrillation, early beta-blocker and other antiarrhythmic drugs",
+     "exposure": "Antiarrhythmic drugs",
+     "outcome": "28-day mortality",
+     "index": "ICU admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H2-B01": {
+   "set": "heldout2",
+   "question": "Is the serum chloride level associated with 30-day and 365-day all-cause mortality in septic patients with liver cirrhosis?",
+   "category": "T3",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "septic liver cirrhosis",
+     "exposure": "Serum Chloride",
+     "outcome": "All-Cause Mortality",
+     "index": "hospital admission",
+     "method": "survival.cox"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Septic liver cirrhosis",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    },
+    {
+     "term": "Serum Chloride",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H2-B02": {
+   "set": "heldout2",
+   "question": "Is the admission serum phosphate level associated with 90-day all-cause mortality in adult patients after cardiac arrest?",
+   "category": "T3",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "after cardiac arrest",
+     "exposure": "serum phosphate",
+     "outcome": "30-day all-cause mortality",
+     "index": "hospital admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Post-Cardiac Arrest",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    },
+    {
+     "term": "serum phosphate",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H2-B03": {
+   "set": "heldout2",
+   "question": "Is serum magnesium at ICU admission associated with medium- and long-term mortality in patients with acute pancreatitis complicated by acute kidney injury?",
+   "category": "T3",
+   "our_class": "stop_map",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "acute pancreatitis complicated by acute kidney injury",
+     "exposure": "serum magnesium",
+     "outcome": "Medium- and long-term mortality",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "serum magnesium",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    },
+    {
+     "term": "Medium- and long-term mortality",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H2-B04": {
+   "set": "heldout2",
+   "question": "Is hematocrit associated with 365-day all-cause mortality in patients with acute congestive heart failure?",
+   "category": "T3",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute congestive heart failure",
+     "exposure": "Hematocrit",
+     "outcome": "365-day all-cause mortality",
+     "index": "hospital admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H2-B05": {
+   "set": "heldout2",
+   "question": "Is the monocyte-to-lymphocyte ratio associated with mortality in critically ill patients with acute respiratory failure?",
+   "category": "T3",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute respiratory failure",
+     "exposure": "Monocyte percentage",
+     "outcome": "mortality",
+     "index": "hospital admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H2-B06": {
+   "set": "heldout2",
+   "question": "Is body mass index at ICU admission associated with in-hospital and 90-day mortality in ICU patients with sepsis?",
+   "category": "T3",
+   "our_class": "opposite",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis",
+     "exposure": "Body Mass Index",
+     "outcome": "In-hospital mortality",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    },
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis",
+     "exposure": "Body Mass Index",
+     "outcome": "30-day mortality",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Body Mass Index",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H2-B07": {
+   "set": "heldout2",
+   "question": "Is the albumin-bilirubin score in the first 24 hours of ICU admission associated with acute kidney injury in ICU patients with acute pancreatitis?",
+   "category": "T3",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute pancreatitis",
+     "exposure": "Total bilirubin",
+     "outcome": "Acute Kidney Injury",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H2-B08": {
+   "set": "heldout2",
+   "question": "Is albumin-corrected calcium associated with 30-day all-cause mortality in ICU patients with sepsis?",
+   "category": "T3",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis",
+     "exposure": "Total calcium",
+     "outcome": "30-day all-cause mortality",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H2-C01": {
+   "set": "heldout2",
+   "question": "Can prolonged ICU stay (5 days or more) be predicted in adults with sepsis-induced coagulopathy from first-24-hour variables?",
+   "category": "T5",
+   "our_class": "fail",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "failed",
+     "stage": "analysis",
+     "blocker": "METHOD_FAILED",
+     "population": "sepsis-induced coagulopathy",
+     "exposure": "Heart rate",
+     "outcome": "Prolonged ICU stay",
+     "index": "ICU admission",
+     "method": "prediction.logistic"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Sepsis-induced coagulopathy",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    },
+    {
+     "term": "Prolonged ICU stay",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H2-C02": {
+   "set": "heldout2",
+   "question": "How well can mechanical ventilation be predicted in ICU patients with Alzheimer's disease and pneumonia from baseline clinical variables?",
+   "category": "T5",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "Alzheimer's disease and pneumonia",
+     "exposure": "Heart rate",
+     "outcome": "mechanical ventilation",
+     "index": "ICU admission",
+     "method": "prediction.logistic"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H2-C03": {
+   "set": "heldout2",
+   "question": "Can ventilator-associated pneumonia be predicted in ICU patients with traumatic brain injury from clinical variables?",
+   "category": "T5",
+   "our_class": "stop_map",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "traumatic brain injury",
+     "exposure": "Heart rate",
+     "outcome": "ventilator-associated pneumonia",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "traumatic brain injury",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    },
+    {
+     "term": "ventilator-associated pneumonia",
+     "chosen": "define",
+     "options": [
+      "define",
+      "broader",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H2-C04": {
+   "set": "heldout2",
+   "question": "Can ICU delirium be predicted in older patients with COPD from variables available at ICU admission?",
+   "category": "T5",
+   "our_class": "stop_map",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "older COPD",
+     "exposure": "Variables Available",
+     "outcome": "ICU delirium",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "COPD aged 65+",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H2-C05": {
+   "set": "heldout2",
+   "question": "Is nimodipine use associated with lower 28-day mortality in non-traumatic subarachnoid hemorrhage, and does the effect follow a dose-response?",
+   "category": "T7",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "non-traumatic subarachnoid hemorrhage",
+     "exposure": "Nimodipine",
+     "outcome": "28-day mortality",
+     "index": "hospital admission",
+     "method": "regression.rcs"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H2-C06": {
+   "set": "heldout2",
+   "question": "Is a higher daily opioid dose associated with ventilator-associated pneumonia in mechanically ventilated septic patients, and is the association stronger in some subgroups?",
+   "category": "T7",
+   "our_class": "stop_map",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "mechanically ventilated septic",
+     "exposure": "Daily opioid dose",
+     "outcome": "ventilator-associated pneumonia",
+     "index": "hospital admission",
+     "method": null
+    },
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "mechanically ventilated septic",
+     "exposure": "Daily opioid dose",
+     "outcome": "ventilator-associated pneumonia",
+     "index": "hospital admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Mechanically ventilated septic",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    },
+    {
+     "term": "Daily opioid dose",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    },
+    {
+     "term": "ventilator-associated pneumonia",
+     "chosen": "define",
+     "options": [
+      "define",
+      "broader",
+      "stop"
+     ]
+    },
+    {
+     "term": "Mechanically ventilated septic",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    },
+    {
+     "term": "Daily opioid dose",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    },
+    {
+     "term": "ventilator-associated pneumonia",
+     "chosen": "define",
+     "options": [
+      "define",
+      "broader",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H2-C07": {
+   "set": "heldout2",
+   "question": "Does the association between the systemic inflammatory response index (SIRI) and mortality in type 2 diabetics with ischemic stroke act partly through blood glucose?",
+   "category": "T7",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "type 2 diabetics ischemic stroke",
+     "exposure": "White blood cell count",
+     "outcome": "mortality",
+     "index": "hospital admission",
+     "method": "mediation.product"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Type 2 diabetics with ischemic stroke",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H2-C08": {
+   "set": "heldout2",
+   "question": "Is furosemide given before continuous renal replacement therapy associated with lower 28-day mortality in sepsis-associated AKI, and does the effect differ by chronic kidney disease or dose?",
+   "category": "T7",
+   "our_class": "opposite",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis-associated AKI",
+     "exposure": "Furosemide before CRRT",
+     "outcome": "mortality",
+     "index": "hospital admission",
+     "method": "modification.iptw_interaction"
+    },
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis-associated AKI",
+     "exposure": "Furosemide before CRRT",
+     "outcome": "28-day mortality",
+     "index": "hospital admission",
+     "method": "modification.iptw_interaction"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Sepsis-associated AKI",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    },
+    {
+     "term": "Furosemide before CRRT",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    },
+    {
+     "term": "Sepsis-associated AKI",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    },
+    {
+     "term": "Furosemide before CRRT",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H2-C09": {
+   "set": "heldout2",
+   "question": "Can in-hospital death in heart failure patients be predicted better by adding longitudinal chest X-rays to electronic health record data?",
+   "category": "OUT",
+   "our_class": "stop_ok",
+   "unanswered": [
+    "“longitudinal chest X-rays”: MIMIC-IV does not contain images or radiology reports (these are in separate datasets), so "
+   ],
+   "plans": [],
+   "mapping_clarifications": []
+  },
+  "H2-C10": {
+   "set": "heldout2",
+   "question": "Can large language models detect radiographic evidence of pneumonia from radiology reports?",
+   "category": "OUT",
+   "our_class": "stop_ok",
+   "unanswered": [
+    "“radiology reports”: Clinical notes and radiology reports are free text in a separate module; this platform reads struct"
+   ],
+   "plans": [],
+   "mapping_clarifications": []
+  },
+  "H2-C11": {
+   "set": "heldout2",
+   "question": "Can a reinforcement-learning policy set mechanical ventilator settings in ICU patients better than clinicians' recorded practice?",
+   "category": "OUT",
+   "our_class": "stop_other",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "reinforcement-learning policy or clinicians' recorded practice (not both)",
+     "exposure": "Reinforcement Learning Policy",
+     "outcome": "mechanical ventilator performance",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Reinforcement Learning Policy",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    },
+    {
+     "term": "mechanical ventilator performance",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H2-C12": {
+   "set": "heldout2",
+   "question": "Is selective serotonin reuptake inhibitor (SSRI) use before ICU admission associated with delirium in older patients with sepsis?",
+   "category": "OUT",
+   "our_class": "stop_ok",
+   "unanswered": [
+    "“selective serotonin reuptake inhibitor (SSRI) use”: An exposure asked before admission cannot be answered: MIMIC-IV rec"
+   ],
+   "plans": [],
+   "mapping_clarifications": []
+  },
+  "H3-A01": {
+   "set": "heldout3",
+   "question": "In critically ill patients with non-traumatic intracerebral hemorrhage, is dexamethasone therapy associated with mortality?",
+   "category": "T1",
+   "our_class": "stop_map",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "non-traumatic intracerebral hemorrhage",
+     "exposure": "Dexamethasone",
+     "outcome": "mortality",
+     "index": "hospital admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Non-traumatic intracerebral hemorrhage",
+     "chosen": "define",
+     "options": [
+      "define",
+      "broader",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H3-A02": {
+   "set": "heldout3",
+   "question": "In critically ill adults with sepsis, is ramelteon exposure associated with survival?",
+   "category": "T1",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis",
+     "exposure": "Ramelteon",
+     "outcome": "survival",
+     "index": "hospital admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H3-A03": {
+   "set": "heldout3",
+   "question": "In adults with sepsis, is milrinone use associated with mortality?",
+   "category": "T1",
+   "our_class": "null",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis",
+     "exposure": "milrinone use",
+     "outcome": "mortality",
+     "index": "hospital admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H3-A04": {
+   "set": "heldout3",
+   "question": "In critically ill adults with pneumonia, is early intravenous magnesium sulfate associated with mortality?",
+   "category": "T1",
+   "our_class": "opposite",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "pneumonia",
+     "exposure": "Intravenous magnesium sulfate",
+     "outcome": "mortality",
+     "index": "hospital admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Intravenous magnesium sulfate",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H3-A05": {
+   "set": "heldout3",
+   "question": "In critically ill adults with acute myocardial infarction, is intravenous magnesium sulfate associated with ICU mortality?",
+   "category": "T1",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute myocardial infarction",
+     "exposure": "Intravenous magnesium sulfate",
+     "outcome": "ICU mortality",
+     "index": "ICU admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H3-A06": {
+   "set": "heldout3",
+   "question": "In critically ill adults with liver cirrhosis, is rifaximin associated with ICU admission and mortality?",
+   "category": "T1",
+   "our_class": "opposite",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "method",
+     "blocker": "NO_METHOD_READY",
+     "population": "liver cirrhosis",
+     "exposure": "Rifaximin",
+     "outcome": "ICU admission",
+     "index": "ICU admission",
+     "method": null
+    },
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "liver cirrhosis",
+     "exposure": "Rifaximin",
+     "outcome": "mortality",
+     "index": "ICU admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H3-A08": {
+   "set": "heldout3",
+   "question": "In hospitalized patients with COVID-19, is dexamethasone associated with 28-day and 1-year mortality?",
+   "category": "T1",
+   "our_class": "opposite",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "COVID-19",
+     "exposure": "Dexamethasone",
+     "outcome": "mortality",
+     "index": "hospital admission",
+     "method": "survival.cox"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H3-A09": {
+   "set": "heldout3",
+   "question": "In ICU patients with alcohol-associated liver disease and severe alcohol withdrawal, how do phenobarbital and benzodiazepines compare for in-hospital mortality?",
+   "category": "T2",
+   "our_class": "stop_unmapped",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_UNMAPPED",
+     "population": "alcohol-associated liver disease and severe alcohol withdrawal, phenobarbital and benzodiazepines",
+     "exposure": "Phenobarbital",
+     "outcome": "In-hospital mortality",
+     "index": "ICU admission",
+     "method": null
+    },
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_UNMAPPED",
+     "population": "alcohol-associated liver disease and severe alcohol withdrawal, phenobarbital and benzodiazepines",
+     "exposure": "Benzodiazepines",
+     "outcome": "In-hospital mortality",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H3-A10": {
+   "set": "heldout3",
+   "question": "In ICU adults with sepsis, how do the laxatives senna, docusate sodium, polyethylene glycol and lactulose compare for 28-day mortality?",
+   "category": "T2",
+   "our_class": "no_estimate",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis",
+     "exposure": "Laxatives",
+     "outcome": "28-day mortality",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H3-A11": {
+   "set": "heldout3",
+   "question": "In critically ill adults with pulmonary embolism and chronic kidney disease, how do direct oral anticoagulants and warfarin compare for bleeding?",
+   "category": "T2",
+   "our_class": "stop_map",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "pulmonary embolism and chronic kidney disease, direct oral anticoagulants or warfarin (not both)",
+     "exposure": "Direct oral anticoagulants",
+     "outcome": "bleeding",
+     "index": "hospital admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Warfarin",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H3-B01": {
+   "set": "heldout3",
+   "question": "In critically ill adults with multiple myeloma, is blood urea nitrogen within 24 hours of ICU admission associated with 28-day all-cause mortality?",
+   "category": "T3",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "multiple myeloma",
+     "exposure": "blood urea nitrogen",
+     "outcome": "28-day all-cause mortality",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H3-B02": {
+   "set": "heldout3",
+   "question": "Is the baseline blood eosinophil count associated with 28-day in-hospital mortality in ICU patients with acute exacerbation of COPD?",
+   "category": "T3",
+   "our_class": "stop_map",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "acute exacerbation COPD",
+     "exposure": "blood eosinophil count",
+     "outcome": "28-day in-hospital mortality",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Acute exacerbation of COPD",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    },
+    {
+     "term": "blood eosinophil count",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H3-B03": {
+   "set": "heldout3",
+   "question": "Is red cell distribution width at ICU admission associated with in-hospital mortality in critically ill patients with COPD and atrial fibrillation?",
+   "category": "T3",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "COPD and atrial fibrillation",
+     "exposure": "Red cell distribution width",
+     "outcome": "In-hospital mortality",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H3-B04": {
+   "set": "heldout3",
+   "question": "Is the early neutrophil-to-lymphocyte ratio associated with 28-day mortality in patients with sepsis?",
+   "category": "T3",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis",
+     "exposure": "Neutrophil percentage",
+     "outcome": "28-day mortality",
+     "index": "hospital admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H3-B05": {
+   "set": "heldout3",
+   "question": "Is standard base excess associated with 28-day and 180-day all-cause mortality in patients with sepsis-associated acute kidney injury?",
+   "category": "T3",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis-associated acute kidney injury",
+     "exposure": "Standard Base Excess",
+     "outcome": "All-Cause Mortality",
+     "index": "hospital admission",
+     "method": "survival.cox"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Sepsis-associated acute kidney injury",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H3-B06": {
+   "set": "heldout3",
+   "question": "Is the respiratory rate during the first 24 hours of mechanical ventilation associated with 28-day mortality in invasively ventilated adults?",
+   "category": "T3",
+   "our_class": "stop_map",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "invasively ventilated",
+     "exposure": "Respiratory Rate",
+     "outcome": "28-day mortality",
+     "index": "hospital admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "invasively ventilated",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H3-B07": {
+   "set": "heldout3",
+   "question": "Is arterial oxygen partial pressure during the first ICU day associated with 90-day all-cause mortality in critically ill patients with ischemic stroke?",
+   "category": "T3",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "ischemic stroke",
+     "exposure": "Arterial Oxygen Partial Pressure",
+     "outcome": "30-day all-cause mortality",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Arterial Oxygen Partial Pressure",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H3-B08": {
+   "set": "heldout3",
+   "question": "Is the mean arterial oxygen partial pressure in the first 24 hours after ICU admission associated with in-hospital and 90-day mortality in ICU patients with acute kidney injury?",
+   "category": "T3",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute kidney injury",
+     "exposure": "arterial oxygen partial pressure after",
+     "outcome": "In-hospital mortality",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    },
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute kidney injury",
+     "exposure": "arterial oxygen partial pressure after",
+     "outcome": "30-day mortality",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H3-B09": {
+   "set": "heldout3",
+   "question": "Is the 24-hour mean blood glucose level associated with in-hospital, 30-day and 90-day mortality in patients with acute pancreatitis?",
+   "category": "T3",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute pancreatitis",
+     "exposure": "24-hour blood glucose",
+     "outcome": "In-hospital mortality",
+     "index": "hospital admission",
+     "method": "regression.adjusted"
+    },
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute pancreatitis",
+     "exposure": "24-hour blood glucose",
+     "outcome": "mortality",
+     "index": "hospital admission",
+     "method": "survival.cox"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H3-B10": {
+   "set": "heldout3",
+   "question": "Is the SAPS II score associated with 28-day all-cause mortality in ICU patients with acute exacerbation of COPD?",
+   "category": "T3",
+   "our_class": "stop_map",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "acute exacerbation COPD",
+     "exposure": "SAPS II score",
+     "outcome": "28-day all-cause mortality",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Acute exacerbation of COPD",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H3-B11": {
+   "set": "heldout3",
+   "question": "Is Cockcroft-Gault creatinine clearance associated with all-cause mortality in critically ill patients with cerebrovascular disease?",
+   "category": "T3",
+   "our_class": "stop_map",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "cerebrovascular disease",
+     "exposure": "Creatinine clearance",
+     "outcome": "All-Cause Mortality",
+     "index": "hospital admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "cerebrovascular disease",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    },
+    {
+     "term": "Creatinine clearance",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H3-B12": {
+   "set": "heldout3",
+   "question": "Is the serum triglyceride level at admission associated with ICU admission in patients with acute pancreatitis?",
+   "category": "T3",
+   "our_class": "stop_ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "method",
+     "blocker": "NO_METHOD_READY",
+     "population": "acute pancreatitis",
+     "exposure": "serum triglyceride",
+     "outcome": "ICU admission",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H3-C01": {
+   "set": "heldout3",
+   "question": "Can in-hospital death be predicted in ICU patients with status epilepticus from age, first care unit, GCS, temperature, SpO2, white cell count, glucose, bicarbonate and comorbidity index?",
+   "category": "T5",
+   "our_class": "stop_unmapped",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_UNMAPPED",
+     "population": "status epilept s",
+     "exposure": "Age",
+     "outcome": "in-hospital death",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "status epilepticus",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    },
+    {
+     "term": "Glasgow Coma Scale",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    },
+    {
+     "term": "bicarbonate",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H3-C02": {
+   "set": "heldout3",
+   "question": "Can prolonged ICU length of stay be predicted in patients undergoing coronary artery bypass surgery from Charlson index, APS III, atrial fibrillation, heart failure, BMI, AKI stage, diabetes and glucose?",
+   "category": "T5",
+   "our_class": "stop_unmapped",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_UNMAPPED",
+     "population": "undergoing coronary artery bypass surgery",
+     "exposure": "Charlson Comorbidity Index",
+     "outcome": "Prolonged ICU stay",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H3-C03": {
+   "set": "heldout3",
+   "question": "Can acute kidney injury during the ICU stay be predicted in patients after in-hospital cardiac arrest from weight, SpO2, sodium, SOFA and OASIS?",
+   "category": "T5",
+   "our_class": "stop_map",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "after cardiac arrest",
+     "exposure": "Weight",
+     "outcome": "Acute kidney injury during ICU stay",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Weight",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    },
+    {
+     "term": "Sepsis-related Organ Failure Assessment",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H3-C04": {
+   "set": "heldout3",
+   "question": "Can 28-day mortality be predicted in critically ill prostate cancer patients from a nomogram of routine ICU variables, compared with SAPS II, SOFA and Charlson index?",
+   "category": "T5",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_UNMAPPED",
+     "population": "prostate cancer",
+     "exposure": "ICU routine variables",
+     "outcome": "mortality",
+     "index": "ICU admission",
+     "method": null
+    },
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "prostate cancer",
+     "exposure": "Simplified Acute Physiology Score II",
+     "outcome": "28-day mortality",
+     "index": "hospital admission",
+     "method": "prediction.logistic"
+    },
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "prostate cancer",
+     "exposure": "Sepsis-related Organ Failure Assessment",
+     "outcome": "28-day mortality",
+     "index": "hospital admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Prostate Cancer",
+     "chosen": "define",
+     "options": [
+      "define",
+      "stop"
+     ]
+    },
+    {
+     "term": "Sepsis-related Organ Failure Assessment",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H3-C05": {
+   "set": "heldout3",
+   "question": "Is early intravenous magnesium sulfate associated with lower 30-day mortality in critically ill acute heart failure patients, and does the association differ across systemic immune-inflammation index strata?",
+   "category": "T7",
+   "our_class": "stop_unmapped",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_UNMAPPED",
+     "population": "acute heart failure",
+     "exposure": "Intravenous magnesium sulfate",
+     "outcome": "30-day mortality",
+     "index": "hospital admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H3-C06": {
+   "set": "heldout3",
+   "question": "Is intravenous magnesium sulfate associated with lower ICU mortality in ICU patients with acute myocardial infarction, and is there a dose-response with cumulative dose and duration?",
+   "category": "T7",
+   "our_class": "null",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute myocardial infarction",
+     "exposure": "Intravenous magnesium sulfate",
+     "outcome": "ICU mortality",
+     "index": "ICU admission",
+     "method": "regression.rcs"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "H3-C07": {
+   "set": "heldout3",
+   "question": "Is a higher diuretic intensity score associated with lower 28-day mortality in hospitalised heart failure patients, with a non-linear dose-response?",
+   "category": "T7",
+   "our_class": "stop_map",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "heart failure",
+     "exposure": "Diuretic Intensity Score",
+     "outcome": "28-day mortality",
+     "index": "hospital admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Diuretic Intensity Score",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H3-C08": {
+   "set": "heldout3",
+   "question": "Does the association between the mean arterial pressure to norepinephrine-equivalent dose ratio and 28-day mortality in septic shock operate partly through achieved blood pressure (mediation)?",
+   "category": "T7",
+   "our_class": "stop_map",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "septic shock",
+     "exposure": "mean arterial pressure",
+     "outcome": "28-day mortality",
+     "index": "hospital admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Achieved Blood Pressure",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    },
+    {
+     "term": "Norepinephrine equivalent dose",
+     "chosen": "broader",
+     "options": [
+      "broader",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "H3-C09": {
+   "set": "heldout3",
+   "question": "Can an electrocardiogram-based deep learning model stratify the short-term risk of acute kidney injury within 24 hours?",
+   "category": "OUT",
+   "our_class": "stop_ok",
+   "unanswered": [
+    "“electrocardiogram-based deep learning model”: ECG recordings and ECG-derived events (QT interval, rhythm strips) are in"
+   ],
+   "plans": [],
+   "mapping_clarifications": []
+  },
+  "H3-C10": {
+   "set": "heldout3",
+   "question": "Can ICU length of stay be predicted early from day-one structured data combined with clinical notes?",
+   "category": "OUT",
+   "our_class": "stop_ok",
+   "unanswered": [
+    "“day-one structured data combined with clinical notes”: Clinical notes and radiology reports are free text in a separate"
+   ],
+   "plans": [],
+   "mapping_clarifications": []
+  },
+  "H3-C11": {
+   "set": "heldout3",
+   "question": "Can a deep learning triage model predict risk level for emergency department visits without using the Emergency Severity Index?",
+   "category": "OUT",
+   "our_class": "stop_ok",
+   "unanswered": [
+    "“emergency department visits”: Emergency-department visits and triage are in a separate module (MIMIC-IV-ED), not in the"
+   ],
+   "plans": [],
+   "mapping_clarifications": []
+  },
+  "H3-C12": {
+   "set": "heldout3",
+   "question": "Can chest X-ray images be screened for disease using deep convolutional networks trained on GPT-4o-generated report labels?",
+   "category": "OUT",
+   "our_class": "stop_ok",
+   "unanswered": [
+    "“chest X-ray images”: MIMIC-IV does not contain images or radiology reports (these are in separate datasets), so imaging"
+   ],
+   "plans": [],
+   "mapping_clarifications": []
+  },
+  "L01": {
+   "set": "lit20",
+   "question": "In ICU patients with heart failure, is beta-blocker use associated with lower in-hospital mortality?",
+   "category": "",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "heart failure",
+     "exposure": "Beta blockers",
+     "outcome": "In-hospital mortality",
+     "index": "ICU admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "L02": {
+   "set": "lit20",
+   "question": "In ICU patients with type 2 myocardial infarction, is beta-blocker use associated with lower in-hospital mortality and lower 30-day and 1-year mortality?",
+   "category": "",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "type 2 myocardial infarction",
+     "exposure": "Beta blockers",
+     "outcome": "In-hospital mortality",
+     "index": "ICU admission",
+     "method": "treatment.iptw"
+    },
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "type 2 myocardial infarction",
+     "exposure": "Beta blockers",
+     "outcome": "mortality",
+     "index": "ICU admission",
+     "method": "survival.cox"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "L03": {
+   "set": "lit20",
+   "question": "In patients with sepsis, is statin use associated with lower 28-day mortality?",
+   "category": "",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis",
+     "exposure": "Statins",
+     "outcome": "28-day mortality",
+     "index": "hospital admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "L04": {
+   "set": "lit20",
+   "question": "In critically ill patients with heart failure, is statin use during hospitalisation associated with lower 30-day, 90-day and 1-year mortality?",
+   "category": "",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "heart failure",
+     "exposure": "Statin use during hospitalization",
+     "outcome": "mortality",
+     "index": "hospital admission",
+     "method": "survival.cox"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "L05": {
+   "set": "lit20",
+   "question": "In patients with ARDS, is statin use before ICU admission associated with lower 30-day and 90-day mortality?",
+   "category": "",
+   "our_class": "stop_ok",
+   "unanswered": [
+    "“statin use before”: An exposure asked before admission cannot be answered: MIMIC-IV records drugs given during the hosp"
+   ],
+   "plans": [],
+   "mapping_clarifications": []
+  },
+  "L06": {
+   "set": "lit20",
+   "question": "Among mechanically ventilated patients with sepsis, is dexmedetomidine use associated with lower 28-day mortality than other sedatives?",
+   "category": "",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "mechanically ventilated sepsis, dexmedetomidine use or other sedatives (not both)",
+     "exposure": "Dexmedetomidine use",
+     "outcome": "28-day mortality",
+     "index": "hospital admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "L07": {
+   "set": "lit20",
+   "question": "In ICU patients, is a higher serum anion gap in the first 24 hours associated with higher in-hospital mortality?",
+   "category": "",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": null,
+     "exposure": "serum anion gap",
+     "outcome": "In-hospital mortality",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "L08": {
+   "set": "lit20",
+   "question": "In ICU patients with acute pancreatitis, is a higher red cell distribution width to albumin ratio in the first 24 hours associated with acute kidney injury within 7 days?",
+   "category": "",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "acute pancreatitis",
+     "exposure": "Red cell distribution width",
+     "outcome": "Acute Kidney Injury",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "L09": {
+   "set": "lit20",
+   "question": "In patients with sepsis, is the hemoglobin level on the first day of ICU admission associated with 28-day mortality?",
+   "category": "",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis",
+     "exposure": "Hemoglobin",
+     "outcome": "28-day mortality",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "L10": {
+   "set": "lit20",
+   "question": "In patients with sepsis, is a higher stress hyperglycemia ratio (admission glucose relative to HbA1c) associated with higher 28-day mortality?",
+   "category": "",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "sepsis",
+     "exposure": "Blood glucose",
+     "outcome": "28-day mortality",
+     "index": "hospital admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "L11": {
+   "set": "lit20",
+   "question": "In ICU patients with COPD, are C-reactive protein, serum albumin and the CRP-to-albumin ratio associated with in-hospital mortality?",
+   "category": "",
+   "our_class": "stop_unmapped",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "COPD",
+     "exposure": "C-reactive protein and serum albumin",
+     "outcome": "In-hospital mortality",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "C-reactive protein and serum albumin",
+     "chosen": null,
+     "options": [
+      "broader",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "L12": {
+   "set": "lit20",
+   "question": "In ICU patients with septic shock treated with vasoactive drugs, is a higher total vasoactive drug exposure associated with higher 28-day mortality?",
+   "category": "",
+   "our_class": "stop_map",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "septic shock",
+     "exposure": "Vasoactive drug",
+     "outcome": "28-day mortality",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Vasoactive drug",
+     "chosen": null,
+     "options": [
+      "stop"
+     ]
+    }
+   ]
+  },
+  "L13": {
+   "set": "lit20",
+   "question": "In patients who underwent coronary revascularisation, is a higher estimated plasma volume status at ICU admission associated with acute kidney injury?",
+   "category": "",
+   "our_class": "stop_unmapped",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_UNMAPPED",
+     "population": "who underwent coronary revascularisation",
+     "exposure": "Hematocrit",
+     "outcome": "Acute Kidney Injury",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "L14": {
+   "set": "lit20",
+   "question": "Can 30-day readmission after hospital discharge be predicted from age, sex, comorbidities, length of stay and discharge laboratory values?",
+   "category": "",
+   "our_class": "stop_unmapped",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_UNMAPPED",
+     "population": "Patients, discharged alive",
+     "exposure": "Age",
+     "outcome": "Readmission within 30 days",
+     "index": "hospital admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "L15": {
+   "set": "lit20",
+   "question": "In patients with type 2 myocardial infarction who were discharged alive, is ACE inhibitor use during hospitalisation associated with lower 3-year mortality and with readmission?",
+   "category": "",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "type 2 myocardial infarction who were discharged alive",
+     "exposure": "ACE inhibitor use during hospitalization",
+     "outcome": "3-year mortality",
+     "index": "hospital admission",
+     "method": "treatment.iptw"
+    },
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "type 2 myocardial infarction who were discharged alive, discharged alive",
+     "exposure": "ACE inhibitor use during hospitalization",
+     "outcome": "Readmission within 365 days",
+     "index": "hospital admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "L16": {
+   "set": "lit20",
+   "question": "In ventilated patients with sepsis receiving vasopressors, is early enteral nutrition (started within 48 hours of ICU admission) associated with 28-day mortality?",
+   "category": "",
+   "our_class": "opposite_platform_error",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "ventilated sepsis",
+     "exposure": "enteral nutrition",
+     "outcome": "28-day mortality",
+     "index": "ICU admission",
+     "method": "modification.iptw_interaction"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "L17": {
+   "set": "lit20",
+   "question": "In ICU patients with sepsis and myocardial injury, is albumin infusion associated with 28-day mortality?",
+   "category": "",
+   "our_class": "stop_ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_CONFIRMATION_REQUIRED",
+     "population": "sepsis and myocardial injury",
+     "exposure": "Albumin infusion",
+     "outcome": "28-day mortality",
+     "index": "ICU admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": [
+    {
+     "term": "Sepsis with myocardial injury",
+     "chosen": null,
+     "options": [
+      "broader",
+      "stop"
+     ]
+    }
+   ]
+  },
+  "L18": {
+   "set": "lit20",
+   "question": "Can in-hospital mortality be predicted in patients with cirrhosis and sepsis from age, heart rate, total bilirubin, glucose, sodium, anion gap, fungal infection, mechanical ventilation and vasopressin use?",
+   "category": "",
+   "our_class": "stop_unmapped",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "blocked",
+     "stage": "mapping",
+     "blocker": "VARIABLE_UNMAPPED",
+     "population": "cirrhosis and sepsis",
+     "exposure": "Age",
+     "outcome": "In-hospital mortality",
+     "index": "hospital admission",
+     "method": null
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "L19": {
+   "set": "lit20",
+   "question": "In ICU patients with myocardial infarction, is a higher neutrophil percentage to albumin ratio at admission associated with higher 30-day mortality?",
+   "category": "",
+   "our_class": "design",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "myocardial infarction",
+     "exposure": "Neutrophil Percentage",
+     "outcome": "30-day mortality",
+     "index": "ICU admission",
+     "method": "regression.adjusted"
+    }
+   ],
+   "mapping_clarifications": []
+  },
+  "L20": {
+   "set": "lit20",
+   "question": "In ICU patients aged 65 and older, is vitamin D supplementation within the first 48 hours associated with lower 28-day mortality?",
+   "category": "",
+   "our_class": "ok",
+   "unanswered": [],
+   "plans": [
+    {
+     "status": "completed",
+     "stage": "analysis",
+     "blocker": null,
+     "population": "aged 65 and older",
+     "exposure": "Vitamin D supplementation",
+     "outcome": "28-day mortality",
+     "index": "ICU admission",
+     "method": "treatment.iptw"
+    }
+   ],
+   "mapping_clarifications": []
+  }
+ },
+ "numbers_included": false
+}

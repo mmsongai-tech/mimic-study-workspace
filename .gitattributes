@@ -1,0 +1,8 @@
+# Scripts keep LF line endings on every checkout, Windows included: WSL2 runs them, and CRLF breaks shebangs and here-documents.
+*.sh text eol=lf
+*.zsh text eol=lf
+*.command text eol=lf
+*.exp text eol=lf
+*.R text eol=lf
+*.r text eol=lf
+*.py text eol=lf

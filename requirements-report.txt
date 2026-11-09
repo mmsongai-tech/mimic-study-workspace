@@ -1,0 +1,5 @@
+# Report-only Python runtime. It receives aggregate run evidence, never patient-level rows.
+# Licenses: python-docx MIT; ReportLab BSD; Pillow HPND.
+python-docx==1.2.0
+reportlab==4.4.9
+Pillow==12.3.0

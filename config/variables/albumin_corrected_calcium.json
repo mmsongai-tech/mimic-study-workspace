@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.0",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "albumin_corrected_calcium",
+  "kind": "formula",
+  "labels": {
+    "en": "Albumin-corrected calcium",
+    "zh": "白蛋白校正钙"
+  },
+  "synonyms": [
+    "corrected calcium",
+    "calcium corrected for albumin",
+    "ACC"
+  ],
+  "meaning": "Total calcium + 0.8 × (4.0 − albumin), calcium in mg/dL and albumin in g/dL.",
+  "formula": {
+    "expression": "ca + 0.8 * (4 - alb)",
+    "variables": {
+      "ca": "total_calcium",
+      "alb": "albumin"
+    },
+    "unit": "mg/dL"
+  }
+}

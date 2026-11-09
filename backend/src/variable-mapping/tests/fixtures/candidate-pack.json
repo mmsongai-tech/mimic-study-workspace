@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "test-candidates",
+  "pack_version": "1.0.0",
+  "license": "MIT",
+  "provenance": "Synthetic test fixture: an unverified diagnosis candidate (no code list) for lifecycle and verification tests. Copied from mimic-iv-core 1.4.0 before diabetes became a validated concept.",
+  "mappings": [
+    {
+      "mapping_id": "mimic-iv.diabetes-history.candidate.v1",
+      "concept_id": "diabetes_history",
+      "mapping_version": "1.0.0",
+      "labels": {
+        "en": "Diabetes history",
+        "zh": "糖尿病"
+      },
+      "synonyms": [
+        "diabetes mellitus",
+        "DM",
+        "糖尿病史"
+      ],
+      "category": "diagnosis",
+      "value_type": "binary",
+      "definition": {
+        "summary": "Diabetes diagnosis attached to the eligible admission",
+        "temporal_rule": "Confirm whether admission-coded diagnosis represents the intended pre-existing history.",
+        "value_rule": "Apply a reviewed ICD-9/ICD-10 diabetes code set.",
+        "missingness_rule": "Absence of a diagnosis code is not automatically equivalent to confirmed absence until the definition is approved."
+      },
+      "sources": [
+        {
+          "kind": "diagnosis_code",
+          "schema": "mimiciv_hosp",
+          "table": "diagnoses_icd",
+          "columns": [
+            "subject_id",
+            "hadm_id",
+            "seq_num",
+            "icd_code",
+            "icd_version"
+          ],
+          "dictionary_table": "d_icd_diagnoses"
+        }
+      ],
+      "status": "discovered"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.1",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "estimated_plasma_volume_status",
+  "kind": "formula",
+  "labels": {
+    "en": "Estimated plasma volume status",
+    "zh": "估计血浆容量状态"
+  },
+  "synonyms": [
+    "ePVS",
+    "estimated plasma volume"
+  ],
+  "meaning": "Duarte estimate of plasma volume status, (100 − hematocrit) ÷ hemoglobin (hematocrit in %, hemoglobin in g/dL).",
+  "formula": {
+    "expression": "(100 - hct) / hb",
+    "variables": {
+      "hct": "hematocrit",
+      "hb": "hemoglobin"
+    },
+    "unit": "dL/g"
+  }
+}

@@ -1,0 +1,8 @@
+# Python packages of the derived-variable layer (scripts/derived/) and the dictionary index (scripts/build-dictionary-index.py),
+# installed into .venv by scripts/setup-new-machine.sh. Both read the MIMIC-IV archive locally; nothing leaves the machine.
+# The other imports of those scripts are the Python standard library.
+# Licenses: pandas BSD-3-Clause; numpy BSD-3-Clause (their dependencies python-dateutil, pytz and tzdata: Apache-2.0/BSD, MIT, Apache-2.0).
+# The layers were built and checked with pandas 2.2 and numpy 1.26 on Python 3.12; setup accepts Python 3.10-3.12 only.
+# numpy 1 only: pandas 2.2.3 with numpy 2.5 on Python 3.14 crashed the derived layer (segmentation fault in pandas).
+pandas>=2.2.3,<2.3
+numpy>=1.26,<2

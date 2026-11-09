@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.0",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "monocyte_percentage",
+  "kind": "lab_or_chart",
+  "labels": {
+    "en": "Monocyte percentage",
+    "zh": "单核细胞百分比"
+  },
+  "synonyms": [
+    "monocytes percent",
+    "monocyte %",
+    "monocyte fraction",
+    "单核细胞比例"
+  ],
+  "meaning": "Monocytes as a percentage of white cells in the blood differential (%).",
+  "items": {
+    "table": "labevents",
+    "item_ids": [
+      51254
+    ],
+    "unit": "%",
+    "valid_range": {
+      "min": 0,
+      "max": 100
+    },
+    "aggregation": "mean"
+  }
+}

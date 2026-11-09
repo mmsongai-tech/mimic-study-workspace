@@ -1,0 +1,30 @@
+{
+ "note": "Fixed order of the coded diagnosis concepts. The position fixes the item id of the readmission and history variables of the derived layer (scripts/derived/stay.py, scripts/build-core-concepts.py). Append new concepts at the end; never reorder or remove, so an item id never changes meaning.",
+ "order": [
+  "acute_kidney_injury",
+  "acute_pancreatitis",
+  "ards",
+  "arrhythmia",
+  "atrial_fibrillation",
+  "benign_prostatic_hyperplasia",
+  "chronic_kidney_disease",
+  "cirrhosis",
+  "copd",
+  "coronary_heart_disease",
+  "dementia",
+  "diabetes_mellitus",
+  "diabetic_ketoacidosis",
+  "heart_failure",
+  "hypertension",
+  "intracerebral_hemorrhage",
+  "lung_cancer",
+  "myocardial_infarction",
+  "pneumonia",
+  "sepsis",
+  "septic_shock",
+  "smoking",
+  "stroke",
+  "transient_ischemic_attack",
+  "end_stage_kidney_disease"
+ ]
+}

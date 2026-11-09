@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:mimic-research-agent-platform:contracts:generated-analysis:plan:1.0.0",
+  "title": "GeneratedAnalysisPlan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "study_family", "language", "method", "method_rationale", "required_conditions", "packages", "source_code", "required_result_keys"],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "study_family": { "enum": ["association", "prediction", "treatment_effect"] },
+    "language": { "enum": ["python", "r"] },
+    "method": { "$ref": "#/$defs/text" },
+    "method_rationale": { "$ref": "#/$defs/text" },
+    "required_conditions": { "type": "array", "items": { "$ref": "#/$defs/text" }, "minItems": 1, "maxItems": 30, "uniqueItems": true },
+    "packages": { "type": "array", "items": { "$ref": "#/$defs/name" }, "maxItems": 20, "uniqueItems": true },
+    "source_code": { "type": "string", "minLength": 1, "maxLength": 50000, "pattern": "\\S" },
+    "required_result_keys": { "type": "array", "items": { "$ref": "#/$defs/name" }, "minItems": 1, "maxItems": 50, "uniqueItems": true }
+  },
+  "$defs": {
+    "text": { "type": "string", "minLength": 1, "maxLength": 4000, "pattern": "\\S" },
+    "name": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[A-Za-z][A-Za-z0-9_.-]*$" }
+  }
+}

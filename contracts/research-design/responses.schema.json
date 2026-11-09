@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:mimic-research-agent-platform:contracts:research-design:responses:1.0.0",
+  "title": "Research Design responses",
+  "$defs": {
+    "researchDesignView": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "session_id",
+        "revision",
+        "phase",
+        "assistant_message",
+        "intent_assessment",
+        "study_spec",
+        "assumptions",
+        "clarifying_questions",
+        "suggestions",
+        "warnings",
+        "allowed_actions"
+      ],
+      "properties": {
+        "session_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "revision": { "type": "integer", "minimum": 1 },
+        "phase": { "enum": ["drafting", "needs_clarification", "ready_to_confirm", "confirmed"] },
+        "assistant_message": { "type": "string", "maxLength": 4000 },
+        "intent_assessment": {
+          "$ref": "urn:mimic-research-agent-platform:contracts:research-design:intent-assessment:1.0.0"
+        },
+        "study_spec": {
+          "$ref": "urn:mimic-research-agent-platform:contracts:research-design:study-spec:1.0.0"
+        },
+        "assumptions": {
+          "type": "array",
+          "items": { "type": "string", "maxLength": 2000 },
+          "maxItems": 50
+        },
+        "clarifying_questions": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:mimic-research-agent-platform:contracts:research-design:proposal:1.0.0#/$defs/question"
+          },
+          "maxItems": 20
+        },
+        "suggestions": {
+          "type": "array",
+          "items": {
+            "$ref": "urn:mimic-research-agent-platform:contracts:research-design:proposal:1.0.0#/$defs/suggestion"
+          },
+          "maxItems": 20
+        },
+        "warnings": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/publicWarning" },
+          "maxItems": 20
+        },
+        "allowed_actions": {
+          "type": "array",
+          "items": { "enum": ["continue", "confirm", "revise"] },
+          "uniqueItems": true
+        },
+        "reused_design_review": {
+          "$ref": "#/$defs/reusedDesignReview"
+        }
+      }
+    },
+    "reusedDesignReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_integrity_id", "decisions"],
+      "properties": {
+        "source_integrity_id": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "decisions": {
+          "type": "array",
+          "maxItems": 100,
+          "items": { "$ref": "#/$defs/reviewableDesignDecision" }
+        }
+      }
+    },
+    "reviewableDesignDecision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["question_id", "question", "selected_value", "selected_label"],
+      "properties": {
+        "question_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "question": { "type": "string", "minLength": 1, "maxLength": 4000 },
+        "selected_value": {
+          "oneOf": [
+            { "type": "string", "maxLength": 2000 },
+            { "type": "boolean" },
+            { "type": "array", "maxItems": 20, "items": { "type": "string", "maxLength": 500 } }
+          ]
+        },
+        "selected_label": { "type": "string", "minLength": 1, "maxLength": 2000 },
+        "response_kind": { "enum": ["text", "single_select", "multi_select", "boolean"] },
+        "options": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["value", "label", "explanation"],
+            "properties": {
+              "value": { "type": "string", "maxLength": 500 },
+              "label": { "type": "string", "minLength": 1, "maxLength": 500 },
+              "explanation": { "type": "string", "minLength": 1, "maxLength": 4000 }
+            }
+          }
+        }
+      }
+    },
+    "publicWarning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message", "blocking"],
+      "properties": {
+        "code": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "message": { "type": "string", "minLength": 1, "maxLength": 4000 },
+        "blocking": { "type": "boolean" },
+        "field_path": { "type": "string", "minLength": 1, "maxLength": 500 }
+      }
+    },
+    "confirmedStudySpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "session_id", "revision", "confirmed_at", "spec", "integrity_id"],
+      "properties": {
+        "schema_version": { "const": "1.0.0" },
+        "session_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "revision": { "type": "integer", "minimum": 1 },
+        "confirmed_at": { "type": "string", "format": "date-time" },
+        "spec": {
+          "$ref": "urn:mimic-research-agent-platform:contracts:research-design:confirmed-association-study-spec:1.0.0"
+        },
+        "integrity_id": { "type": "string", "minLength": 1, "maxLength": 256 }
+      }
+    }
+  }
+}

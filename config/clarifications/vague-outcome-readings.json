@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "catalog_version": "1.0.0",
+  "purpose": "Readings offered when a question names an outcome that measures nothing (efficacy, effect, prognosis). A researcher picks one; a batch test may pick for them, and the run records which. Every outcome text must resolve to a measured quantity the platform already answers.",
+  "purposes": [
+    { "id": "blood_pressure", "when": "高血压|血压|降压|hypertension|blood pressure|antihypertens|alpha.?blocker|受体阻[滞断]|沙坦|普利|地平|\\barb\\b|ace inhibitor",
+      "readings": [{ "id": "bp_lowering", "zh": "降压效果（用药后血压降低）", "en": "Blood pressure lowering", "outcome_zh": "降压效果", "outcome_en": "blood pressure lowering effect" }] },
+    { "id": "glucose", "when": "糖尿病|血糖|降糖|diabet|glucose|insulin|胰岛素|二甲双胍|metformin|格列",
+      "readings": [{ "id": "glucose_lowering", "zh": "降糖效果（用药后血糖降低）", "en": "Blood glucose lowering", "outcome_zh": "降糖效果", "outcome_en": "blood glucose lowering effect" }] },
+    { "id": "pain", "when": "疼痛|镇痛|止痛|阿片|analges|opioid|\\bpain\\b|吗啡|芬太尼",
+      "readings": [{ "id": "pain_relief", "zh": "镇痛效果（疼痛评分下降）", "en": "Pain relief (pain score)", "outcome_zh": "镇痛效果", "outcome_en": "pain relief effect" }] },
+    { "id": "heart_rate", "when": "心率|房颤|心房颤动|atrial fibrillation|heart rate|β.?受体|beta.?blocker|地高辛|digoxin",
+      "readings": [{ "id": "rate_control", "zh": "控制心率效果（心率下降）", "en": "Heart-rate control", "outcome_zh": "控制心率效果", "outcome_en": "heart rate control effect" }] },
+    { "id": "temperature", "when": "发热|退热|降温|fever|antipyretic|acetaminophen|对乙酰氨基酚",
+      "readings": [{ "id": "fever_lowering", "zh": "退热效果（体温下降）", "en": "Fever reduction (temperature)", "outcome_zh": "退热效果", "outcome_en": "fever reduction effect" }] }
+  ],
+  "generic": [
+    { "id": "in_hospital_death", "zh": "院内死亡", "en": "In-hospital death", "outcome_zh": "院内死亡", "outcome_en": "in-hospital death" },
+    { "id": "hospital_stay", "zh": "住院时间", "en": "Length of hospital stay", "outcome_zh": "住院时间", "outcome_en": "hospital length of stay" },
+    { "id": "readmission_30d", "zh": "30 天内再入院", "en": "Readmission within 30 days", "outcome_zh": "30天内再入院", "outcome_en": "readmission within 30 days" }
+  ]
+}

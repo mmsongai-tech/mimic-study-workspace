@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:mimic-research-agent-platform:contracts:research-design:requests:1.0.0",
+  "title": "Research Design requests",
+  "$defs": {
+    "requestId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "sessionId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "answerValue": {
+      "oneOf": [
+        { "type": "string", "maxLength": 4000 },
+        { "type": "boolean" },
+        {
+          "type": "array",
+          "items": { "type": "string", "maxLength": 500 },
+          "maxItems": 50,
+          "uniqueItems": true
+        }
+      ]
+    },
+    "startDesignRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["message", "client_request_id"],
+      "properties": {
+        "message": { "type": "string", "minLength": 1, "maxLength": 12000, "pattern": "\\S" },
+        "context": { "type": "string", "maxLength": 12000 },
+        "template_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "study_spec_contract": { "const": "objectives-v1" },
+        "allow_openai_fallback": { "type": "boolean" },
+        "client_request_id": { "$ref": "#/$defs/requestId" }
+      }
+    },
+    "continueDesignRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["session_id", "base_revision", "client_request_id"],
+      "properties": {
+        "session_id": { "$ref": "#/$defs/sessionId" },
+        "base_revision": { "type": "integer", "minimum": 1 },
+        "message": { "type": "string", "minLength": 1, "maxLength": 12000, "pattern": "\\S" },
+        "answers": {
+          "type": "object",
+          "propertyNames": { "minLength": 1, "maxLength": 128 },
+          "additionalProperties": { "$ref": "#/$defs/answerValue" },
+          "maxProperties": 50
+        },
+        "suggestion_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "client_request_id": { "$ref": "#/$defs/requestId" }
+      },
+      "anyOf": [
+        { "required": ["message"] },
+        { "required": ["answers"] },
+        { "required": ["suggestion_id"] }
+      ]
+    },
+    "confirmDesignRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["session_id", "base_revision", "client_request_id"],
+      "properties": {
+        "session_id": { "$ref": "#/$defs/sessionId" },
+        "base_revision": { "type": "integer", "minimum": 1 },
+        "client_request_id": { "$ref": "#/$defs/requestId" }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.1",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "type2_myocardial_infarction",
+  "kind": "diagnosis",
+  "labels": {
+    "en": "Type 2 myocardial infarction",
+    "zh": "2型心肌梗死"
+  },
+  "synonyms": [
+    "type 2 MI",
+    "T2MI",
+    "MI type 2",
+    "type II myocardial infarction"
+  ],
+  "meaning": "Myocardial infarction from an imbalance of oxygen supply and demand (ICD-10 I21.A1); not coded before ICD-10.",
+  "diagnosis": {
+    "codes": [
+      {
+        "code": "I21A1",
+        "version": 10
+      }
+    ]
+  }
+}

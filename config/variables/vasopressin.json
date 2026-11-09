@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.1",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "vasopressin",
+  "kind": "drug",
+  "labels": {
+    "en": "Vasopressin",
+    "zh": "血管加压素"
+  },
+  "synonyms": [
+    "vasopressin infusion",
+    "vasopressin administration",
+    "Pitressin",
+    "精氨酸加压素"
+  ],
+  "meaning": "Vasopressin given as an ICU infusion for vasodilatory shock.",
+  "drug": {
+    "input_item_ids": [
+      222315
+    ]
+  }
+}

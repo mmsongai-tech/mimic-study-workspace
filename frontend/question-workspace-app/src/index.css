@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Design tokens: a calm, clinical palette (desaturated blue primary, clear semantic status colors) so the platform
+ * reads as a professional research tool, not a demo. Light mode is the default; dark mode mirrors it 1:1.
+ */
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 222 20% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 20% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 20% 14%;
+    --primary: 217 71% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 94%;
+    --secondary-foreground: 222 20% 20%;
+    --muted: 210 20% 94%;
+    --muted-foreground: 215 14% 42%;
+    --accent: 217 71% 96%;
+    --accent-foreground: 217 71% 30%;
+    --destructive: 4 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 152 55% 30%;
+    --success-foreground: 0 0% 100%;
+    --warning: 34 92% 38%;
+    --warning-foreground: 0 0% 100%;
+    --border: 214 18% 88%;
+    --input: 214 18% 88%;
+    --ring: 217 71% 45%;
+    --radius: 0.625rem;
+  }
+
+  .dark {
+    --background: 222 24% 9%;
+    --foreground: 210 20% 92%;
+    --card: 222 22% 12%;
+    --card-foreground: 210 20% 92%;
+    --popover: 222 22% 12%;
+    --popover-foreground: 210 20% 92%;
+    --primary: 217 80% 64%;
+    --primary-foreground: 222 24% 9%;
+    --secondary: 222 18% 18%;
+    --secondary-foreground: 210 20% 88%;
+    --muted: 222 18% 18%;
+    --muted-foreground: 215 14% 62%;
+    --accent: 217 40% 18%;
+    --accent-foreground: 217 80% 78%;
+    --destructive: 4 72% 58%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 152 45% 48%;
+    --success-foreground: 152 45% 8%;
+    --warning: 34 92% 58%;
+    --warning-foreground: 34 92% 10%;
+    --border: 222 16% 22%;
+    --input: 222 16% 22%;
+    --ring: 217 80% 64%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  /* A visible focus ring everywhere, keyboard or mouse, is a deliberate accessibility choice for a clinical tool. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+}

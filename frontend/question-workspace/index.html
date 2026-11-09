@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MIMIC Study Workspace</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="dot"></span><span data-i18n="title">MIMIC 研究工作台</span></div>
+    <div class="topbar-actions">
+      <span class="model-note" data-i18n="localOnly">本地模型 · 本地 MIMIC-IV 数据</span>
+      <button class="ghost" id="language-toggle" type="button">English</button>
+    </div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar">
+      <h2 data-i18n="runs">历史运行</h2>
+      <ul id="run-list" class="run-list"></ul>
+    </aside>
+    <main class="main">
+      <button id="ask-open" class="ask-open" type="button" data-i18n="newQuestion" hidden>＋ 新的研究问题</button>
+      <section class="card ask" id="ask-form">
+        <label for="question" class="label" data-i18n="askLabel">研究问题</label>
+        <textarea id="question" rows="3" data-i18n-placeholder="askPlaceholder"></textarea>
+        <div class="examples" id="examples"></div>
+        <p class="hint" data-i18n="askHint"></p>
+        <div class="ask-actions">
+          <label class="hint auto"><input type="checkbox" id="auto-confirm"> <span data-i18n="autoConfirm"></span></label>
+          <button id="run-button" class="primary" type="button" data-i18n="run">制定分析计划</button>
+        </div>
+        <p id="ask-error" class="error" hidden></p>
+      </section>
+      <section id="run-detail" hidden></section>
+    </main>
+  </div>
+  <script src="i18n.js"></script>
+  <script src="views.js"></script>
+  <script src="results.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

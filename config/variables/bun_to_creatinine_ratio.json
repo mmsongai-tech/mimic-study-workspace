@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.0",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "bun_to_creatinine_ratio",
+  "kind": "formula",
+  "labels": {
+    "en": "BUN-to-creatinine ratio",
+    "zh": "尿素氮与肌酐比值"
+  },
+  "synonyms": [
+    "BUN/creatinine",
+    "urea nitrogen to creatinine ratio",
+    "BUN creatinine ratio"
+  ],
+  "meaning": "Blood urea nitrogen divided by creatinine (both mg/dL).",
+  "formula": {
+    "expression": "bun / cr",
+    "variables": {
+      "bun": "bun",
+      "cr": "creatinine"
+    }
+  }
+}

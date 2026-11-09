@@ -1,0 +1,95 @@
+schema_version = 1
+
+[server]
+host = "127.0.0.1"
+port = 3000
+
+[storage]
+database_path = "./mimic-research-agent-platform.sqlite"
+
+[clinical_database]
+enabled = false
+service = "mimic-iv"
+psql_binary = "psql"
+connect_timeout_seconds = 5
+statement_timeout_ms = 5000
+catalog_snapshot_path = "./config/mimic-iv-catalog/mimic-iv-catalog.snapshot.json"
+local_evidence_cache_path = "./.local/mapping-evidence-cache"
+local_evidence_scan_timeout_ms = 300000
+local_evidence_max_member_bytes = 750000000
+
+[variable_definitions]
+shared_directory = "./config/variables"
+workspace_directory = "./.local/variables"
+dictionary_index_path = "./.local/dictionary-index.json"
+
+# Embedding retrieval of dictionary candidates (evaluation feature, off by default). The index is MIMIC-derived and stays local.
+[variable_mapping.embedding_search]
+enabled = false
+base_url = "http://127.0.0.1:11434/v1"
+model = "bge-m3"
+index_directory = "./.local/dictionary-embeddings/bge-m3"
+neighbours = 10
+timeout_ms = 30000
+
+[statistical_execution]
+primary_runtime = "r"
+rscript_binary = "Rscript"
+timeout_ms = 30000
+
+[report_exports]
+python_binary = "python3"
+timeout_ms = 60000
+
+[generated_analysis]
+enabled = false
+sandbox = "macos_sandbox"
+python_binary = "python3"
+rscript_binary = "Rscript"
+wall_timeout_ms = 60000
+cpu_time_seconds = 30
+memory_limit_mb = 2048
+max_source_bytes = 50000
+max_input_bytes = 50000000
+max_output_bytes = 2000000
+allowed_python_packages = ["json", "sys", "math", "statistics", "csv", "numpy", "pandas", "scipy", "statsmodels", "sklearn", "lifelines"]
+allowed_r_packages = ["jsonlite", "stats", "survival", "splines", "boot", "MASS"]
+
+# The kinds of question this release accepts. An aim of another type (here dose_response, effect_modification and
+# mediation) is not planned; it is reported among the unanswered aims with the reason.
+[question_scope]
+allowed_study_types = ["descriptive", "group_comparison", "association", "treatment_effect", "time_to_event", "longitudinal_change", "prediction"]
+
+[research_design]
+supported_study_spec_versions = ["1.0.0"]
+
+[research_design.prompt]
+id = "research-design"
+version = "0.8.4"
+
+# An optional OpenAI-compatible model router has no default address. Only the router entry points use one, and they stop
+# with a clear message unless OPENROUTER_BASE_URL (research_design.router.base_url) is set.
+# [research_design.router]
+# base_url = "https://router.example.test/v1"
+
+[research_design.model]
+profile = "disabled"
+timeout_ms = 30000
+max_output_tokens = 4000
+retry_max_attempts = 3
+retry_backoff_ms = 250
+
+[research_design.limits]
+max_request_chars = 12000
+max_answers = 50
+max_patch_operations = 100
+
+[research_design.retention]
+max_revisions = 100
+
+[research_design.idempotency]
+request_claim_ttl_ms = 30000
+
+# This is a safe versioned example, not a secret or production configuration.
+# Environment and command-line adapters must map their values into the typed
+# runtime configuration entry point; business modules do not read them directly.

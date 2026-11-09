@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.1",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "c_reactive_protein",
+  "kind": "lab_or_chart",
+  "labels": {
+    "en": "C-reactive protein",
+    "zh": "C反应蛋白"
+  },
+  "synonyms": [
+    "CRP",
+    "C reactive protein",
+    "超敏C反应蛋白"
+  ],
+  "meaning": "Acute-phase inflammatory marker, blood (mg/L).",
+  "items": {
+    "table": "labevents",
+    "item_ids": [
+      50889
+    ],
+    "unit": "mg/L",
+    "valid_range": {
+      "min": 0,
+      "max": 1000
+    },
+    "aggregation": "mean"
+  }
+}

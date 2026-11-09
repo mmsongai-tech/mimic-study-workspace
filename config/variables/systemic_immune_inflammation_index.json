@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.0",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "systemic_immune_inflammation_index",
+  "kind": "formula",
+  "labels": {
+    "en": "Systemic immune-inflammation index",
+    "zh": "全身免疫炎症指数"
+  },
+  "synonyms": [
+    "SII",
+    "systemic immune inflammation index"
+  ],
+  "meaning": "Platelet count times neutrophils divided by lymphocytes (platelets × N% / L%), in 10^9/L.",
+  "formula": {
+    "expression": "plt * npct / lpct",
+    "variables": {
+      "plt": "platelets",
+      "npct": "neutrophil_percentage",
+      "lpct": "lymphocyte_percentage"
+    },
+    "unit": "10^9/L"
+  }
+}

@@ -1,0 +1,245 @@
+{
+ "A1": {
+  "plans": [
+   "ready"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "association"
+  ],
+  "unmapped": []
+ },
+ "A2": {
+  "plans": [
+   "ready"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "association"
+  ],
+  "unmapped": []
+ },
+ "A3": {
+  "plans": [
+   "ready"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "association"
+  ],
+  "unmapped": []
+ },
+ "D1": {
+  "plans": [
+   "ready"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "dose_response"
+  ],
+  "unmapped": []
+ },
+ "D2": {
+  "plans": [
+   "ready"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "dose_response"
+  ],
+  "unmapped": []
+ },
+ "M1": {
+  "plans": [
+   "ready"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "effect_modification"
+  ],
+  "unmapped": []
+ },
+ "M2": {
+  "plans": [
+   "ready"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "effect_modification"
+  ],
+  "unmapped": []
+ },
+ "ME1": {
+  "plans": [
+   "ready"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "mediation"
+  ],
+  "unmapped": []
+ },
+ "P1": {
+  "plans": [
+   "ready"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "prediction"
+  ],
+  "unmapped": []
+ },
+ "P2": {
+  "plans": [
+   "ready"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "prediction"
+  ],
+  "unmapped": []
+ },
+ "P3": {
+  "plans": [
+   "ready"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "prediction"
+  ],
+  "unmapped": []
+ },
+ "P4": {
+  "plans": [
+   "ready"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "prediction"
+  ],
+  "unmapped": []
+ },
+ "T1": {
+  "plans": [
+   "ready"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "treatment_effect"
+  ],
+  "unmapped": []
+ },
+ "T2": {
+  "plans": [
+   "blocked"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "treatment_effect"
+  ],
+  "unmapped": [
+   "Gastrointestinal bleeding"
+  ]
+ },
+ "T3": {
+  "plans": [
+   "ready"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "treatment_effect"
+  ],
+  "unmapped": []
+ },
+ "T4": {
+  "plans": [
+   "ready"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "treatment_effect"
+  ],
+  "unmapped": []
+ },
+ "T5": {
+  "plans": [
+   "ready"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "treatment_effect"
+  ],
+  "unmapped": []
+ },
+ "T6": {
+  "plans": [
+   "ready"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "treatment_effect"
+  ],
+  "unmapped": []
+ },
+ "TE1": {
+  "plans": [
+   "blocked"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "time_to_event"
+  ],
+  "unmapped": [
+   "Time of extubation",
+   "sedative medication"
+  ]
+ },
+ "X1": {
+  "plans": [
+   "blocked"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "descriptive"
+  ],
+  "unmapped": [
+   "depression"
+  ]
+ },
+ "X2": {
+  "plans": [],
+  "status": "awaiting_confirmation",
+  "types": [
+   "prediction"
+  ],
+  "unmapped": []
+ },
+ "X3": {
+  "plans": [
+   "blocked",
+   "blocked"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "descriptive",
+   "treatment_effect"
+  ],
+  "unmapped": [
+   "Cost-effectiveness",
+   "This drug",
+   "this drug"
+  ]
+ },
+ "X4": {
+  "plans": [
+   "blocked"
+  ],
+  "status": "awaiting_confirmation",
+  "types": [
+   "treatment_effect"
+  ],
+  "unmapped": [
+   "bleeding risk"
+  ]
+ }
+}

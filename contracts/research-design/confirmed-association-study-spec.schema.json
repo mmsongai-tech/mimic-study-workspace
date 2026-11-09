@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:mimic-research-agent-platform:contracts:research-design:confirmed-association-study-spec:1.0.0",
+  "title": "Confirmed executable StudySpec",
+  "description": "Minimum structurally complete StudySpec accepted for an allowlisted analysis preflight.",
+  "allOf": [
+    {
+      "$ref": "urn:mimic-research-agent-platform:contracts:research-design:study-spec:1.0.0"
+    },
+    {
+      "type": "object",
+      "required": [
+        "title",
+        "research_question",
+        "population",
+        "index_time",
+        "exposure_or_predictors",
+        "outcome",
+        "time_windows",
+        "estimand",
+        "analysis_family"
+      ],
+      "properties": {
+        "intent_family": { "enum": ["association", "prediction", "treatment_effect"] },
+        "exposure_or_predictors": {
+          "type": "array",
+          "contains": {
+            "type": "object",
+            "required": ["role"],
+            "properties": {
+              "role": { "enum": ["exposure", "predictor"] }
+            }
+          },
+          "minContains": 1
+        },
+        "outcome": {
+          "type": "object",
+          "properties": {
+            "role": {
+              "const": "outcome"
+            }
+          }
+        },
+        "time_windows": {
+          "type": "array",
+          "contains": {
+            "type": "object",
+            "required": ["purpose"],
+            "properties": {
+              "purpose": {
+                "const": "outcome"
+              }
+            }
+          },
+          "minContains": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "intent_family": { "const": "association" } } },
+          "then": { "properties": { "analysis_family": { "enum": ["association", "time_to_event_association"] } } }
+        },
+        {
+          "if": { "properties": { "intent_family": { "const": "prediction" } } },
+          "then": { "properties": { "analysis_family": { "enum": ["binary_prediction", "time_to_event_prediction"] } } }
+        },
+        {
+          "if": { "properties": { "intent_family": { "const": "treatment_effect" } } },
+          "then": { "properties": { "analysis_family": { "enum": ["propensity_weighted_treatment_effect", "time_to_event_treatment_effect"] } } }
+        }
+      ]
+    }
+  ]
+}

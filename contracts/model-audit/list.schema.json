@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mimic-research.local/contracts/model-audit/list.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "records"],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "records": { "type": "array", "maxItems": 100, "items": { "$ref": "#/$defs/record" } }
+  },
+  "$defs": {
+    "state": { "enum": ["pass", "fail", "not_run"] },
+    "artifact": { "type": "object", "additionalProperties": false, "required": ["id", "version", "integrity_id"], "properties": { "id": { "type": "string" }, "version": { "type": "string" }, "integrity_id": { "type": "string" } } },
+    "attempt": { "type": "object", "additionalProperties": false, "required": ["provider", "model", "order", "latency_ms", "outcome"],
+      "properties": {
+        "provider": { "type": "string" },
+        "model": { "type": "string" },
+        "order": { "type": "integer", "minimum": 1 },
+        "latency_ms": { "type": "integer", "minimum": 0 },
+        "outcome": { "enum": ["failed", "succeeded"] },
+        "failure_class": { "type": "string" }
+      }
+    },
+    "record": {
+      "type": "object", "additionalProperties": false,
+      "required": ["stage", "provider", "model", "prompt", "schema", "json_parse", "schema_validation", "business_validation", "repair_attempts", "latency_ms"],
+      "properties": {
+        "stage": { "type": "string" }, "provider": { "type": "string" }, "model": { "type": "string" },
+        "prompt": { "$ref": "#/$defs/artifact" }, "schema": { "$ref": "#/$defs/artifact" },
+        "json_parse": { "$ref": "#/$defs/state" }, "schema_validation": { "$ref": "#/$defs/state" }, "business_validation": { "$ref": "#/$defs/state" },
+        "repair_attempts": { "type": "integer", "minimum": 0 }, "latency_ms": { "type": "integer", "minimum": 0 },
+        "attempts": { "type": "array", "maxItems": 10, "items": { "$ref": "#/$defs/attempt" } },
+        "structured_output_mode": { "enum": ["json_schema", "json_object", "prompt_contract"] },
+        "failure_class": { "type": "string" }, "output_integrity_id": { "type": "string" }, "study_spec_integrity_id": { "type": "string" },
+        "manifest_integrity_id": { "type": "string" }, "method_integrity_id": { "type": "string" }, "report_integrity_id": { "type": "string" }
+      }
+    }
+  }
+}

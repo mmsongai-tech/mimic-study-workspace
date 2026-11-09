@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mimic-research.local/contracts/research-objectives/objective-list.schema.json",
+  "title": "ResearchObjectiveList",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "original_question", "objectives", "ambiguities"],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "original_question": { "type": "string", "minLength": 1 },
+    "objectives": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/objective" } },
+    "ambiguities": { "type": "array", "items": { "$ref": "#/$defs/ambiguity" } }
+  },
+  "$defs": {
+    "objective": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["objective_id", "purpose", "relationship", "question", "population", "exposure_or_predictors", "outcome", "effect_modifiers", "source_claims"],
+      "properties": {
+        "objective_id": { "type": "string", "pattern": "^[a-z][a-z0-9_.-]+$" },
+        "purpose": { "enum": ["association", "prediction", "treatment_effect"] },
+        "relationship": { "enum": ["primary", "secondary", "effect_modification", "mediation", "composite_component"] },
+        "question": { "type": "string", "minLength": 1 },
+        "population": { "type": "string", "minLength": 1 },
+        "exposure_or_predictors": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "comparator": { "type": "string", "minLength": 1 },
+        "outcome": { "type": "string", "minLength": 1 },
+        "effect_modifiers": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "mediator": { "type": "string", "minLength": 1 },
+        "depends_on_objective_ids": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z][a-z0-9_.-]+$" } },
+        "source_claims": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "ambiguity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ambiguity_id", "question", "reason", "affected_objective_ids"],
+      "properties": {
+        "ambiguity_id": { "type": "string", "pattern": "^[a-z][a-z0-9_.-]+$" },
+        "question": { "type": "string", "minLength": 1 },
+        "reason": { "type": "string", "minLength": 1 },
+        "affected_objective_ids": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+      }
+    }
+  }
+}

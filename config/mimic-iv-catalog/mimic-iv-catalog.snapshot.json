@@ -1,0 +1,2010 @@
+{
+  "schema_version": "1.0.0",
+  "catalog": {
+    "schema_version": "1.0.0",
+    "data_model": "MIMIC-IV",
+    "source_service": "mimic-iv",
+    "relations": [
+      {
+        "schema": "mimiciv_hosp",
+        "name": "admissions",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "admittime",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          },
+          {
+            "name": "dischtime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "deathtime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "admission_type",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "admit_provider_id",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "admission_location",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "discharge_location",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "insurance",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "language",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "marital_status",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "race",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "edregtime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "edouttime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "hospital_expire_flag",
+            "data_type": "smallint",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "d_hcpcs",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "code",
+            "data_type": "character",
+            "nullable": false
+          },
+          {
+            "name": "category",
+            "data_type": "smallint",
+            "nullable": true
+          },
+          {
+            "name": "long_description",
+            "data_type": "text",
+            "nullable": true
+          },
+          {
+            "name": "short_description",
+            "data_type": "character varying",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "d_icd_diagnoses",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "icd_code",
+            "data_type": "character",
+            "nullable": false
+          },
+          {
+            "name": "icd_version",
+            "data_type": "smallint",
+            "nullable": false
+          },
+          {
+            "name": "long_title",
+            "data_type": "character varying",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "d_icd_procedures",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "icd_code",
+            "data_type": "character",
+            "nullable": false
+          },
+          {
+            "name": "icd_version",
+            "data_type": "smallint",
+            "nullable": false
+          },
+          {
+            "name": "long_title",
+            "data_type": "character varying",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "d_labitems",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "itemid",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "label",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "fluid",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "category",
+            "data_type": "character varying",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "diagnoses_icd",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "seq_num",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "icd_code",
+            "data_type": "character",
+            "nullable": false
+          },
+          {
+            "name": "icd_version",
+            "data_type": "smallint",
+            "nullable": false
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "drgcodes",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "drg_type",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "drg_code",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "description",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "drg_severity",
+            "data_type": "smallint",
+            "nullable": true
+          },
+          {
+            "name": "drg_mortality",
+            "data_type": "smallint",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "emar",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "emar_id",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "emar_seq",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "poe_id",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "pharmacy_id",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "enter_provider_id",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "charttime",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          },
+          {
+            "name": "medication",
+            "data_type": "text",
+            "nullable": true
+          },
+          {
+            "name": "event_txt",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "scheduletime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "storetime",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "emar_detail",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "emar_id",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "emar_seq",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "parent_field_ordinal",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "administration_type",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "pharmacy_id",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "barcode_type",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "reason_for_no_barcode",
+            "data_type": "text",
+            "nullable": true
+          },
+          {
+            "name": "complete_dose_not_given",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "dose_due",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "dose_due_unit",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "dose_given",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "dose_given_unit",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "will_remainder_of_dose_be_given",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "product_amount_given",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "product_unit",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "product_code",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "product_description",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "product_description_other",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "prior_infusion_rate",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "infusion_rate",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "infusion_rate_adjustment",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "infusion_rate_adjustment_amount",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "infusion_rate_unit",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "route",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "infusion_complete",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "completion_interval",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "new_iv_bag_hung",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "continued_infusion_in_other_location",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "restart_interval",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "side",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "site",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "non_formulary_visual_verification",
+            "data_type": "character varying",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "hcpcsevents",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "chartdate",
+            "data_type": "date",
+            "nullable": true
+          },
+          {
+            "name": "hcpcs_cd",
+            "data_type": "character",
+            "nullable": false
+          },
+          {
+            "name": "seq_num",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "short_description",
+            "data_type": "character varying",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "labevents",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "labevent_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "specimen_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "itemid",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "order_provider_id",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "charttime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "storetime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "value",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "valuenum",
+            "data_type": "double precision",
+            "nullable": true
+          },
+          {
+            "name": "valueuom",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "ref_range_lower",
+            "data_type": "double precision",
+            "nullable": true
+          },
+          {
+            "name": "ref_range_upper",
+            "data_type": "double precision",
+            "nullable": true
+          },
+          {
+            "name": "flag",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "priority",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "comments",
+            "data_type": "text",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "microbiologyevents",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "microevent_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "micro_specimen_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "order_provider_id",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "chartdate",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          },
+          {
+            "name": "charttime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "spec_itemid",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "spec_type_desc",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "test_seq",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "storedate",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "storetime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "test_itemid",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "test_name",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "org_itemid",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "org_name",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "isolate_num",
+            "data_type": "smallint",
+            "nullable": true
+          },
+          {
+            "name": "quantity",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "ab_itemid",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ab_name",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "dilution_text",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "dilution_comparison",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "dilution_value",
+            "data_type": "double precision",
+            "nullable": true
+          },
+          {
+            "name": "interpretation",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "comments",
+            "data_type": "text",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "omr",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "chartdate",
+            "data_type": "date",
+            "nullable": false
+          },
+          {
+            "name": "seq_num",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "result_name",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "result_value",
+            "data_type": "text",
+            "nullable": false
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "patients",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "gender",
+            "data_type": "character",
+            "nullable": false
+          },
+          {
+            "name": "anchor_age",
+            "data_type": "smallint",
+            "nullable": true
+          },
+          {
+            "name": "anchor_year",
+            "data_type": "smallint",
+            "nullable": false
+          },
+          {
+            "name": "anchor_year_group",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "dod",
+            "data_type": "date",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "pharmacy",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "pharmacy_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "poe_id",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "starttime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "stoptime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "medication",
+            "data_type": "text",
+            "nullable": true
+          },
+          {
+            "name": "proc_type",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "status",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "entertime",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          },
+          {
+            "name": "verifiedtime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "route",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "frequency",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "disp_sched",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "infusion_type",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "sliding_scale",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "lockout_interval",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "basal_rate",
+            "data_type": "real",
+            "nullable": true
+          },
+          {
+            "name": "one_hr_max",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "doses_per_24_hrs",
+            "data_type": "real",
+            "nullable": true
+          },
+          {
+            "name": "duration",
+            "data_type": "real",
+            "nullable": true
+          },
+          {
+            "name": "duration_interval",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "expiration_value",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "expiration_unit",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "expirationdate",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "dispensation",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "fill_quantity",
+            "data_type": "character varying",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "poe",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "poe_id",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "poe_seq",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ordertime",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          },
+          {
+            "name": "order_type",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "order_subtype",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "transaction_type",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "discontinue_of_poe_id",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "discontinued_by_poe_id",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "order_provider_id",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "order_status",
+            "data_type": "character varying",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "poe_detail",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "poe_id",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "poe_seq",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "field_name",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "field_value",
+            "data_type": "text",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "prescriptions",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "pharmacy_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "poe_id",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "poe_seq",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "order_provider_id",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "starttime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "stoptime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "drug_type",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "drug",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "formulary_drug_cd",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "gsn",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "ndc",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "prod_strength",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "form_rx",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "dose_val_rx",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "dose_unit_rx",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "form_val_disp",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "form_unit_disp",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "doses_per_24_hrs",
+            "data_type": "real",
+            "nullable": true
+          },
+          {
+            "name": "route",
+            "data_type": "character varying",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "procedures_icd",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "seq_num",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "chartdate",
+            "data_type": "date",
+            "nullable": false
+          },
+          {
+            "name": "icd_code",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "icd_version",
+            "data_type": "smallint",
+            "nullable": false
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "provider",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "provider_id",
+            "data_type": "character varying",
+            "nullable": false
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "services",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "transfertime",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          },
+          {
+            "name": "prev_service",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "curr_service",
+            "data_type": "character varying",
+            "nullable": false
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_hosp",
+        "name": "transfers",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "transfer_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "eventtype",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "careunit",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "intime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "outtime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_icu",
+        "name": "caregiver",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "caregiver_id",
+            "data_type": "integer",
+            "nullable": false
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_icu",
+        "name": "chartevents",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "stay_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "caregiver_id",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "charttime",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          },
+          {
+            "name": "storetime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "itemid",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "value",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "valuenum",
+            "data_type": "double precision",
+            "nullable": true
+          },
+          {
+            "name": "valueuom",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "warning",
+            "data_type": "smallint",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_icu",
+        "name": "d_items",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "itemid",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "label",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "abbreviation",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "linksto",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "category",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "unitname",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "param_type",
+            "data_type": "character varying",
+            "nullable": false
+          },
+          {
+            "name": "lownormalvalue",
+            "data_type": "double precision",
+            "nullable": true
+          },
+          {
+            "name": "highnormalvalue",
+            "data_type": "double precision",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_icu",
+        "name": "datetimeevents",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "stay_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "caregiver_id",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "charttime",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          },
+          {
+            "name": "storetime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "itemid",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "value",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          },
+          {
+            "name": "valueuom",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "warning",
+            "data_type": "smallint",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_icu",
+        "name": "icustays",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "stay_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "first_careunit",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "last_careunit",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "intime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "outtime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "los",
+            "data_type": "double precision",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_icu",
+        "name": "ingredientevents",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "stay_id",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "caregiver_id",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "starttime",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          },
+          {
+            "name": "endtime",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          },
+          {
+            "name": "storetime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "itemid",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "amount",
+            "data_type": "double precision",
+            "nullable": true
+          },
+          {
+            "name": "amountuom",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "rate",
+            "data_type": "double precision",
+            "nullable": true
+          },
+          {
+            "name": "rateuom",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "orderid",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "linkorderid",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "statusdescription",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "originalamount",
+            "data_type": "double precision",
+            "nullable": true
+          },
+          {
+            "name": "originalrate",
+            "data_type": "double precision",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_icu",
+        "name": "inputevents",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "stay_id",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "caregiver_id",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "starttime",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          },
+          {
+            "name": "endtime",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          },
+          {
+            "name": "storetime",
+            "data_type": "timestamp without time zone",
+            "nullable": true
+          },
+          {
+            "name": "itemid",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "amount",
+            "data_type": "double precision",
+            "nullable": true
+          },
+          {
+            "name": "amountuom",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "rate",
+            "data_type": "double precision",
+            "nullable": true
+          },
+          {
+            "name": "rateuom",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "orderid",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "linkorderid",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ordercategoryname",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "secondaryordercategoryname",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "ordercomponenttypedescription",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "ordercategorydescription",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "patientweight",
+            "data_type": "double precision",
+            "nullable": true
+          },
+          {
+            "name": "totalamount",
+            "data_type": "double precision",
+            "nullable": true
+          },
+          {
+            "name": "totalamountuom",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "isopenbag",
+            "data_type": "smallint",
+            "nullable": true
+          },
+          {
+            "name": "continueinnextdept",
+            "data_type": "smallint",
+            "nullable": true
+          },
+          {
+            "name": "statusdescription",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "originalamount",
+            "data_type": "double precision",
+            "nullable": true
+          },
+          {
+            "name": "originalrate",
+            "data_type": "double precision",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_icu",
+        "name": "outputevents",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "stay_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "caregiver_id",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "charttime",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          },
+          {
+            "name": "storetime",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          },
+          {
+            "name": "itemid",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "value",
+            "data_type": "double precision",
+            "nullable": false
+          },
+          {
+            "name": "valueuom",
+            "data_type": "character varying",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_icu",
+        "name": "procedureevents",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "stay_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "caregiver_id",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "starttime",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          },
+          {
+            "name": "endtime",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          },
+          {
+            "name": "storetime",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          },
+          {
+            "name": "itemid",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "value",
+            "data_type": "double precision",
+            "nullable": true
+          },
+          {
+            "name": "valueuom",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "location",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "locationcategory",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "orderid",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "linkorderid",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ordercategoryname",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "ordercategorydescription",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "patientweight",
+            "data_type": "double precision",
+            "nullable": true
+          },
+          {
+            "name": "isopenbag",
+            "data_type": "smallint",
+            "nullable": true
+          },
+          {
+            "name": "continueinnextdept",
+            "data_type": "smallint",
+            "nullable": true
+          },
+          {
+            "name": "statusdescription",
+            "data_type": "character varying",
+            "nullable": true
+          },
+          {
+            "name": "originalamount",
+            "data_type": "double precision",
+            "nullable": true
+          },
+          {
+            "name": "originalrate",
+            "data_type": "double precision",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_derived",
+        "name": "derived_events",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "subject_id",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "hadm_id",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "stay_id",
+            "data_type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "itemid",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "charttime",
+            "data_type": "timestamp without time zone",
+            "nullable": false
+          },
+          {
+            "name": "valuenum",
+            "data_type": "double precision",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "schema": "mimiciv_derived",
+        "name": "derived_items",
+        "relation_type": "table",
+        "columns": [
+          {
+            "name": "itemid",
+            "data_type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "key",
+            "data_type": "text",
+            "nullable": false
+          },
+          {
+            "name": "label",
+            "data_type": "text",
+            "nullable": false
+          },
+          {
+            "name": "unit",
+            "data_type": "text",
+            "nullable": true
+          },
+          {
+            "name": "definition",
+            "data_type": "text",
+            "nullable": false
+          }
+        ]
+      }
+    ],
+    "relation_count": 33,
+    "column_count": 353,
+    "inspected_at": "2026-09-02T08:55:39.700Z"
+  },
+  "integrity_id": "sha256:0da9dddc307986c9dfc67cfdacb497eb60c9fef9395424874341aa8ef0b8cd9f"
+}

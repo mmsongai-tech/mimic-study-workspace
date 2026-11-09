@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.1",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "hemoglobin_a1c",
+  "kind": "lab_or_chart",
+  "labels": {
+    "en": "Hemoglobin A1c",
+    "zh": "糖化血红蛋白"
+  },
+  "synonyms": [
+    "HbA1c",
+    "A1c",
+    "glycated hemoglobin",
+    "glycosylated hemoglobin",
+    "glycohemoglobin"
+  ],
+  "meaning": "Share of hemoglobin that is glycated, a measure of average glucose over about three months (%).",
+  "items": {
+    "table": "labevents",
+    "item_ids": [
+      50852
+    ],
+    "unit": "%",
+    "valid_range": {
+      "min": 3,
+      "max": 20
+    },
+    "aggregation": "mean"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.1",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "other_sedatives",
+  "kind": "drug",
+  "labels": {
+    "en": "Other sedatives",
+    "zh": "其他镇静药"
+  },
+  "synonyms": [
+    "propofol, midazolam or lorazepam",
+    "non-dexmedetomidine sedatives",
+    "other sedative agents"
+  ],
+  "meaning": "ICU sedative infusions other than dexmedetomidine: propofol, midazolam and lorazepam.",
+  "drug": {
+    "input_item_ids": [
+      222168,
+      221668,
+      221385
+    ]
+  }
+}

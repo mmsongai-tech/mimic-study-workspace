@@ -1,0 +1,318 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:mimic-research-agent-platform:contracts:research-design:study-spec:1.0.0",
+  "title": "StudySpec",
+  "description": "Structurally valid, potentially incomplete research design draft.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "intent_family"],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "title": {
+      "$ref": "#/$defs/nonEmptyText"
+    },
+    "research_question": {
+      "$ref": "#/$defs/nonEmptyText"
+    },
+    "intent_family": {
+      "enum": ["association", "prediction", "treatment_effect", "undetermined"]
+    },
+    "population": {
+      "$ref": "#/$defs/population"
+    },
+    "index_time": {
+      "$ref": "#/$defs/indexTime"
+    },
+    "exposure_or_predictors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/studyVariable"
+      },
+      "minItems": 1
+    },
+    "outcome": {
+      "$ref": "#/$defs/studyVariable"
+    },
+    "analysis_objectives": { "$ref": "#/$defs/analysisObjectiveSet" },
+    "outcome_structure": {
+      "enum": ["binary", "continuous", "count", "time_to_event", "repeated_measure", "competing_risk"]
+    },
+    "time_windows": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/timeWindow"
+      },
+      "minItems": 1
+    },
+    "covariates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/studyVariable"
+      },
+      "uniqueItems": true
+    },
+    "characteristics": {
+      "description": "What a description reports instead of an outcome: each characteristic's proportion or mean, overall and by group; none is modelled.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/studyVariable" },
+      "uniqueItems": true
+    },
+    "effect_modifiers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/effectModifier" },
+      "uniqueItems": true
+    },
+    "estimand": {
+      "$ref": "#/$defs/estimand"
+    },
+    "analysis_family": {
+      "enum": ["association", "binary_prediction", "propensity_weighted_treatment_effect", "time_to_event_association", "time_to_event_prediction", "time_to_event_treatment_effect"]
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/nonEmptyText"
+      },
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "objectiveId": { "type": "string", "pattern": "^[a-z][a-z0-9_.-]*$", "minLength": 1, "maxLength": 100 },
+    "outcomeStructure": { "enum": ["binary", "continuous", "count", "time_to_event", "repeated_measure", "competing_risk"] },
+    "analysisObjectiveSet": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_version", "original_question", "requested", "objectives"],
+      "properties": {
+        "schema_version": { "const": "1.0.0" },
+        "original_question": { "type": "string", "minLength": 1, "maxLength": 12000 },
+        "requested": { "type": "array", "maxItems": 20, "items": {
+          "type": "object", "additionalProperties": false, "required": ["objective_id", "source_text"],
+          "properties": {
+            "objective_id": { "$ref": "#/$defs/objectiveId" }, "source_text": { "$ref": "#/$defs/nonEmptyText" },
+            "outcome_structure": { "$ref": "#/$defs/outcomeStructure" }, "requires_derivation": { "type": "boolean" }
+          }
+        } },
+        "objectives": { "type": "array", "maxItems": 20, "items": {
+          "type": "object", "additionalProperties": false,
+          "required": ["objective_id", "status", "outcome", "outcome_structure", "time_windows", "estimand", "analysis_family"],
+          "properties": {
+            "objective_id": { "$ref": "#/$defs/objectiveId" }, "status": { "enum": ["ready", "blocked"] },
+            "blocking_reason": { "$ref": "#/$defs/nonEmptyText" }, "outcome": { "$ref": "#/$defs/studyVariable" },
+            "outcome_structure": { "$ref": "#/$defs/outcomeStructure" },
+            "time_windows": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/timeWindow" } },
+            "estimand": { "$ref": "#/$defs/estimand" },
+            "analysis_family": { "enum": ["association", "binary_prediction", "propensity_weighted_treatment_effect", "time_to_event_association", "time_to_event_prediction", "time_to_event_treatment_effect"] }
+          }
+        } }
+      }
+    },
+    "measurementDifference": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_version", "operator", "source_concept", "aggregation", "baseline", "follow_up", "direction"],
+      "properties": {
+        "schema_version": { "const": "1.0.0" }, "operator": { "const": "difference" },
+        "source_concept": { "$ref": "#/$defs/nonEmptyText" },
+        "aggregation": { "enum": ["first", "last", "minimum", "maximum", "mean", "median", "standard_deviation"] },
+        "baseline": { "$ref": "#/$defs/timeWindow" }, "follow_up": { "$ref": "#/$defs/timeWindow" },
+        "direction": { "enum": ["baseline_minus_follow_up", "follow_up_minus_baseline"] }
+      }
+    },
+    "nonEmptyText": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "\\S"
+    },
+    "population": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["description"],
+      "properties": {
+        "description": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "inclusion_criteria": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyText"
+          },
+          "uniqueItems": true
+        },
+        "exclusion_criteria": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/nonEmptyText"
+          },
+          "uniqueItems": true
+        },
+        "criteria": {
+          "$ref": "#/$defs/studyCondition"
+        }
+      }
+    },
+    "indexTime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["event", "selection_rule"],
+      "properties": {
+        "event": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "selection_rule": {
+          "$ref": "#/$defs/nonEmptyText"
+        }
+      }
+    },
+    "studyVariable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "role", "operational_definition"],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "role": {
+          "enum": ["exposure", "predictor", "outcome", "covariate"]
+        },
+        "operational_definition": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "definition": {
+          "$ref": "#/$defs/studyCondition"
+        },
+        "derivation": { "$ref": "#/$defs/measurementDifference" },
+        "aggregation": {
+          "enum": ["first", "last", "minimum", "maximum", "mean", "median", "standard_deviation", "sum", "any", "count"]
+        },
+        "contrast": {
+          "oneOf": [
+            { "type": "object", "additionalProperties": false, "required": ["kind"], "properties": { "kind": { "const": "as_recorded" } } },
+            { "type": "object", "additionalProperties": false, "required": ["kind"], "properties": { "kind": { "const": "binary_presence" } } },
+            { "type": "object", "additionalProperties": false, "required": ["kind", "operator", "value"], "properties": { "kind": { "const": "threshold" }, "operator": { "enum": ["gt", "gte", "lt", "lte"] }, "value": { "type": "number" }, "unit": { "$ref": "#/$defs/nonEmptyText" } } }
+          ]
+        }
+      }
+    },
+    "effectModifier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["variable_name", "analysis"],
+      "properties": {
+        "variable_name": { "$ref": "#/$defs/nonEmptyText" },
+        "analysis": { "const": "interaction_and_stratified" },
+        "report_levels": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/nonEmptyText" }, "uniqueItems": true }
+      }
+    },
+    "studyCondition": {
+      "oneOf": [
+        { "$ref": "#/$defs/logicalCondition" },
+        { "$ref": "#/$defs/notCondition" },
+        { "$ref": "#/$defs/conceptCondition" },
+        { "$ref": "#/$defs/numericCondition" },
+        { "$ref": "#/$defs/categoryCondition" },
+        { "$ref": "#/$defs/eventCondition" }
+      ]
+    },
+    "conditionBaseProperties": {
+      "condition_id": { "type": "string", "minLength": 1, "maxLength": 160, "pattern": "^[a-z][a-z0-9_.-]*$" },
+      "source_text": { "$ref": "#/$defs/nonEmptyText" }
+    },
+    "logicalCondition": {
+      "type": "object", "additionalProperties": false,
+      "required": ["condition_id", "source_text", "kind", "operands"],
+      "properties": {
+        "condition_id": { "type": "string", "minLength": 1, "maxLength": 160, "pattern": "^[a-z][a-z0-9_.-]*$" },
+        "source_text": { "$ref": "#/$defs/nonEmptyText" },
+        "kind": { "enum": ["all", "any"] },
+        "operands": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/studyCondition" } }
+      }
+    },
+    "notCondition": {
+      "type": "object", "additionalProperties": false,
+      "required": ["condition_id", "source_text", "kind", "operand"],
+      "properties": {
+        "condition_id": { "type": "string", "minLength": 1, "maxLength": 160, "pattern": "^[a-z][a-z0-9_.-]*$" },
+        "source_text": { "$ref": "#/$defs/nonEmptyText" },
+        "kind": { "const": "not" },
+        "operand": { "$ref": "#/$defs/studyCondition" }
+      }
+    },
+    "conceptCondition": {
+      "type": "object", "additionalProperties": false,
+      "required": ["condition_id", "source_text", "kind", "concept", "assertion"],
+      "properties": {
+        "condition_id": { "type": "string", "minLength": 1, "maxLength": 160, "pattern": "^[a-z][a-z0-9_.-]*$" }, "source_text": { "$ref": "#/$defs/nonEmptyText" },
+        "kind": { "const": "concept" }, "concept": { "$ref": "#/$defs/nonEmptyText" }, "assertion": { "enum": ["present", "absent"] }
+      }
+    },
+    "numericCondition": {
+      "type": "object", "additionalProperties": false,
+      "required": ["condition_id", "source_text", "kind", "concept", "operator", "value"],
+      "properties": {
+        "condition_id": { "type": "string", "minLength": 1, "maxLength": 160, "pattern": "^[a-z][a-z0-9_.-]*$" }, "source_text": { "$ref": "#/$defs/nonEmptyText" },
+        "kind": { "const": "numeric_comparison" }, "concept": { "$ref": "#/$defs/nonEmptyText" }, "operator": { "enum": ["gt", "gte", "eq", "lt", "lte"] }, "value": { "type": "number" }, "unit": { "$ref": "#/$defs/nonEmptyText" }
+      }
+    },
+    "categoryCondition": {
+      "type": "object", "additionalProperties": false,
+      "required": ["condition_id", "source_text", "kind", "concept", "operator", "values"],
+      "properties": {
+        "condition_id": { "type": "string", "minLength": 1, "maxLength": 160, "pattern": "^[a-z][a-z0-9_.-]*$" }, "source_text": { "$ref": "#/$defs/nonEmptyText" },
+        "kind": { "const": "category_comparison" }, "concept": { "$ref": "#/$defs/nonEmptyText" }, "operator": { "enum": ["in", "not_in"] }, "values": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/nonEmptyText" } }
+      }
+    },
+    "eventCondition": {
+      "type": "object", "additionalProperties": false,
+      "required": ["condition_id", "source_text", "kind", "concept", "occurrence"],
+      "properties": {
+        "condition_id": { "type": "string", "minLength": 1, "maxLength": 160, "pattern": "^[a-z][a-z0-9_.-]*$" }, "source_text": { "$ref": "#/$defs/nonEmptyText" },
+        "kind": { "const": "event_exists" }, "concept": { "$ref": "#/$defs/nonEmptyText" }, "occurrence": { "enum": ["present", "absent"] }, "window": { "$ref": "#/$defs/timeWindow" }
+      }
+    },
+    "timeWindow": {
+      "oneOf": [
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["purpose", "anchor", "start_offset", "end_offset", "unit"],
+          "properties": {
+            "purpose": { "enum": ["baseline", "exposure", "follow_up", "outcome"] },
+            "anchor": { "const": "index_time" },
+            "start_offset": { "type": "integer" },
+            "end_offset": { "type": "integer" },
+            "unit": { "enum": ["minute", "hour", "day", "week", "month", "year"] }
+          }
+        },
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["purpose", "anchor", "end_event"],
+          "properties": {
+            "purpose": { "enum": ["baseline", "exposure", "follow_up", "outcome"] },
+            "anchor": { "const": "index_time" },
+            "end_event": { "const": "end_of_encounter" }
+          }
+        }
+      ]
+    },
+    "estimand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target_population", "exposure_contrast", "outcome_measure", "summary_measure"],
+      "properties": {
+        "target_population": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "exposure_contrast": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "outcome_measure": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "summary_measure": {
+          "$ref": "#/$defs/nonEmptyText"
+        }
+      }
+    }
+  }
+}

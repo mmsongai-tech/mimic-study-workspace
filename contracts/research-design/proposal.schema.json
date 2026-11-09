@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:mimic-research-agent-platform:contracts:research-design:proposal:1.0.0",
+  "title": "ResearchDesignProposal",
+  "description": "Untrusted structured proposal returned by the model adapter.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "assistant_message",
+    "intent_assessment",
+    "spec_patch",
+    "assumptions",
+    "clarifying_questions",
+    "suggestions",
+    "warnings",
+    "readiness"
+  ],
+  "properties": {
+    "assistant_message": { "$ref": "#/$defs/text" },
+    "intent_assessment": {
+      "$ref": "urn:mimic-research-agent-platform:contracts:research-design:intent-assessment:1.0.0"
+    },
+    "spec_patch": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/patchOperation" },
+      "maxItems": 100
+    },
+    "candidate_spec": {
+      "$ref": "urn:mimic-research-agent-platform:contracts:research-design:study-spec:1.0.0"
+    },
+    "assumptions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/text" },
+      "maxItems": 50
+    },
+    "clarifying_questions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/question" },
+      "maxItems": 20
+    },
+    "suggestions": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/suggestion" },
+      "maxItems": 20
+    },
+    "warnings": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/warning" },
+      "maxItems": 20
+    },
+    "readiness": { "enum": ["needs_clarification", "candidate_ready"] }
+  },
+  "$defs": {
+    "text": { "type": "string", "minLength": 1, "maxLength": 4000, "pattern": "\\S" },
+    "id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "editablePath": {
+      "type": "string",
+      "pattern": "^/(title|research_question|intent_family|population|index_time|exposure_or_predictors|outcome|outcome_structure|time_windows|covariates|effect_modifiers|estimand|analysis_family|assumptions|analysis_objectives)(/.*)?$"
+    },
+    "patchOperation": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["op", "path", "value"],
+          "properties": {
+            "op": { "enum": ["add", "replace"] },
+            "path": { "$ref": "#/$defs/editablePath" },
+            "value": true
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["op", "path"],
+          "properties": {
+            "op": { "const": "remove" },
+            "path": { "$ref": "#/$defs/editablePath" }
+          }
+        }
+      ]
+    },
+    "option": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "label", "explanation"],
+      "properties": {
+        "value": { "type": "string", "maxLength": 500 },
+        "label": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "explanation": { "$ref": "#/$defs/text" }
+      }
+    },
+    "question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "prompt", "reason", "required", "response_kind", "options"],
+      "allOf": [
+        {
+          "if": {
+            "required": ["response_kind"],
+            "properties": { "response_kind": { "enum": ["single_select", "multi_select"] } }
+          },
+          "then": { "properties": { "options": { "type": "array", "minItems": 2 } } }
+        },
+        {
+          "if": {
+            "required": ["response_kind"],
+            "properties": { "response_kind": { "enum": ["text", "boolean"] } }
+          },
+          "then": { "properties": { "options": { "type": "array", "maxItems": 0 } } }
+        }
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "prompt": { "$ref": "#/$defs/text" },
+        "reason": { "$ref": "#/$defs/text" },
+        "required": { "type": "boolean" },
+        "response_kind": { "enum": ["text", "single_select", "multi_select", "boolean"] },
+        "options": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/option" },
+          "maxItems": 20
+        }
+      }
+    },
+    "suggestion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label", "explanation"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "label": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "explanation": { "$ref": "#/$defs/text" },
+        "candidate_spec": { "$ref": "urn:mimic-research-agent-platform:contracts:research-design:study-spec:1.0.0" }
+      }
+    },
+    "warning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message"],
+      "properties": {
+        "code": { "$ref": "#/$defs/id" },
+        "message": { "$ref": "#/$defs/text" },
+        "field_path": { "$ref": "#/$defs/editablePath" }
+      }
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:mimic-research-agent-platform:contracts:research-design:intent-assessment:1.0.0",
+  "title": "ResearchIntentAssessment",
+  "description": "A model recommendation that the backend must validate before changing StudySpec.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "recommended_intent",
+    "confidence",
+    "reason",
+    "alternative_intents",
+    "clarification_required",
+    "clarifying_question"
+  ],
+  "properties": {
+    "recommended_intent": {
+      "enum": ["association", "prediction", "treatment_effect", "undetermined"]
+    },
+    "confidence": {
+      "enum": ["high", "medium", "low"]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000,
+      "pattern": "\\S"
+    },
+    "alternative_intents": {
+      "type": "array",
+      "items": {
+        "enum": ["association", "prediction", "treatment_effect"]
+      },
+      "maxItems": 2,
+      "uniqueItems": true
+    },
+    "clarification_required": {
+      "type": "boolean"
+    },
+    "clarifying_question": {
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000,
+          "pattern": "\\S"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "clarification_required": { "const": true } },
+        "required": ["clarification_required"]
+      },
+      "then": {
+        "properties": {
+          "confidence": { "enum": ["medium", "low"] },
+          "clarifying_question": { "type": "string" }
+        }
+      },
+      "else": {
+        "properties": {
+          "recommended_intent": { "enum": ["association", "prediction", "treatment_effect"] },
+          "confidence": { "const": "high" },
+          "clarifying_question": { "type": "null" }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+schema_version = 1
+
+[development]
+host = "127.0.0.1"
+port = 3002
+data_mode = "synthetic_or_approved_aggregate"
+
+[testing]
+data_mode = "synthetic_fixture"
+network_access = false
+
+# Automated tests use the deterministic local research-design adapter. A future
+# hosted-provider smoke profile must be explicitly enabled and should default to
+# a low-cost model that passes the same structured-output contract tests.
+
+# Production endpoints, credentials, private paths, and database connection
+# strings belong in environment variables or an approved secret manager.
+# They must not be added to this file.

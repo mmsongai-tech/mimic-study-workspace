@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.0",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "monocyte_to_lymphocyte_ratio",
+  "kind": "formula",
+  "labels": {
+    "en": "Monocyte-to-lymphocyte ratio",
+    "zh": "单核细胞与淋巴细胞比值"
+  },
+  "synonyms": [
+    "MLR",
+    "monocyte lymphocyte ratio"
+  ],
+  "meaning": "Monocytes divided by lymphocytes (ratio of the two differential percentages).",
+  "formula": {
+    "expression": "mpct / lpct",
+    "variables": {
+      "mpct": "monocyte_percentage",
+      "lpct": "lymphocyte_percentage"
+    }
+  }
+}

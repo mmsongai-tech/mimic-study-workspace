@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.1",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "neutrophil_percentage",
+  "kind": "lab_or_chart",
+  "labels": {
+    "en": "Neutrophil percentage",
+    "zh": "中性粒细胞百分比"
+  },
+  "synonyms": [
+    "neutrophils percent",
+    "neutrophil %",
+    "neutrophil fraction",
+    "中性粒细胞比例"
+  ],
+  "meaning": "Neutrophils as a percentage of white cells in the blood differential (%).",
+  "items": {
+    "table": "labevents",
+    "item_ids": [
+      51256
+    ],
+    "unit": "%",
+    "valid_range": {
+      "min": 0,
+      "max": 100
+    },
+    "aggregation": "mean"
+  }
+}

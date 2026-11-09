@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mimic-research.local/contracts/study-framing/frame-extraction.schema.json",
+  "title": "FrameExtraction",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["goal", "outcome_kind", "dose_question", "population", "exposure", "exposure_categories", "comparator", "outcomes", "composite_outcome", "modifiers", "mediators", "predictors", "time_window"],
+  "properties": {
+    "goal": { "enum": ["describe", "compare_groups", "relate_factor", "evaluate_treatment", "predict"] },
+    "outcome_kind": { "enum": ["event", "time_to_event", "value", "change_over_time", "count", "none"] },
+    "dose_question": { "type": "boolean" },
+    "population": { "type": "string", "maxLength": 120 },
+    "exposure": { "type": "string", "maxLength": 120 },
+    "exposure_categories": { "type": "array", "maxItems": 10, "items": { "type": "string", "minLength": 1, "maxLength": 60 } },
+    "comparator": { "type": "string", "maxLength": 120 },
+    "outcomes": { "type": "array", "maxItems": 10, "items": { "type": "string", "minLength": 1, "maxLength": 120 } },
+    "composite_outcome": { "type": "string", "maxLength": 60 },
+    "modifiers": { "type": "array", "maxItems": 5, "items": { "type": "string", "minLength": 1, "maxLength": 60 } },
+    "mediators": { "type": "array", "maxItems": 5, "items": { "type": "string", "minLength": 1, "maxLength": 80 } },
+    "predictors": { "type": "array", "maxItems": 15, "items": { "type": "string", "minLength": 1, "maxLength": 60 } },
+    "time_window": { "type": "string", "maxLength": 80 }
+  }
+}

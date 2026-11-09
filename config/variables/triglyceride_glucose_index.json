@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.0",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "triglyceride_glucose_index",
+  "kind": "formula",
+  "labels": {
+    "en": "Triglyceride-glucose index",
+    "zh": "甘油三酯-葡萄糖指数"
+  },
+  "synonyms": [
+    "TyG",
+    "TyG index",
+    "triglyceride glucose index"
+  ],
+  "meaning": "ln(triglycerides × glucose / 2), both in mg/dL.",
+  "formula": {
+    "expression": "log(tg * glu / 2)",
+    "variables": {
+      "tg": "triglycerides",
+      "glu": "glucose"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+schema_version = 1
+source_repository_env = "MIMIC_MIGRATION_SOURCE_REPOSITORY"
+policy = "deny_by_default"
+
+# No product source file is approved for copying yet. Add a file only after
+# its product role, dependencies, data boundary, license, target, tests, and
+# rollback have been reviewed in docs/MIGRATION_INVENTORY.md.
+approved_source_files = []

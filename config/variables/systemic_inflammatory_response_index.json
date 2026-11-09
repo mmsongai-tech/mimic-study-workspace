@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.0",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "systemic_inflammatory_response_index",
+  "kind": "formula",
+  "labels": {
+    "en": "Systemic inflammatory response index",
+    "zh": "全身炎症反应指数"
+  },
+  "synonyms": [
+    "SIRI",
+    "systemic inflammation response index"
+  ],
+  "meaning": "Neutrophils times monocytes divided by lymphocytes, as absolute counts (white cell count × N% × M% / L% / 100), in 10^9/L.",
+  "formula": {
+    "expression": "wbc * npct * mpct / lpct / 100",
+    "variables": {
+      "wbc": "wbc",
+      "npct": "neutrophil_percentage",
+      "mpct": "monocyte_percentage",
+      "lpct": "lymphocyte_percentage"
+    },
+    "unit": "10^9/L"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.0",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "lymphocyte_percentage",
+  "kind": "lab_or_chart",
+  "labels": {
+    "en": "Lymphocyte percentage",
+    "zh": "淋巴细胞百分比"
+  },
+  "synonyms": [
+    "lymphocytes percent",
+    "lymphocyte %",
+    "lymphocyte fraction",
+    "淋巴细胞比例"
+  ],
+  "meaning": "Lymphocytes as a percentage of white cells in the blood differential (%).",
+  "items": {
+    "table": "labevents",
+    "item_ids": [
+      51244
+    ],
+    "unit": "%",
+    "valid_range": {
+      "min": 0,
+      "max": 100
+    },
+    "aggregation": "mean"
+  }
+}

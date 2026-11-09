@@ -1,0 +1,515 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mimic-research.local/contracts/study-framing/study-frame.schema.json",
+  "title": "StudyFrameSet",
+  "description": "Server-owned framing of a research question: one frame per independently analysable aim and outcome.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "original_question",
+    "frames"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "original_question": {
+      "type": "string",
+      "minLength": 1
+    },
+    "frames": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/frame"
+      }
+    }
+  },
+  "$defs": {
+    "slot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "text",
+        "verbatim"
+      ],
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verbatim": {
+          "type": "boolean",
+          "description": "True when the text occurs in the original question."
+        },
+        "qualified_text": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The phrase as written when aggregation or time words were split off `text`."
+        },
+        "aggregation": {
+          "enum": [
+            "maximum",
+            "minimum",
+            "mean",
+            "first",
+            "last",
+            "sum"
+          ],
+          "description": "How repeated values are summarised, from words such as highest, average or first."
+        },
+        "threshold": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "operator",
+            "value"
+          ],
+          "description": "A cut-off written in the outcome phrase (for example ICU stay ≥ 75 hours); the outcome becomes whether it is met.",
+          "properties": {
+            "operator": {
+              "enum": [
+                "gt",
+                "gte",
+                "lt",
+                "lte"
+              ]
+            },
+            "value": {
+              "type": "number"
+            },
+            "unit": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "normalized": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "label_en",
+            "category"
+          ],
+          "properties": {
+            "label_en": {
+              "type": "string",
+              "minLength": 1
+            },
+            "category": {
+              "enum": [
+                "demographic",
+                "encounter",
+                "vital_sign",
+                "laboratory",
+                "medication",
+                "intervention",
+                "diagnosis",
+                "score",
+                "outcome",
+                "unknown"
+              ]
+            },
+            "source": {
+              "enum": [
+                "catalog",
+                "model"
+              ]
+            }
+          }
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Exposure levels named in the question (for example drug classes)."
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Components of a composite outcome."
+        },
+        "categories_normalized": {
+          "type": "array",
+          "description": "English label and data category for each exposure level, in the order of categories.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "text",
+              "label_en",
+              "category"
+            ],
+            "properties": {
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "label_en": {
+                "type": "string",
+                "minLength": 1
+              },
+              "category": {
+                "enum": [
+                  "demographic",
+                  "encounter",
+                  "vital_sign",
+                  "laboratory",
+                  "medication",
+                  "intervention",
+                  "diagnosis",
+                  "score",
+                  "outcome",
+                  "unknown"
+                ]
+              },
+              "ratio": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "numerator_en",
+                  "denominator_en"
+                ],
+                "description": "Set when the level is a ratio of two measurements (for example RDW/albumin).",
+                "properties": {
+                  "numerator_en": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "denominator_en": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "source": {
+                "enum": [
+                  "catalog",
+                  "model"
+                ]
+              }
+            }
+          }
+        },
+        "components_normalized": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "text",
+              "label_en",
+              "category"
+            ],
+            "properties": {
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "label_en": {
+                "type": "string",
+                "minLength": 1
+              },
+              "category": {
+                "enum": [
+                  "demographic",
+                  "encounter",
+                  "vital_sign",
+                  "laboratory",
+                  "medication",
+                  "intervention",
+                  "diagnosis",
+                  "score",
+                  "outcome",
+                  "unknown"
+                ]
+              },
+              "source": {
+                "enum": [
+                  "catalog",
+                  "model"
+                ]
+              }
+            }
+          }
+        },
+        "components_resolved": {
+          "type": "array",
+          "description": "Composite components after answerability rules, with the measurable concept each is analysed as.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "text",
+              "concept_en"
+            ],
+            "properties": {
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "concept_en": {
+                "type": "string",
+                "minLength": 1
+              },
+              "substituted_from": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "frame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "frame_id",
+        "sub_question",
+        "study_type",
+        "facets",
+        "modifiers",
+        "mediators",
+        "predictors",
+        "assumptions",
+        "ambiguities",
+        "status"
+      ],
+      "properties": {
+        "frame_id": {
+          "type": "string",
+          "pattern": "^f[0-9]+$"
+        },
+        "sub_question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "study_type": {
+          "enum": [
+            "descriptive",
+            "group_comparison",
+            "association",
+            "treatment_effect",
+            "time_to_event",
+            "longitudinal_change",
+            "dose_response",
+            "effect_modification",
+            "mediation",
+            "prediction"
+          ]
+        },
+        "facets": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "goal",
+            "outcome_kind",
+            "dose_question",
+            "has_modifier",
+            "has_mediator"
+          ],
+          "properties": {
+            "goal": {
+              "enum": [
+                "describe",
+                "compare_groups",
+                "relate_factor",
+                "evaluate_treatment",
+                "predict"
+              ]
+            },
+            "outcome_kind": {
+              "enum": [
+                "event",
+                "time_to_event",
+                "value",
+                "change_over_time",
+                "count",
+                "none"
+              ]
+            },
+            "dose_question": {
+              "type": "boolean"
+            },
+            "has_modifier": {
+              "type": "boolean"
+            },
+            "has_mediator": {
+              "type": "boolean"
+            }
+          }
+        },
+        "population": {
+          "$ref": "#/$defs/slot"
+        },
+        "exposure": {
+          "$ref": "#/$defs/slot"
+        },
+        "comparator": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "absence",
+                "active",
+                "unspecified"
+              ]
+            },
+            "text": {
+              "type": "string",
+              "minLength": 1
+            },
+            "levels": {
+              "type": "array",
+              "description": "The treatments of an active comparator (A vs B): one item or a listed group.",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "levels_normalized": {
+              "type": "array",
+              "description": "English label and data category for each comparator level.",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "text",
+                  "label_en",
+                  "category"
+                ],
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "label_en": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "category": {
+                    "enum": [
+                      "demographic",
+                      "encounter",
+                      "vital_sign",
+                      "laboratory",
+                      "medication",
+                      "intervention",
+                      "diagnosis",
+                      "score",
+                      "outcome",
+                      "unknown"
+                    ]
+                  },
+                  "source": {
+                    "enum": [
+                      "catalog",
+                      "model"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "outcome": {
+          "$ref": "#/$defs/slot"
+        },
+        "modifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/slot"
+          }
+        },
+        "mediators": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/slot"
+          }
+        },
+        "predictors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/slot"
+          }
+        },
+        "characteristics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/slot"
+          },
+          "description": "A description's characteristics (study type descriptive): each is reported as a proportion or mean of the cohort and of each group; none is an outcome to model."
+        },
+        "time_window": {
+          "type": "string",
+          "minLength": 1
+        },
+        "exposure_window_hours": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "ambiguities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "enum": [
+                  "SLOT_MISSING",
+                  "ASYMMETRIC_COMPARATOR",
+                  "SLOT_NOT_IN_QUESTION",
+                  "VAGUE_OUTCOME",
+                  "OUTCOME_NOT_MEASURABLE",
+                  "NOT_IN_MIMIC",
+                  "QUESTION_NOT_READ",
+                  "MODEL_NOT_RESPONDING",
+                  "STUDY_TYPE_NOT_SUPPORTED"
+                ]
+              },
+              "slot": {
+                "type": "string"
+              },
+              "message": {
+                "type": "string",
+                "minLength": 1
+              },
+              "message_zh": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "status": {
+          "enum": [
+            "ready",
+            "needs_clarification"
+          ]
+        }
+      }
+    }
+  }
+}

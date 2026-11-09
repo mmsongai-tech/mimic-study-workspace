@@ -1,0 +1,25 @@
+schema_version = 1
+project_id = "mimic-research-agent-platform"
+project_name = "MIMIC Research Agent Platform"
+status = "governance_baseline_and_migration_design"
+evidence_level = "L1"
+
+[scope]
+public_repository = true
+patient_level_data_allowed = false
+generated_artifacts_tracked = false
+
+[paths]
+project_brief = "docs/PROJECT_BRIEF.md"
+delivery_pipeline = "docs/DELIVERY_PIPELINE.md"
+engineering_standard = "docs/ENGINEERING_STANDARD.md"
+open_source_audit = "docs/OPEN_SOURCE_AUDIT.md"
+open_source_gates = "docs/OPEN_SOURCE_GATES.md"
+target_architecture = "docs/TARGET_ARCHITECTURE.md"
+migration_inventory = "docs/MIGRATION_INVENTORY.md"
+stack_deviations = "docs/STACK_DEVIATIONS.md"
+prompt_root = "prompts"
+runtime_example = "config/runtime.example.toml"
+
+[verification]
+foundation = "bash scripts/verify-foundation.sh"

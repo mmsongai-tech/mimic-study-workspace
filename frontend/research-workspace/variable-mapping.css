@@ -1,0 +1,14 @@
+.variable-mapping-review{margin-top:18px}
+.mapping-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}
+.mapping-heading h2{margin:0 0 8px;font:500 26px Georgia,"Songti SC",serif}
+.mapping-heading p:last-child{max-width:700px;margin:0;color:var(--muted);line-height:1.55}
+.mapping-row{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:15px 0;border-top:1px solid var(--line)}
+.mapping-row:first-child{margin-top:18px}
+.mapping-row b,.mapping-row small{display:block}.mapping-row small{margin-top:7px;color:var(--muted);line-height:1.45}
+.condition-tree-panel{margin:22px 0;padding:18px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.55)}
+.condition-tree-panel h3{margin:0 0 6px}.condition-node{margin:9px 0 0;padding:10px 12px;border-left:3px solid #83958b;background:rgba(238,242,239,.72)}
+.condition-node .condition-node{margin-left:18px}.condition-node code{font-size:11px;color:var(--muted)}.condition-node small{display:block;margin-top:4px;color:var(--muted)}
+.mapping-evidence{margin-top:8px;padding:8px 10px;border-radius:8px;background:var(--surface,#f6f7f5);font-size:12px;color:var(--muted)}
+.mapping-row>div{width:100%}.mapping-candidate{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px 16px;margin-top:12px;padding:12px;border:1px solid var(--line);border-radius:9px;background:#fff}.mapping-candidate small{margin:0}.mapping-candidate .mapping-evidence{grid-column:1}.mapping-candidate .quiet-button{grid-column:2;grid-row:1/span 2}
+.design-suggestions{margin-top:18px}.design-suggestions h2{margin:0 0 8px;font:500 26px Georgia,"Songti SC",serif}.design-suggestion{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 0;border-top:1px solid var(--line)}.design-suggestion b,.design-suggestion small{display:block}.design-suggestion small{margin-top:6px;color:var(--muted);line-height:1.45}
+@media(max-width:700px){.mapping-heading,.mapping-row{align-items:stretch;flex-direction:column}.mapping-candidate{grid-template-columns:1fr}.mapping-candidate .mapping-evidence,.mapping-candidate .quiet-button{grid-column:1;grid-row:auto}}

@@ -1,0 +1,31 @@
+schema_version = 1
+
+patterns = [
+  ".env",
+  ".env.*",
+  ".next/**",
+  ".openai/**",
+  ".vinext/**",
+  ".wrangler/**",
+  "node_modules/**",
+  "dist/**",
+  "data/**",
+  "artifacts/**",
+  "backups/**",
+  "outputs/**",
+  "work/**",
+  "public/analysis/cache/**",
+  "**/*.db",
+  "**/*.sqlite",
+  "**/*.sqlite3",
+  "**/*.zip",
+  "**/*.tar.gz",
+  "**/*.pptx",
+  "**/*.key",
+  "**/*.pem",
+  "**/*.log"
+]
+
+# A denylisted item cannot be copied by convenience. Moving an item out of
+# this list requires a recorded provenance, privacy, license, and necessity
+# decision followed by explicit user approval.

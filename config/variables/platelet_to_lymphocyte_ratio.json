@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.0",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "platelet_to_lymphocyte_ratio",
+  "kind": "formula",
+  "labels": {
+    "en": "Platelet-to-lymphocyte ratio",
+    "zh": "血小板与淋巴细胞比值"
+  },
+  "synonyms": [
+    "PLR",
+    "platelet lymphocyte ratio"
+  ],
+  "meaning": "Platelet count divided by the absolute lymphocyte count (white cell count times the lymphocyte fraction).",
+  "formula": {
+    "expression": "plt * 100 / (wbc * lpct)",
+    "variables": {
+      "plt": "platelets",
+      "wbc": "wbc",
+      "lpct": "lymphocyte_percentage"
+    }
+  }
+}

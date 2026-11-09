@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mimic-research-agent-platform.local/contracts/research-execution/run-evidence.schema.json",
+  "title": "RunEvidenceBundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["artifact", "report_markdown"],
+  "properties": {
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "run_id", "created_at", "evidence_level", "study", "preflight", "analysis", "integrity_id"],
+      "properties": {
+        "schema_version": { "const": "1.0.0" },
+        "run_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "created_at": { "type": "string", "format": "date-time" },
+        "evidence_level": { "enum": ["synthetic_execution", "approved_safety_database_execution"] },
+        "study": { "type": "object" },
+        "preflight": { "type": "object" },
+        "analysis": {
+          "type": "object",
+          "required": ["capability_id", "study_integrity_id", "counts", "estimates", "method", "provenance", "warnings"],
+          "properties": {
+            "capability_id": { "enum": ["association.lactate.in_hospital_mortality.v1", "prediction.invasive_ventilation_24h.v1", "treatment_effect.early_vasopressor.in_hospital_mortality.v1"] },
+            "analysis_kind": { "enum": ["binary_prediction", "propensity_weighted_treatment_effect"] },
+            "study_integrity_id": { "type": "string", "pattern": "^sha256:" },
+            "counts": {
+              "type": "object",
+              "required": ["total"],
+              "properties": {
+                "total": { "type": "integer", "minimum": 1 },
+                "exposed": { "type": "integer", "minimum": 1 },
+                "unexposed": { "type": "integer", "minimum": 1 },
+                "exposed_events": { "type": "integer", "minimum": 0 },
+                "unexposed_events": { "type": "integer", "minimum": 0 },
+                "development": { "type": "integer", "minimum": 1 },
+                "validation": { "type": "integer", "minimum": 1 },
+                "validation_events": { "type": "integer", "minimum": 0 },
+                "treated": { "type": "integer", "minimum": 1 },
+                "untreated": { "type": "integer", "minimum": 1 },
+                "treated_events": { "type": "integer", "minimum": 0 },
+                "untreated_events": { "type": "integer", "minimum": 0 }
+              }
+            },
+            "estimates": { "type": "object" },
+            "method": { "type": "object" },
+            "runtime": { "type": "object" },
+            "publication_outputs": { "type": "object" },
+            "adjusted_estimates": { "type": "object" },
+            "sensitivity_analyses": { "type": "object" },
+            "diagnostics": { "type": "object" },
+            "provenance": {
+              "type": "object",
+              "required": ["data_source_id", "data_source_version", "data_mode", "retrieved_at"],
+              "properties": {
+                "data_source_id": { "type": "string" },
+                "data_source_version": { "type": "string" },
+                "data_mode": { "enum": ["synthetic", "approved_safety_database"] },
+                "retrieved_at": { "type": "string", "format": "date-time" }
+              }
+            },
+            "warnings": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "statistical_review": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["method", "diagnostics", "interpretation_status"],
+          "properties": {
+            "method": { "type": "object" },
+            "diagnostics": {
+              "type": "object",
+              "required": ["decision", "blocking_reasons", "warnings", "observations"],
+              "properties": {
+                "decision": { "enum": ["reportable", "reportable_with_warnings", "blocked"] },
+                "blocking_reasons": { "type": "array", "items": { "type": "string" } },
+                "warnings": { "type": "array", "items": { "type": "string" } },
+                "observations": { "type": "array", "items": { "type": "object" } }
+              }
+            },
+            "interpretation_status": { "enum": ["allowed", "allowed_with_warnings", "blocked"] }
+          }
+        },
+        "integrity_id": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+      }
+    },
+    "report_markdown": { "type": "string", "minLength": 1 },
+    "report_rtf": { "type": "string", "minLength": 1 }
+  }
+}

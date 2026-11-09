@@ -1,0 +1,812 @@
+{
+  "schema_version": "1.0.0",
+  "knowledge_version": "1.8.0",
+  "data_source": "MIMIC-IV 3.1 (hosp and icu modules)",
+  "provenance": "Written for this project from MIMIC-IV documentation and aggregate/metadata checks of the local 3.1 archive on 2026-09-23 (module list, omr result names, d_items labels, count of non-empty patients.dod). No patient-level data.",
+  "entries": [
+    {
+      "id": "single_center",
+      "applies_to": "always",
+      "statement": {
+        "en": "MIMIC-IV comes from one academic medical center in Boston (2008–2022); results may not generalize to other settings.",
+        "zh": "MIMIC-IV 来自波士顿单一学术医疗中心（2008–2022 年），结果外推至其他医疗环境时需谨慎。"
+      }
+    },
+    {
+      "id": "observational_confounding",
+      "applies_to": "always",
+      "statement": {
+        "en": "This is a retrospective observational analysis; adjustment covers only recorded variables, so residual and unmeasured confounding remain possible.",
+        "zh": "本研究为回顾性观察性分析，仅能校正已记录的变量，仍可能存在残余混杂和未测量混杂。"
+      }
+    },
+    {
+      "id": "in_hospital_medication_only",
+      "applies_to": {
+        "categories": [
+          "medication"
+        ]
+      },
+      "statement": {
+        "en": "Medication exposure is limited to in-hospital orders and administrations (prescriptions, eMAR, ICU inputs). Outpatient use before admission is not recorded, so 'never used' means 'not recorded during this admission'.",
+        "zh": "药物暴露仅限于住院期间的医嘱和给药记录（prescriptions、eMAR、ICU 输液）。入院前的院外用药未被记录，因此“从未使用”实际指“本次住院期间未记录使用”。"
+      },
+      "proxy": {
+        "en": "In-hospital exposure during the first 24 hours after time zero.",
+        "zh": "以时间零点后 24 小时内的院内用药作为暴露。"
+      }
+    },
+    {
+      "id": "no_cause_of_death",
+      "applies_to": {
+        "keywords": [
+          "cardiovascular death",
+          "cardiac death",
+          "cause-specific",
+          "cancer death",
+          "心血管死亡",
+          "心源性死亡",
+          "死因"
+        ]
+      },
+      "statement": {
+        "en": "MIMIC-IV does not record cause of death, so cause-specific death (for example cardiovascular death) cannot be identified.",
+        "zh": "MIMIC-IV 不记录死亡原因，无法识别特定原因死亡（如心血管死亡）。"
+      },
+      "proxy": {
+        "en": "All-cause death is the closest available outcome; a cause-specific estimate would be biased toward the null.",
+        "zh": "最接近的可用结局为全因死亡；以其替代特定原因死亡会使效应估计偏向无效。"
+      },
+      "outcome_rule": {
+        "action": "substitute",
+        "concept_en": "All-cause death",
+        "concept_zh": "全因死亡"
+      }
+    },
+    {
+      "id": "death_follow_up_one_year",
+      "applies_to": {
+        "keywords": [
+          "mortality",
+          "death",
+          "survival",
+          "死亡",
+          "生存",
+          "存活"
+        ]
+      },
+      "statement": {
+        "en": "Deaths after discharge come from state records and are captured up to one year after the last hospital discharge; follow-up beyond one year is censored, and only about 10% of patients have a recorded date of death.",
+        "zh": "出院后的死亡来自州死亡登记，仅覆盖末次出院后 1 年内；超过 1 年的随访视为删失。数据中约 10% 的患者有记录的死亡日期。"
+      },
+      "frame_rule": {
+        "action": "cap_follow_up",
+        "max_days": 365,
+        "capped_label": {
+          "en": "follow-up to one year",
+          "zh": "随访至 1 年"
+        }
+      }
+    },
+    {
+      "id": "icd_codes_at_discharge",
+      "applies_to": {
+        "categories": [
+          "diagnosis"
+        ]
+      },
+      "statement": {
+        "en": "Diagnoses are billing ICD codes assigned at discharge. They do not show whether a condition was present on admission or arose during the stay, and in-hospital events cannot be timed from them.",
+        "zh": "诊断为出院时的计费 ICD 编码，无法区分入院时已存在还是住院期间新发，也无法据此确定院内事件的发生时间。"
+      },
+      "proxy": {
+        "en": "Diagnosis codes of the index admission define the condition; codes are verified against the local dictionary.",
+        "zh": "以本次住院的诊断编码定义疾病，编码均已在本地字典中核实。"
+      }
+    },
+    {
+      "id": "diagnosis_events_as_outcomes",
+      "applies_to": {
+        "outcome_categories": [
+          "diagnosis"
+        ]
+      },
+      "outcome_rule": {
+        "action": "exclude_component"
+      },
+      "statement": {
+        "en": "An event defined only by diagnosis codes of the index admission (for example myocardial infarction or stroke) cannot be shown to have occurred after the exposure, because codes are assigned at discharge and include the reason for admission; such components are not used as outcomes.",
+        "zh": "仅由本次住院诊断编码定义的事件（如心肌梗死、卒中）无法证明发生在暴露之后，因为编码在出院时给出且包含入院原因；此类组成部分不作为结局使用。"
+      }
+    },
+    {
+      "id": "post_discharge_events",
+      "applies_to": {
+        "keywords": [
+          "myocardial infarction",
+          "stroke",
+          "MACE",
+          "readmission",
+          "recurrence",
+          "心肌梗死",
+          "心梗",
+          "中风",
+          "卒中",
+          "再入院",
+          "复发"
+        ]
+      },
+      "statement": {
+        "en": "Non-fatal events after discharge (for example myocardial infarction or stroke) are only observed if the patient is readmitted to the same hospital; events treated elsewhere are missed.",
+        "zh": "出院后的非致死事件（如心肌梗死、卒中）仅在患者再次入住同一医院时才能观察到，在其他医院就诊的事件会遗漏。"
+      }
+    },
+    {
+      "id": "blood_pressure_sources",
+      "applies_to": {
+        "keywords": [
+          "blood pressure",
+          "hypertension",
+          "antihypertensive",
+          "血压",
+          "降压"
+        ]
+      },
+      "statement": {
+        "en": "Blood pressure is available as ICU charted measurements (chartevents: invasive and non-invasive) and outpatient clinic readings (omr: about 2.8 million 'Blood Pressure' records). Ward vital signs outside the ICU are not in the archive.",
+        "zh": "血压数据来源为 ICU 记录（chartevents：有创与无创）和门诊记录（omr：约 280 万条“Blood Pressure”记录）；ICU 以外病房的生命体征未收录。"
+      }
+    },
+    {
+      "id": "no_precomputed_scores",
+      "applies_to": {
+        "categories": [
+          "score"
+        ],
+        "keywords": [
+          "SOFA",
+          "APACHE",
+          "SAPS",
+          "Charlson",
+          "Sepsis-3",
+          "KDIGO"
+        ]
+      },
+      "statement": {
+        "en": "This archive has no precomputed clinical scores or derived concepts (SOFA, Sepsis-3, Charlson, KDIGO); they must be derived from raw data with a stated definition.",
+        "zh": "本数据包不含预先计算的临床评分或派生概念（SOFA、Sepsis-3、Charlson、KDIGO），需按明确定义由原始数据推导。"
+      }
+    },
+    {
+      "id": "modules_not_in_archive",
+      "applies_to": {
+        "keywords": [
+          "echocardiography",
+          "ECG",
+          "electrocardiogram",
+          "clinical note",
+          "emergency department",
+          "超声心动",
+          "心电图",
+          "病历文本",
+          "急诊"
+        ]
+      },
+      "statement": {
+        "en": "The local archive contains only the hosp and icu modules; echocardiography, ECG, clinical notes and emergency department data are separate MIMIC-IV modules and are not available here.",
+        "zh": "本地数据包仅包含 hosp 和 icu 模块；超声心动图、心电图、临床文本和急诊数据属于单独的 MIMIC-IV 模块，此处不可用。"
+      }
+    },
+    {
+      "id": "shifted_dates",
+      "applies_to": {
+        "keywords": [
+          "trend",
+          "year",
+          "calendar",
+          "趋势",
+          "年份",
+          "年度"
+        ]
+      },
+      "statement": {
+        "en": "Dates are shifted per patient for de-identification; calendar trends can only use the three-year anchor_year_group.",
+        "zh": "为去标识化，每位患者的日期均被平移；日历时间趋势只能使用三年分组的 anchor_year_group。"
+      }
+    },
+    {
+      "id": "pain_scores",
+      "applies_to": {
+        "keywords": [
+          "pain",
+          "analgesi",
+          "opioid",
+          "镇痛",
+          "疼痛",
+          "阿片"
+        ]
+      },
+      "statement": {
+        "en": "Pain intensity is charted in the ICU (for example item 223791 'Pain Level'); analgesic effect must be operationalized from these charted scores, which are recorded irregularly.",
+        "zh": "疼痛强度记录于 ICU（如 223791 “Pain Level”）；镇痛疗效需基于这些记录不规律的评分来定义。"
+      }
+    },
+    {
+      "id": "no_outpatient_cohort",
+      "applies_to": {
+        "keywords": [
+          "outpatient",
+          "primary care",
+          "community-dwelling",
+          "community residents",
+          "门诊",
+          "社区居民",
+          "社区人群",
+          "基层"
+        ]
+      },
+      "statement": {
+        "en": "MIMIC-IV contains emergency-department, hospital and ICU encounters of one hospital; it has no outpatient, primary-care or community cohort, so these patients cannot be studied. Patients admitted to hospital can be.",
+        "zh": "MIMIC-IV 仅包含一家医院的急诊、住院和 ICU 就诊记录，没有门诊、基层或社区人群，因此无法研究这类患者；可改为研究住院患者。"
+      },
+      "frame_rule": {
+        "action": "not_answerable",
+        "slot": "population",
+        "keywords": [
+          "outpatient",
+          "primary care",
+          "community-dwelling",
+          "community residents",
+          "门诊",
+          "社区居民",
+          "社区人群",
+          "基层"
+        ]
+      }
+    },
+    {
+      "id": "no_imaging",
+      "applies_to": {
+        "keywords": [
+          "x-ray",
+          "chest radiograph",
+          "computed tomography",
+          "ct scan",
+          "mri scan",
+          "magnetic resonance",
+          "imaging finding",
+          "ultrasound finding",
+          "x光",
+          "x线",
+          "胸片",
+          "影像",
+          "核磁",
+          "超声征象"
+        ]
+      },
+      "statement": {
+        "en": "MIMIC-IV does not contain images or radiology reports (these are in separate datasets), so imaging findings cannot be used as an exposure, outcome or population.",
+        "zh": "MIMIC-IV 不包含影像和放射科报告（它们在另外的数据集中），因此影像所见不能作为暴露、结局或人群。"
+      },
+      "frame_rule": {
+        "action": "not_answerable",
+        "slot": "exposure",
+        "also_slots": [
+          "outcome",
+          "population"
+        ],
+        "keywords": [
+          "x-ray",
+          "chest radiograph",
+          "computed tomography",
+          "ct scan",
+          "mri scan",
+          "magnetic resonance",
+          "imaging finding",
+          "ultrasound finding",
+          "x光",
+          "x线",
+          "胸片",
+          "影像",
+          "核磁",
+          "超声征象"
+        ]
+      }
+    },
+    {
+      "id": "no_echo_measurements",
+      "applies_to": {
+        "keywords": [
+          "ejection fraction",
+          "lvef",
+          "hfref",
+          "hfpef",
+          "echocardiograph",
+          "射血分数",
+          "超声心动",
+          "心脏彩超"
+        ]
+      },
+      "statement": {
+        "en": "Echocardiography measurements such as the ejection fraction are not recorded as structured data in MIMIC-IV, so they cannot define a group or an outcome. Heart failure can be studied by its diagnosis codes, without the ejection-fraction type.",
+        "zh": "射血分数等超声心动图指标在 MIMIC-IV 中没有结构化记录，无法用来分组或作结局；心力衰竭可按诊断编码研究，但不能区分射血分数类型。"
+      },
+      "frame_rule": {
+        "action": "not_answerable",
+        "slot": "exposure",
+        "also_slots": [
+          "outcome",
+          "population"
+        ],
+        "keywords": [
+          "ejection fraction",
+          "lvef",
+          "hfref",
+          "hfpef",
+          "echocardiograph",
+          "射血分数",
+          "超声心动",
+          "心脏彩超"
+        ]
+      }
+    },
+    {
+      "id": "readmission_this_hospital_only",
+      "applies_to": {
+        "keywords": [
+          "readmission",
+          "re-admission",
+          "readmitted",
+          "rehospitalization",
+          "rehospitalisation",
+          "再入院",
+          "重复入院",
+          "再次住院"
+        ]
+      },
+      "statement": {
+        "en": "Readmission is counted only when the patient returns to this hospital: a return to another hospital is not seen, so readmission is underestimated. Readmission is derived for 30, 90 or 365 days after discharge (derived variable layer).",
+        "zh": "再入院只统计回到本院的情况：回到其他医院的看不到，所以再入院会被低估。再入院由衍生变量层给出出院后 30、90 或 365 天内的结果。"
+      }
+    },
+    {
+      "id": "no_patient_reported_outcomes",
+      "applies_to": {
+        "keywords": [
+          "quality of life",
+          "functional status",
+          "activities of daily living",
+          "patient satisfaction",
+          "symptom score",
+          "ipss",
+          "qol score",
+          "生活质量",
+          "功能状态",
+          "日常生活能力",
+          "满意度",
+          "症状评分",
+          "前列腺症状评分"
+        ]
+      },
+      "statement": {
+        "en": "Patient-reported outcomes, quality of life, functional status and symptom scores are not recorded in MIMIC-IV.",
+        "zh": "MIMIC-IV 没有患者自报结局、生活质量、功能状态和症状评分的记录。"
+      },
+      "frame_rule": {
+        "action": "not_answerable",
+        "slot": "outcome",
+        "also_slots": [
+          "exposure"
+        ],
+        "keywords": [
+          "quality of life",
+          "functional status",
+          "activities of daily living",
+          "patient satisfaction",
+          "symptom score",
+          "ipss",
+          "qol score",
+          "生活质量",
+          "功能状态",
+          "日常生活能力",
+          "满意度",
+          "症状评分",
+          "前列腺症状评分"
+        ]
+      }
+    },
+    {
+      "id": "no_tumour_progression",
+      "applies_to": {
+        "keywords": [
+          "tumor progression",
+          "tumour progression",
+          "cancer recurrence",
+          "tumor recurrence",
+          "disease progression",
+          "cancer stage",
+          "tumor stage",
+          "肿瘤复发",
+          "肿瘤进展",
+          "癌症复发",
+          "疾病进展",
+          "肿瘤分期"
+        ]
+      },
+      "statement": {
+        "en": "Tumour stage, progression and recurrence are not recorded in MIMIC-IV; only the diagnosis codes of an admission are.",
+        "zh": "MIMIC-IV 没有肿瘤分期、进展和复发的记录，只有住院的诊断编码。"
+      },
+      "frame_rule": {
+        "action": "not_answerable",
+        "slot": "outcome",
+        "also_slots": [
+          "exposure",
+          "population"
+        ],
+        "keywords": [
+          "tumor progression",
+          "tumour progression",
+          "cancer recurrence",
+          "tumor recurrence",
+          "disease progression",
+          "cancer stage",
+          "tumor stage",
+          "肿瘤复发",
+          "肿瘤进展",
+          "癌症复发",
+          "疾病进展",
+          "肿瘤分期"
+        ]
+      }
+    },
+    {
+      "id": "no_genetic_lifestyle",
+      "applies_to": {
+        "keywords": [
+          "genotype",
+          "gene polymorphism",
+          "genetic variant",
+          "genomic",
+          "diet intake",
+          "dietary",
+          "physical activity",
+          "exercise habit",
+          "alcohol consumption",
+          "sleep duration",
+          "基因型",
+          "基因多态性",
+          "遗传变异",
+          "基因组",
+          "饮食",
+          "运动习惯",
+          "饮酒量",
+          "睡眠时长"
+        ]
+      },
+      "statement": {
+        "en": "Genetic data, diet, physical activity and other lifestyle factors are not recorded in MIMIC-IV (smoking status is only partly recorded).",
+        "zh": "MIMIC-IV 没有基因数据、饮食、运动等生活方式记录（吸烟状态仅部分记录）。"
+      },
+      "frame_rule": {
+        "action": "not_answerable",
+        "slot": "exposure",
+        "also_slots": [
+          "outcome",
+          "population"
+        ],
+        "keywords": [
+          "genotype",
+          "gene polymorphism",
+          "genetic variant",
+          "genomic",
+          "diet intake",
+          "dietary",
+          "physical activity",
+          "exercise habit",
+          "alcohol consumption",
+          "sleep duration",
+          "基因型",
+          "基因多态性",
+          "遗传变异",
+          "基因组",
+          "饮食",
+          "运动习惯",
+          "饮酒量",
+          "睡眠时长"
+        ]
+      }
+    },
+    {
+      "id": "adults_only",
+      "applies_to": {
+        "keywords": [
+          "children",
+          "pediatric",
+          "paediatric",
+          "neonate",
+          "newborn",
+          "infant",
+          "adolescent",
+          "儿童",
+          "小儿",
+          "新生儿",
+          "婴儿",
+          "青少年",
+          "未成年"
+        ]
+      },
+      "statement": {
+        "en": "MIMIC-IV contains adult patients only (age 18 or over), so children, newborns and adolescents cannot be studied.",
+        "zh": "MIMIC-IV 只包含成人（18 岁及以上），无法研究儿童、新生儿和青少年。"
+      },
+      "frame_rule": {
+        "action": "not_answerable",
+        "slot": "population",
+        "keywords": [
+          "children",
+          "pediatric",
+          "paediatric",
+          "neonate",
+          "newborn",
+          "infant",
+          "adolescent",
+          "儿童",
+          "小儿",
+          "新生儿",
+          "婴儿",
+          "青少年",
+          "未成年"
+        ]
+      }
+    },
+    {
+      "id": "no_pre_admission_exposure",
+      "applies_to": {
+        "keywords": [
+          "before icu admission",
+          "before admission",
+          "prior to admission",
+          "prior to icu admission",
+          "pre-admission",
+          "preadmission",
+          "before hospital admission",
+          "before being admitted",
+          "入院前",
+          "入icu前",
+          "入 icu 前",
+          "既往用药"
+        ]
+      },
+      "statement": {
+        "en": "An exposure asked before admission cannot be answered: MIMIC-IV records drugs given during the hospital stay and has no outpatient medication history, and this platform reads exposures after time zero. Ask for use in the first 24 hours (or another in-hospital window) instead.",
+        "zh": "暴露发生在入院（或入 ICU）之前的问题无法回答：MIMIC-IV 只记录住院期间用的药，没有门诊用药史，本平台也只在时间零点之后读取暴露。请改问“最初 24 小时内”或其他住院期间的窗口。"
+      },
+      "frame_rule": {
+        "action": "not_answerable",
+        "slot": "exposure",
+        "in_question": true,
+        "keywords": [
+          "before icu admission",
+          "before admission",
+          "prior to admission",
+          "prior to icu admission",
+          "pre-admission",
+          "preadmission",
+          "before hospital admission",
+          "before being admitted",
+          "入院前",
+          "入icu前",
+          "入 icu 前",
+          "既往用药"
+        ]
+      }
+    },
+    {
+      "id": "no_ecg_signals",
+      "applies_to": {
+        "keywords": [
+          "ecg",
+          "electrocardiogra",
+          "qtc",
+          "qt interval",
+          "心电图",
+          "心电"
+        ]
+      },
+      "statement": {
+        "en": "ECG recordings and ECG-derived events (QT interval, rhythm strips) are in a separate dataset (MIMIC-IV-ECG), not in the core tables this platform reads, so they cannot be an exposure, outcome or population.",
+        "zh": "心电图记录和由心电图得出的事件（QT 间期、节律条图）在另一个数据集（MIMIC-IV-ECG）中，不在本平台读取的核心表里，因此不能作为暴露、结局或人群。"
+      },
+      "frame_rule": {
+        "action": "not_answerable",
+        "slot": "exposure",
+        "also_slots": [
+          "outcome",
+          "population"
+        ],
+        "keywords": [
+          "ecg",
+          "electrocardiogra",
+          "qtc",
+          "qt interval",
+          "心电图",
+          "心电"
+        ]
+      }
+    },
+    {
+      "id": "no_clinical_notes",
+      "applies_to": {
+        "keywords": [
+          "clinical note",
+          "discharge summary",
+          "free-text",
+          "free text",
+          "natural language processing",
+          "radiology report",
+          "病历文本",
+          "出院小结",
+          "放射科报告",
+          "自然语言处理"
+        ]
+      },
+      "statement": {
+        "en": "Clinical notes and radiology reports are free text in a separate module; this platform reads structured tables only, so a question that depends on them cannot be answered.",
+        "zh": "临床记录和放射科报告是独立模块中的自由文本；本平台只读取结构化表，依赖它们的问题无法回答。"
+      },
+      "frame_rule": {
+        "action": "not_answerable",
+        "slot": "exposure",
+        "also_slots": [
+          "outcome",
+          "population"
+        ],
+        "keywords": [
+          "clinical note",
+          "discharge summary",
+          "free-text",
+          "free text",
+          "natural language processing",
+          "radiology report",
+          "病历文本",
+          "出院小结",
+          "放射科报告",
+          "自然语言处理"
+        ]
+      }
+    },
+    {
+      "id": "no_recommendations",
+      "applies_to": {
+        "keywords": [
+          "should be recommended",
+          "should we recommend",
+          "what dosing strategy should",
+          "which strategy should",
+          "what dose should",
+          "which treatment should",
+          "应该推荐",
+          "应当推荐",
+          "应该怎么用药",
+          "最佳治疗策略",
+          "最佳剂量策略",
+          "should be used",
+          "should we use",
+          "should patients receive",
+          "should patients be given",
+          "should be given",
+          "should be prescribed",
+          "should i use",
+          "is it recommended",
+          "whether to use",
+          "should we give",
+          "该不该用",
+          "该不该使用",
+          "该不该给",
+          "应不应该用",
+          "应不应该使用",
+          "应不应该给",
+          "是否应该使用",
+          "是否应该用",
+          "是否应当使用",
+          "要不要用",
+          "是否推荐",
+          "推荐使用",
+          "应该用哪",
+          "应该使用哪"
+        ]
+      },
+      "statement": {
+        "en": "A question that asks what should be done (whether a drug should be used, a recommended dose or strategy) cannot be answered: this platform reports associations in MIMIC-IV, not clinical recommendations or treatment policies.",
+        "zh": "问“应该怎么做”（该不该用某药、推荐的剂量或策略）的问题无法回答：本平台报告 MIMIC-IV 中的关联，不给出临床推荐或治疗策略。"
+      },
+      "frame_rule": {
+        "action": "not_answerable",
+        "slot": "exposure",
+        "also_slots": [
+          "outcome"
+        ],
+        "in_question": true,
+        "keywords": [
+          "should be recommended",
+          "should we recommend",
+          "what dosing strategy should",
+          "which strategy should",
+          "what dose should",
+          "which treatment should",
+          "应该推荐",
+          "应当推荐",
+          "应该怎么用药",
+          "最佳治疗策略",
+          "最佳剂量策略",
+          "should be used",
+          "should we use",
+          "should patients receive",
+          "should patients be given",
+          "should be given",
+          "should be prescribed",
+          "should i use",
+          "is it recommended",
+          "whether to use",
+          "should we give",
+          "该不该用",
+          "该不该使用",
+          "该不该给",
+          "应不应该用",
+          "应不应该使用",
+          "应不应该给",
+          "是否应该使用",
+          "是否应该用",
+          "是否应当使用",
+          "要不要用",
+          "是否推荐",
+          "推荐使用",
+          "应该用哪",
+          "应该使用哪"
+        ],
+        "patterns": [
+          "\\bshould\\b[^?.;]{0,80}?\\b(?:be\\s+)?(?:used|given|prescribed|started|stopped|avoided|administered|continued|withheld)\\b",
+          "\\bshould\\s+(?:we|i|patients|clinicians|doctors|physicians)\\s+(?:use|give|prescribe|start|stop|avoid|receive|continue)\\b"
+        ]
+      }
+    },
+    {
+      "id": "no_ed_module",
+      "applies_to": {
+        "keywords": [
+          "emergency department visit",
+          "ed visit",
+          "ed triage",
+          "triage",
+          "mimic-iv-ed",
+          "急诊分诊",
+          "急诊就诊",
+          "分诊"
+        ]
+      },
+      "statement": {
+        "en": "Emergency-department visits and triage are in a separate module (MIMIC-IV-ED), not in the core tables this platform reads, so they cannot be an exposure, outcome or population.",
+        "zh": "急诊科就诊和分诊在另一个模块（MIMIC-IV-ED）中，不在本平台读取的核心表里，因此不能作为暴露、结局或人群。"
+      },
+      "frame_rule": {
+        "action": "not_answerable",
+        "slot": "population",
+        "also_slots": [
+          "exposure",
+          "outcome"
+        ],
+        "keywords": [
+          "emergency department visit",
+          "ed visit",
+          "ed triage",
+          "triage",
+          "mimic-iv-ed",
+          "急诊分诊",
+          "急诊就诊",
+          "分诊"
+        ]
+      }
+    }
+  ]
+}

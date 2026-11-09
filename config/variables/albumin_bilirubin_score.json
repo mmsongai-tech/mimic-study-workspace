@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.0",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "albumin_bilirubin_score",
+  "kind": "formula",
+  "labels": {
+    "en": "Albumin-bilirubin score",
+    "zh": "白蛋白-胆红素评分"
+  },
+  "synonyms": [
+    "ALBI",
+    "ALBI score",
+    "albumin bilirubin grade"
+  ],
+  "meaning": "ALBI = 0.66 × log10(bilirubin in µmol/L) − 0.085 × albumin in g/L (bilirubin mg/dL × 17.1, albumin g/dL × 10); higher is worse.",
+  "formula": {
+    "expression": "0.66 * log(bili * 17.1) / 2.302585 - 0.085 * alb * 10",
+    "variables": {
+      "bili": "bilirubin",
+      "alb": "albumin"
+    }
+  }
+}

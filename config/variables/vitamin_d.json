@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.1",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "vitamin_d",
+  "kind": "drug",
+  "labels": {
+    "en": "Vitamin D",
+    "zh": "维生素D"
+  },
+  "synonyms": [
+    "vitamin D supplementation",
+    "cholecalciferol",
+    "ergocalciferol",
+    "vitamin D3",
+    "vitamin D2",
+    "维生素D补充"
+  ],
+  "meaning": "Vitamin D2 or D3 given as a supplement (not the active analogues calcitriol, paricalcitol or doxercalciferol, and not calcium combinations).",
+  "drug": {
+    "prescription_labels": [
+      "Ergocalciferol (Vitamin D2)",
+      "Liposomal Vitamin D",
+      "MAXIMUM D3",
+      "Vitamin D",
+      "Vitamin D (25 mcg)",
+      "Vitamin D 20,000units",
+      "Vitamin D 3 ",
+      "Vitamin D 3 540,000 ",
+      "Vitamin D 4000 units",
+      "Vitamin D 540,000",
+      "Vitamin D Oral Liquid",
+      "Vitamin D-3",
+      "Vitamin D2",
+      "Vitamin D2 (Ergocalciferol)",
+      "Vitamin D3",
+      "Vitamin D3 ",
+      "Vitamin D3 (Cholecalciferol)",
+      "Vitamin D3 (cholecalciferol)",
+      "Vitamin d3",
+      "VitaminD 3  ",
+      "VitaminD3  ",
+      "Vitma,in D3",
+      "cholecalciferol (vitamin D3)",
+      "ergocalc",
+      "ergocalcif",
+      "ergocalciferol ",
+      "ergocalciferol (vitamin D2)",
+      "vitamin D3",
+      "vitamin d",
+      "vitamin d3",
+      "vitamine d3"
+    ]
+  }
+}

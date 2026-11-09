@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "requested_term",
+    "decision",
+    "selected_candidate_id",
+    "selected_evidence_keys",
+    "ranked_candidate_ids",
+    "reason_codes",
+    "explanation"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "requested_term": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "decision": { "enum": ["approved", "rejected", "blocked"] },
+    "selected_candidate_id": { "type": ["string", "null"], "minLength": 1, "maxLength": 240 },
+    "selected_evidence_keys": {
+      "type": "array",
+      "maxItems": 250,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 3, "maxLength": 180 }
+    },
+    "ranked_candidate_ids": {
+      "type": "array",
+      "maxItems": 20,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "maxLength": 240 }
+    },
+    "reason_codes": {
+      "type": "array",
+      "maxItems": 12,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]{1,63}$" }
+    },
+    "explanation": { "type": "string", "minLength": 2, "maxLength": 600 }
+  }
+}

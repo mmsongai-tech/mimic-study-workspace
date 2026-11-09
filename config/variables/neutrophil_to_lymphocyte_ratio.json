@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.0",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "neutrophil_to_lymphocyte_ratio",
+  "kind": "formula",
+  "labels": {
+    "en": "Neutrophil-to-lymphocyte ratio",
+    "zh": "中性粒细胞与淋巴细胞比值"
+  },
+  "synonyms": [
+    "NLR",
+    "neutrophil lymphocyte ratio",
+    "N/L ratio"
+  ],
+  "meaning": "Neutrophils divided by lymphocytes; the ratio of the two differential percentages equals the ratio of the counts.",
+  "formula": {
+    "expression": "npct / lpct",
+    "variables": {
+      "npct": "neutrophil_percentage",
+      "lpct": "lymphocyte_percentage"
+    }
+  }
+}

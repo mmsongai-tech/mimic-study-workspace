@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.1",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "anion_gap",
+  "kind": "lab_or_chart",
+  "labels": {
+    "en": "Anion gap",
+    "zh": "阴离子间隙"
+  },
+  "synonyms": [
+    "serum anion gap",
+    "AG",
+    "阴离子隙"
+  ],
+  "meaning": "Serum sodium minus chloride and bicarbonate, a marker of unmeasured anions (mEq/L).",
+  "items": {
+    "table": "labevents",
+    "item_ids": [
+      50868
+    ],
+    "unit": "mEq/L",
+    "valid_range": {
+      "min": 0,
+      "max": 80
+    },
+    "aggregation": "mean"
+  }
+}

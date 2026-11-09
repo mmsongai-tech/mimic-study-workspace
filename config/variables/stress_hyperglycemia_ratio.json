@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.1",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "stress_hyperglycemia_ratio",
+  "kind": "formula",
+  "labels": {
+    "en": "Stress hyperglycemia ratio",
+    "zh": "应激性高血糖比"
+  },
+  "synonyms": [
+    "SHR",
+    "stress hyperglycaemia ratio",
+    "stress hyperglycemia ratio (glucose relative to HbA1c)"
+  ],
+  "meaning": "Roberts stress hyperglycemia ratio: glucose (mmol/L) ÷ (1.59 × HbA1c % − 2.59); glucose is converted from mg/dL by dividing by 18.016.",
+  "formula": {
+    "expression": "glucose / 18.016 / (1.59 * a1c - 2.59)",
+    "variables": {
+      "glucose": "glucose",
+      "a1c": "hemoglobin_a1c"
+    }
+  }
+}

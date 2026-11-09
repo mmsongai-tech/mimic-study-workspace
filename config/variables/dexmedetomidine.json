@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.1",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "dexmedetomidine",
+  "kind": "drug",
+  "labels": {
+    "en": "Dexmedetomidine",
+    "zh": "右美托咪定"
+  },
+  "synonyms": [
+    "Precedex",
+    "dexmedetomidine hydrochloride"
+  ],
+  "meaning": "Alpha-2 agonist sedative given as an ICU infusion.",
+  "drug": {
+    "input_item_ids": [
+      225150,
+      229420
+    ]
+  }
+}

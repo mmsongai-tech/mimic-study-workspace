@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mimic-research.local/contracts/study-framing/question-split.schema.json",
+  "title": "QuestionSplit",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sub_questions"
+  ],
+  "properties": {
+    "sub_questions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "text",
+          "aim"
+        ],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 300
+          },
+          "aim": {
+            "enum": [
+              "main",
+              "effect_modification",
+              "mediation"
+            ],
+            "description": "effect_modification: whether a factor changes an effect; mediation: how much of an effect passes through a variable; main: every other aim."
+          }
+        }
+      }
+    }
+  }
+}

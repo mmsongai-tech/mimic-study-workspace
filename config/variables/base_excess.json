@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.0",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "base_excess",
+  "kind": "lab_or_chart",
+  "labels": {
+    "en": "Base excess",
+    "zh": "碱剩余"
+  },
+  "synonyms": [
+    "standard base excess",
+    "arterial base excess",
+    "BE"
+  ],
+  "meaning": "Base excess of a blood gas (mEq/L); positive values mean a surplus of base.",
+  "items": {
+    "table": "labevents",
+    "item_ids": [
+      50802
+    ],
+    "unit": "mEq/L",
+    "valid_range": {
+      "min": -40,
+      "max": 40
+    },
+    "aggregation": "mean"
+  }
+}

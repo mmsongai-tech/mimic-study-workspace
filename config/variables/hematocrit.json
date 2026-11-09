@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.1",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "hematocrit",
+  "kind": "lab_or_chart",
+  "labels": {
+    "en": "Hematocrit",
+    "zh": "红细胞压积"
+  },
+  "synonyms": [
+    "Hct",
+    "packed cell volume",
+    "红细胞比容"
+  ],
+  "meaning": "Share of blood volume made up of red cells, blood hematology (%).",
+  "items": {
+    "table": "labevents",
+    "item_ids": [
+      51221
+    ],
+    "unit": "%",
+    "valid_range": {
+      "min": 5,
+      "max": 70
+    },
+    "aggregation": "mean"
+  }
+}

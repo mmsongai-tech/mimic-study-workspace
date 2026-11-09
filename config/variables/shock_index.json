@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "version": "1.0.0",
+  "status": "team_reviewed",
+  "author": "platform-team",
+  "definition_id": "shock_index",
+  "kind": "formula",
+  "labels": {
+    "en": "Shock index",
+    "zh": "休克指数"
+  },
+  "synonyms": [
+    "SI",
+    "heart rate to systolic blood pressure ratio"
+  ],
+  "meaning": "Heart rate divided by systolic blood pressure.",
+  "formula": {
+    "expression": "hr / sbp",
+    "variables": {
+      "hr": "heart_rate",
+      "sbp": "systolic_blood_pressure"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mimic-research.local/contracts/research-objectives/coverage-review.schema.json",
+  "title": "ObjectiveCoverageReview",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "decision", "covered_claims", "missing_claims", "altered_claims", "unsupported_additions", "explanation"],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "decision": { "enum": ["pass", "needs_review"] },
+    "covered_claims": { "type": "array", "items": { "type": "string" } },
+    "missing_claims": { "type": "array", "items": { "type": "string" } },
+    "altered_claims": { "type": "array", "items": { "type": "string" } },
+    "unsupported_additions": { "type": "array", "items": { "type": "string" } },
+    "explanation": { "type": "string", "minLength": 1 }
+  }
+}

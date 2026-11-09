@@ -1,0 +1,235 @@
+{
+ "description": "23 planning-step questions (framing, spec, mapping; no analysis, no patient data read). 'expected' is what a good platform does; 'baseline' is what qwen2.5:7b-instruct-q4_K_M produced on 2026-10-13 after the fixes of that day.",
+ "questions": [
+  {
+   "key": "T1",
+   "kind": "treatment",
+   "question": "脓毒症患者早期使用氢化可的松与未使用者的28天死亡差异",
+   "expected": "plan",
+   "baseline_qwen2_5_7b": {
+    "result": "ready_correct",
+    "note": ""
+   }
+  },
+  {
+   "key": "T2",
+   "kind": "treatment",
+   "question": "ICU患者使用质子泵抑制剂与消化道出血的关系",
+   "expected": "plan",
+   "baseline_qwen2_5_7b": {
+    "result": "blocked",
+    "note": "drug class not in the catalog"
+   }
+  },
+  {
+   "key": "T3",
+   "kind": "treatment",
+   "question": "Do statins reduce in-hospital mortality in patients with acute myocardial infarction?",
+   "expected": "plan",
+   "baseline_qwen2_5_7b": {
+    "result": "ready_correct",
+    "note": ""
+   }
+  },
+  {
+   "key": "T4",
+   "kind": "treatment",
+   "question": "糖尿病患者使用二甲双胍与未使用者的住院死亡差异",
+   "expected": "plan",
+   "baseline_qwen2_5_7b": {
+    "result": "ready_label_error",
+    "note": "population label garbled (糖尿者)"
+   }
+  },
+  {
+   "key": "T5",
+   "kind": "treatment",
+   "question": "Compare heparin versus no heparin for 28-day mortality in sepsis",
+   "expected": "plan",
+   "baseline_qwen2_5_7b": {
+    "result": "ready_correct",
+    "note": "was wrong before 2026-10-13 fix (population dropped)"
+   }
+  },
+  {
+   "key": "T6",
+   "kind": "treatment",
+   "question": "心房颤动患者使用胺碘酮与住院死亡的关系",
+   "expected": "plan",
+   "baseline_qwen2_5_7b": {
+    "result": "ready_correct",
+    "note": ""
+   }
+  },
+  {
+   "key": "A1",
+   "kind": "association",
+   "question": "入ICU首日乳酸水平与住院死亡的关系",
+   "expected": "plan",
+   "baseline_qwen2_5_7b": {
+    "result": "ready_correct",
+    "note": ""
+   }
+  },
+  {
+   "key": "A2",
+   "kind": "association",
+   "question": "白蛋白水平与ICU住院时间的关系",
+   "expected": "plan",
+   "baseline_qwen2_5_7b": {
+    "result": "ready_correct",
+    "note": ""
+   }
+  },
+  {
+   "key": "A3",
+   "kind": "association",
+   "question": "Is admission creatinine associated with acute kidney injury?",
+   "expected": "plan",
+   "baseline_qwen2_5_7b": {
+    "result": "ready_correct",
+    "note": ""
+   }
+  },
+  {
+   "key": "D1",
+   "kind": "dose_response",
+   "question": "氢化可的松剂量与28天死亡的剂量-反应关系",
+   "expected": "plan",
+   "baseline_qwen2_5_7b": {
+    "result": "ready_correct",
+    "note": ""
+   }
+  },
+  {
+   "key": "D2",
+   "kind": "dose_response",
+   "question": "Relationship between furosemide dose and urine output in ICU patients",
+   "expected": "plan",
+   "baseline_qwen2_5_7b": {
+    "result": "blocked",
+    "note": "outcome (urine output) unmapped"
+   }
+  },
+  {
+   "key": "M1",
+   "kind": "effect_modification",
+   "question": "年龄是否改变他汀类药物对住院死亡的效应",
+   "expected": "plan",
+   "baseline_qwen2_5_7b": {
+    "result": "ready_correct",
+    "note": ""
+   }
+  },
+  {
+   "key": "M2",
+   "kind": "effect_modification",
+   "question": "Does sex modify the association between vasopressor use and in-hospital mortality?",
+   "expected": "plan",
+   "baseline_qwen2_5_7b": {
+    "result": "ready_correct",
+    "note": ""
+   }
+  },
+  {
+   "key": "ME1",
+   "kind": "mediation",
+   "question": "他汀类药物对住院死亡的效应有多少通过降低乳酸来介导",
+   "expected": "plan",
+   "baseline_qwen2_5_7b": {
+    "result": "ready_correct",
+    "note": ""
+   }
+  },
+  {
+   "key": "TE1",
+   "kind": "time_to_event",
+   "question": "机械通气患者早期使用镇静药物与拔管时间的关系",
+   "expected": "plan",
+   "baseline_qwen2_5_7b": {
+    "result": "blocked",
+    "note": "outcome (time to extubation) unmapped"
+   }
+  },
+  {
+   "key": "P1",
+   "kind": "prediction",
+   "question": "Predict in-hospital mortality from first-24-hour laboratory values",
+   "expected": "plan",
+   "baseline_qwen2_5_7b": {
+    "result": "blocked",
+    "note": "predictor group 'laboratory values' unmapped"
+   }
+  },
+  {
+   "key": "P2",
+   "kind": "prediction",
+   "question": "Can age, heart rate and lactate in the first 24 hours predict in-hospital death in sepsis patients?",
+   "expected": "plan",
+   "baseline_qwen2_5_7b": {
+    "result": "misframed",
+    "note": "typed as effect_modification, no plan"
+   }
+  },
+  {
+   "key": "P3",
+   "kind": "prediction",
+   "question": "用入ICU首日的肌酐和尿量预测患者7天内是否发生急性肾损伤",
+   "expected": "plan",
+   "baseline_qwen2_5_7b": {
+    "result": "blocked",
+    "note": "urine output unmapped"
+   }
+  },
+  {
+   "key": "P4",
+   "kind": "prediction",
+   "question": "Predict the need for invasive mechanical ventilation within 48 hours using the first 6 hours of vital signs",
+   "expected": "plan",
+   "baseline_qwen2_5_7b": {
+    "result": "blocked",
+    "note": "predictor group 'vital signs' unmapped"
+   }
+  },
+  {
+   "key": "X1",
+   "kind": "out_of_scope",
+   "question": "Which clinical notes mention depression in ICU patients?",
+   "expected": "refuse",
+   "baseline_qwen2_5_7b": {
+    "result": "blocked",
+    "note": "notes are not in the archive"
+   }
+  },
+  {
+   "key": "X2",
+   "kind": "out_of_scope",
+   "question": "Does the chest X-ray finding predict the need for mechanical ventilation?",
+   "expected": "refuse",
+   "baseline_qwen2_5_7b": {
+    "result": "blocked",
+    "note": "imaging is not in the archive (was wrongly planned before 2026-10-13 fix)"
+   }
+  },
+  {
+   "key": "X3",
+   "kind": "out_of_scope",
+   "question": "这种药物的成本效益如何，医保应否报销？",
+   "expected": "refuse",
+   "baseline_qwen2_5_7b": {
+    "result": "blocked",
+    "note": "cost data not in the archive"
+   }
+  },
+  {
+   "key": "X4",
+   "kind": "out_of_scope",
+   "question": "中国与美国患者使用阿司匹林后的出血风险有无差异",
+   "expected": "refuse",
+   "baseline_qwen2_5_7b": {
+    "result": "blocked",
+    "note": "no country in the archive; blocked only because bleeding did not map"
+   }
+  }
+ ]
+}

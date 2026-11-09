@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>使用说明 · How this works</title>
+<style>
+  :root { color-scheme: light dark; --fg:#1c1f24; --muted:#5b6470; --bg:#fff; --card:#f5f6f8; --line:#dde1e6; --accent:#1f5fbf; }
+  @media (prefers-color-scheme: dark) { :root { --fg:#e8eaed; --muted:#9aa3ad; --bg:#14171b; --card:#1c2026; --line:#2b313a; --accent:#7aa7ff; } }
+  body { margin:0; background:var(--bg); color:var(--fg); font:15px/1.6 -apple-system,"PingFang SC",system-ui,sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:24px 16px 64px; }
+  h1 { font-size:22px; margin:0 0 4px; } h2 { font-size:16px; margin:28px 0 8px; }
+  p, li { margin:6px 0; } .en { color:var(--muted); }
+  ol, ul { padding-left:20px; }
+  .box { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin:16px 0; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>使用说明 <span class="en" lang="en">/ How this workspace works</span></h1>
+  <p>输入一个临床研究问题，工作台会先生成可审核的 MIMIC-IV 分析计划，再运行，并如实报告已完成和未能完成的部分。</p>
+  <p class="en" lang="en">You type a clinical research question; the workspace turns it into a reviewable analysis plan on MIMIC-IV, runs it, and reports what it did and what it could not do.</p>
+
+  <div class="box">
+    <strong>访问与数据 · Access and data.</strong>
+    本工具使用受限的 MIMIC-IV 数据，仅供已获得 PhysioNet 授权的研究人员使用；只显示汇总结果，不显示患者明细。使用邀请码时，每个浏览器标签页只看到自己的分析，关闭标签页或运行本工作台的电脑重启都会结束会话；不使用邀请码时，本工作台的所有分析对使用者都可见。变量定义对所有人共享。
+    <div class="en" lang="en">This tool runs on restricted MIMIC-IV data. It is for researchers who hold their own PhysioNet credentialed access. It shows aggregate results, not patient rows. With an invite code, each browser tab sees only its own analyses, and closing the tab or a restart of the computer running the workspace ends that session; without one, every analysis on this workspace is visible to its users. Variable definitions are shared by everyone.</div>
+  </div>
+
+  <h2>四个步骤 · The four steps</h2>
+  <ol>
+    <li><strong>提问 · Ask.</strong> 中文或英文均可。 <span class="en" lang="en">Free text, Chinese or English.</span></li>
+    <li><strong>确认计划 · Confirm the plan.</strong> 这一步还不挑选病人做分析，只查看各变量有多少条记录、数值大致范围，用来核对变量找得对不对。计划包括研究类型、人群、暴露、结局，每个目标最多三种统计方法（含推荐项）；可删除分析或更换方法。 <span class="en" lang="en">This step does not yet select patients for analysis; it only looks at how many records each variable has and their rough range of values, to check that the right variables were found. The plan covers study type, population, exposure, outcome, and up to three statistical methods per aim, with a recommended default. You can drop analyses or change methods.</span></li>
+    <li><strong>运行 · Run.</strong> 确认后计划锁定并无人值守运行，一次只运行一个问题；分析时间从几分钟到数小时不等，取决于问题的复杂程度。确认后可以关闭这个网页，分析会继续；但不要关闭终端窗口，也不要让电脑休眠或关机。使用邀请码时请保持标签页打开。勾选“跳过审核”会自动确认推荐计划，变量和编码就没有人核对。 <span class="en" lang="en">The confirmed plan is locked and runs unattended, one question at a time; an analysis takes from a few minutes to several hours, depending on the question. After confirming you can close this page and the analysis continues; but keep the terminal window open and do not let the computer sleep or shut down. With an invite code, keep the tab open. Ticking “Skip review” confirms the recommended plan automatically, so nobody checks its variables and codes.</span></li>
+    <li><strong>结果 · Results.</strong> 表格、图和双语报告（Word、Markdown、文本）；可回看每个步骤。 <span class="en" lang="en">Tables, figures and downloadable bilingual reports (Word, Markdown, text). You can look back at every earlier step.</span></li>
+  </ol>
+
+  <h2>问题如何对应到 MIMIC-IV 变量 · How your words become MIMIC-IV variables</h2>
+  <ul>
+    <li>本地语言模型解析问题并展开临床术语。 <span class="en" lang="en">A local language model reads the question and expands clinical terms.</span></li>
+    <li>编码和项目 ID 只来自对 MIMIC-IV 字典的检索；模型会提出用于检索的名称和编码前缀，仍可能选错编码，请核对。 <span class="en" lang="en">Codes and item IDs come only from a lookup over the MIMIC-IV data dictionaries. The model suggests names and code prefixes to search for, which can still select wrong codes, so check them.</span></li>
+    <li>每个结果的“设计与变量”页列出实际使用的变量、编码和药名，可自行核对。 <span class="en" lang="en">The Design tab of each result lists the variables and the codes or drug names actually used, so you can check the mapping yourself.</span></li>
+    <li>平台识别出 MIMIC-IV 无法回答的部分会标为“无法分析”并说明原因；有些部分用写明的替代方案回答（以全因死亡代替特定原因死亡，随访最长 1 年）。平台靠关键词识别这些问题；换一种说法时可能识别不出来而照常运行，结果可能不对，请您自己判断。 <span class="en" lang="en">A question part the platform recognises as unanswerable from MIMIC-IV is marked as not runnable with the reason; some parts are answered with a stated substitute (all-cause death for a cause of death, follow-up capped at one year). The platform recognises these questions by keywords; worded differently, a question may not be recognised and is then run as usual, and its result may be wrong, so please judge it yourself.</span></li>
+  </ul>
+
+  <h2>如何解读结果 · Reading the results honestly</h2>
+  <ul>
+    <li>每个主要结果都有核查表和结论；核查通过不代表变量用对了。 <span class="en" lang="en">Each headline result carries a checks table (observed value versus rule) and a verdict. Passing the checks does not mean the right variables were used.</span></li>
+    <li>这些是观察性数据的工程输出，不是临床结论；即使校正后仍可能存在混杂（如适应证和病情严重度混杂）。 <span class="en" lang="en">These are engineering outputs from observational data. They are not clinical findings: confounding, including confounding by indication and severity, can remain even after adjustment.</span></li>
+    <li>部分问题会未完成或部分完成；失败页面会说明是哪一部分及原因。 <span class="en" lang="en">Some questions will be blocked or partly completed. The failure page says which part and why.</span></li>
+  </ul>
+
+  <h2>反馈 · Feedback</h2>
+  <p>有问题请只把出错的文字（通常以 Error 开头）和这一步的名字私信发给联系人 Mingming Song（songm0428@gmail.com）；不要发人数、结果数字、报告或结果截图。系统不收集使用数据；您的问题和结果只保存在运行本工作台的电脑上（本地安装时就是您这台电脑）。</p>
+  <p class="en" lang="en">If something goes wrong, send only the error text (usually starting with Error) and the name of the step to your contact, Mingming Song (songm0428@gmail.com), by private message; never patient counts, result numbers, reports or screenshots of results. No usage data is collected; your questions and results stay on the computer running the workspace (your own computer for a local install).</p>
+</main>
+</body>
+</html>

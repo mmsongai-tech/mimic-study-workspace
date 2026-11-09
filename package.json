@@ -1,0 +1,42 @@
+{
+  "name": "mimic-research-agent-platform",
+  "version": "0.1.0-pilot.1",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": "^22.13.0 || >=23.4.0"
+  },
+  "scripts": {
+    "check": "npm run typecheck && npm run check:frontend && npm test",
+    "check:frontend": "node --check frontend/research-workspace/api.js && node --check frontend/research-workspace/translations.js && node --check frontend/research-workspace/app.js && node --check frontend/research-workspace/developer.js && node --check frontend/research-workspace/audit.js && node --test frontend/research-workspace/app-contract.test.js",
+    "report:local-aggregate": "node --import tsx backend/src/entrypoints/local-aggregate-report.ts",
+    "local:confirmed-sessions": "node --import tsx backend/src/entrypoints/run-confirmed-local-sessions.ts",
+    "report:setup": "zsh scripts/setup-report-runtime.zsh",
+    "start:resilient": "zsh scripts/start-resilient-workspace.zsh",
+    "profile:local-mimic": "python3 scripts/profile_local_mimic.py",
+    "check:local-execution": "python3 scripts/check_local_execution.py",
+    "verify:local-profile": "python3 scripts/verify_local_profile.py",
+    "verify:local-mappings": "python3 scripts/verify_local_mimic_mappings.py",
+    "model:local": "zsh scripts/local-model-service.zsh",
+    "index:local-variables": "python3 scripts/build_local_variable_index.py",
+    "test": "node --import tsx --test 'backend/src/**/*.test.ts' 'frontend/question-workspace-app/tests/*.test.ts'",
+    "typecheck": "tsc --noEmit",
+    "validate:synthetic-methods": "node --import tsx backend/src/entrypoints/validate-synthetic-methods.ts",
+    "verify:general-backend": "npm run typecheck && node --import tsx --test 'backend/src/generated-analysis/tests/*.test.ts' 'backend/src/research-workflow/tests/*.test.ts' backend/src/runtime/tests/product-prompt-registry.test.ts backend/src/runtime/tests/node-http1-fetch.test.ts",
+    "eval:term-expansion": "node --import tsx backend/src/entrypoints/term-expansion-comparison.ts",
+    "variables:check": "node --import tsx backend/src/entrypoints/variable-definitions-check.ts",
+    "variables:index": ".venv/bin/python3 scripts/build-dictionary-index.py --archive \"$MIMIC_LOCAL_ARCHIVE\" --out .local/dictionary-index.json",
+    "variables:embedding-index": "node --import tsx backend/src/entrypoints/build-dictionary-embedding-index.ts",
+    "eval:embedding-candidates": "node --import tsx backend/src/entrypoints/embedding-candidate-evaluation.ts"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "fast-json-patch": "3.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.3",
+    "tsx": "4.23.13",
+    "typescript": "5.9.3"
+  }
+}

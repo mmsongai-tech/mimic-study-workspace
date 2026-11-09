@@ -1,0 +1,1084 @@
+{
+  "schema_version": "1.0.0",
+  "knowledge_version": "1.5.0",
+  "provenance": "Project-authored from the WHO ATC classification (C09A, C09C, C07, C08, C03, N02A, C10AA, C02CA, G04CA, R03AC, R03BB) for ingredients marketed in the United States during the MIMIC-IV period. Written by the coding agent on 2026-09-24; pending clinical review. Added 2026-10-18: alpha blockers, beta-2 agonists, short- and long-acting muscarinic antagonists. 1.4.0 (2026-10-27): locally applied dosage forms (ointments, creams, gels, eye and ear drops, nasal, rectal, vaginal and rinse forms) are left out of every class by one catalogue-wide rule over whole label words instead of word lists on twelve ingredients, so the topical diltiazem and nifedipine ointments no longer count as calcium-channel blockers and 'Oint' counts as an ointment; a class lists the forms that are its own route (ophthalmic beta blockers: eye forms; laxatives: rectal forms; opioids: nasal and rectal forms, which are systemic for butorphanol, morphine and hydromorphone). 1.5.0 (2026-10-28): warfarin is in the catalogue as the vitamin K antagonists (B01AA); 'oral anticoagulants' is a class of its own (warfarin and the direct oral anticoagulants) instead of a synonym of the direct oral anticoagulants, which silently left warfarin out, and 'direct anticoagulants' (which also names injectable direct thrombin inhibitors) no longer names the direct oral anticoagulants. A synonym narrower than its class now names a class of its own (地平类: the dihydropyridine calcium-channel blockers, without diltiazem and verapamil; stool softener: docusate, not every laxative), and one broader than its class is removed ('glaucoma eye drops' also covers prostaglandin analogues, carbonic anhydrase inhibitors and alpha agonists, not only the ophthalmic beta blockers). The direct oral anticoagulants have their Chinese and trade names (阿哌沙班, 达比加群, 依度沙班, 利伐沙班; Eliquis, Pradaxa, Savaysa, Lixiana, Xarelto).",
+  "label_exclusions": {
+    "valsartan": [
+      "sacubitril"
+    ]
+  },
+  "local_dosage_forms": {
+    "topical": [
+      "cream",
+      "foam",
+      "lotion",
+      "oint",
+      "ointment",
+      "paste",
+      "shampoo",
+      "top",
+      "topical"
+    ],
+    "gel": [
+      "gel",
+      "jelly"
+    ],
+    "eye": [
+      "ophth",
+      "ophthalmic",
+      "opth"
+    ],
+    "ear": [
+      "ear",
+      "otic"
+    ],
+    "drops": [
+      "drop",
+      "drops",
+      "gtts"
+    ],
+    "nasal": [
+      "nasal"
+    ],
+    "rectal": [
+      "enema",
+      "rectal",
+      "supp",
+      "suppositories",
+      "suppository"
+    ],
+    "vaginal": [
+      "vag",
+      "vaginal"
+    ],
+    "rinse": [
+      "mouthwash",
+      "rinse"
+    ]
+  },
+  "ingredient_names": {
+    "benazepril": [
+      "贝那普利"
+    ],
+    "captopril": [
+      "卡托普利"
+    ],
+    "enalapril": [
+      "依那普利"
+    ],
+    "enalaprilat": [
+      "依那普利拉"
+    ],
+    "fosinopril": [
+      "福辛普利"
+    ],
+    "lisinopril": [
+      "赖诺普利"
+    ],
+    "moexipril": [
+      "莫昔普利"
+    ],
+    "perindopril": [
+      "培哚普利"
+    ],
+    "quinapril": [
+      "喹那普利"
+    ],
+    "ramipril": [
+      "雷米普利"
+    ],
+    "trandolapril": [
+      "群多普利"
+    ],
+    "azilsartan": [
+      "阿齐沙坦"
+    ],
+    "candesartan": [
+      "坎地沙坦"
+    ],
+    "eprosartan": [
+      "依普罗沙坦"
+    ],
+    "irbesartan": [
+      "厄贝沙坦"
+    ],
+    "losartan": [
+      "氯沙坦"
+    ],
+    "olmesartan": [
+      "奥美沙坦"
+    ],
+    "telmisartan": [
+      "替米沙坦"
+    ],
+    "valsartan": [
+      "缬沙坦"
+    ],
+    "acebutolol": [
+      "醋丁洛尔"
+    ],
+    "atenolol": [
+      "阿替洛尔"
+    ],
+    "betaxolol": [
+      "倍他洛尔"
+    ],
+    "bisoprolol": [
+      "比索洛尔"
+    ],
+    "carvedilol": [
+      "卡维地洛"
+    ],
+    "esmolol": [
+      "艾司洛尔"
+    ],
+    "labetalol": [
+      "拉贝洛尔"
+    ],
+    "metoprolol": [
+      "美托洛尔"
+    ],
+    "nadolol": [
+      "纳多洛尔"
+    ],
+    "nebivolol": [
+      "奈必洛尔"
+    ],
+    "pindolol": [
+      "吲哚洛尔"
+    ],
+    "propranolol": [
+      "普萘洛尔"
+    ],
+    "sotalol": [
+      "索他洛尔"
+    ],
+    "timolol": [
+      "噻吗洛尔"
+    ],
+    "amlodipine": [
+      "氨氯地平"
+    ],
+    "clevidipine": [
+      "氯维地平"
+    ],
+    "diltiazem": [
+      "地尔硫䓬",
+      "地尔硫卓"
+    ],
+    "felodipine": [
+      "非洛地平"
+    ],
+    "isradipine": [
+      "伊拉地平"
+    ],
+    "nicardipine": [
+      "尼卡地平"
+    ],
+    "nifedipine": [
+      "硝苯地平"
+    ],
+    "nimodipine": [
+      "尼莫地平"
+    ],
+    "nisoldipine": [
+      "尼索地平"
+    ],
+    "verapamil": [
+      "维拉帕米"
+    ],
+    "amiloride": [
+      "阿米洛利"
+    ],
+    "bumetanide": [
+      "布美他尼"
+    ],
+    "chlorothiazide": [
+      "氯噻嗪"
+    ],
+    "chlorthalidone": [
+      "氯噻酮",
+      "氯达酮"
+    ],
+    "eplerenone": [
+      "依普利酮"
+    ],
+    "ethacrynic acid": [
+      "依他尼酸"
+    ],
+    "furosemide": [
+      "呋塞米",
+      "速尿"
+    ],
+    "hydrochlorothiazide": [
+      "氢氯噻嗪"
+    ],
+    "indapamide": [
+      "吲达帕胺"
+    ],
+    "metolazone": [
+      "美托拉宗"
+    ],
+    "spironolactone": [
+      "螺内酯"
+    ],
+    "torsemide": [
+      "托拉塞米"
+    ],
+    "triamterene": [
+      "氨苯蝶啶"
+    ],
+    "buprenorphine": [
+      "丁丙诺啡"
+    ],
+    "codeine": [
+      "可待因"
+    ],
+    "fentanyl": [
+      "芬太尼"
+    ],
+    "hydrocodone": [
+      "氢可酮"
+    ],
+    "hydromorphone": [
+      "氢吗啡酮"
+    ],
+    "meperidine": [
+      "哌替啶",
+      "杜冷丁"
+    ],
+    "methadone": [
+      "美沙酮"
+    ],
+    "morphine": [
+      "吗啡"
+    ],
+    "oxycodone": [
+      "羟考酮"
+    ],
+    "oxymorphone": [
+      "羟吗啡酮"
+    ],
+    "remifentanil": [
+      "瑞芬太尼"
+    ],
+    "sufentanil": [
+      "舒芬太尼"
+    ],
+    "tapentadol": [
+      "他喷他多"
+    ],
+    "nalbuphine": [
+      "纳布啡"
+    ],
+    "butorphanol": [
+      "布托啡诺"
+    ],
+    "pentazocine": [
+      "喷他佐辛"
+    ],
+    "levorphanol": [
+      "左啡诺"
+    ],
+    "dihydrocodeine": [
+      "二氢可待因"
+    ],
+    "tramadol": [
+      "曲马多"
+    ],
+    "atorvastatin": [
+      "阿托伐他汀"
+    ],
+    "simvastatin": [
+      "辛伐他汀"
+    ],
+    "rosuvastatin": [
+      "瑞舒伐他汀"
+    ],
+    "pravastatin": [
+      "普伐他汀"
+    ],
+    "lovastatin": [
+      "洛伐他汀"
+    ],
+    "fluvastatin": [
+      "氟伐他汀"
+    ],
+    "pitavastatin": [
+      "匹伐他汀"
+    ],
+    "alfuzosin": [
+      "阿夫唑嗪"
+    ],
+    "doxazosin": [
+      "多沙唑嗪"
+    ],
+    "prazosin": [
+      "哌唑嗪"
+    ],
+    "silodosin": [
+      "西洛多辛"
+    ],
+    "tamsulosin": [
+      "坦索罗辛"
+    ],
+    "terazosin": [
+      "特拉唑嗪"
+    ],
+    "albuterol": [
+      "salbutamol",
+      "沙丁胺醇"
+    ],
+    "arformoterol": [
+      "阿福特罗"
+    ],
+    "formoterol": [
+      "福莫特罗"
+    ],
+    "indacaterol": [
+      "印达特罗",
+      "茚达特罗"
+    ],
+    "levalbuterol": [
+      "levosalbutamol",
+      "左沙丁胺醇"
+    ],
+    "olodaterol": [
+      "奥达特罗"
+    ],
+    "procaterol": [
+      "丙卡特罗"
+    ],
+    "salmeterol": [
+      "沙美特罗"
+    ],
+    "terbutaline": [
+      "特布他林"
+    ],
+    "vilanterol": [
+      "维兰特罗"
+    ],
+    "ipratropium": [
+      "异丙托品",
+      "异丙托溴铵"
+    ],
+    "aclidinium": [
+      "阿地溴铵"
+    ],
+    "glycopyrronium": [
+      "格隆溴铵"
+    ],
+    "revefenacin": [
+      "瑞芬那辛"
+    ],
+    "tiotropium": [
+      "噻托溴铵"
+    ],
+    "umeclidinium": [
+      "乌美溴铵"
+    ],
+    "warfarin": [
+      "华法林",
+      "coumadin",
+      "jantoven"
+    ],
+    "apixaban": [
+      "阿哌沙班",
+      "Eliquis"
+    ],
+    "dabigatran": [
+      "达比加群",
+      "达比加群酯",
+      "Pradaxa"
+    ],
+    "edoxaban": [
+      "依度沙班",
+      "Savaysa",
+      "Lixiana"
+    ],
+    "rivaroxaban": [
+      "利伐沙班",
+      "Xarelto"
+    ]
+  },
+  "classes": [
+    {
+      "class_id": "ace_inhibitors",
+      "atc": "C09A",
+      "labels": {
+        "en": "ACE inhibitors",
+        "zh": "血管紧张素转换酶抑制剂（ACEI）"
+      },
+      "synonyms": [
+        "ACE inhibitor",
+        "ACE inhibitors",
+        "ACEI",
+        "angiotensin-converting enzyme inhibitor",
+        "angiotensin converting enzyme inhibitor",
+        "血管紧张素转换酶抑制剂",
+        "血管紧张素转化酶抑制剂",
+        "ACE抑制剂",
+        "ACE抑制药",
+        "ACEI类",
+        "普利类"
+      ],
+      "ingredients": [
+        "benazepril",
+        "captopril",
+        "enalapril",
+        "enalaprilat",
+        "fosinopril",
+        "lisinopril",
+        "moexipril",
+        "perindopril",
+        "quinapril",
+        "ramipril",
+        "trandolapril"
+      ]
+    },
+    {
+      "class_id": "angiotensin_receptor_blockers",
+      "atc": "C09C",
+      "labels": {
+        "en": "Angiotensin II receptor blockers",
+        "zh": "血管紧张素 II 受体拮抗剂（ARB）"
+      },
+      "synonyms": [
+        "ARB",
+        "ARBs",
+        "angiotensin receptor blocker",
+        "angiotensin II receptor blocker",
+        "angiotensin II receptor antagonist",
+        "sartan",
+        "血管紧张素受体拮抗剂",
+        "血管紧张素II受体拮抗剂",
+        "沙坦类"
+      ],
+      "ingredients": [
+        "azilsartan",
+        "candesartan",
+        "eprosartan",
+        "irbesartan",
+        "losartan",
+        "olmesartan",
+        "telmisartan",
+        "valsartan"
+      ]
+    },
+    {
+      "class_id": "beta_blockers",
+      "atc": "C07",
+      "labels": {
+        "en": "Beta blockers",
+        "zh": "β受体阻滞剂"
+      },
+      "synonyms": [
+        "beta blocker",
+        "beta blockers",
+        "beta-blocker",
+        "beta adrenergic blocker",
+        "beta-adrenergic blocking agent",
+        "β-blocker",
+        "β受体阻滞剂",
+        "β受体阻断剂",
+        "洛尔类"
+      ],
+      "ingredients": [
+        "acebutolol",
+        "atenolol",
+        "bisoprolol",
+        "carvedilol",
+        "esmolol",
+        "labetalol",
+        "metoprolol",
+        "nadolol",
+        "nebivolol",
+        "pindolol",
+        "propranolol",
+        "sotalol"
+      ]
+    },
+    {
+      "class_id": "ophthalmic_beta_blockers",
+      "atc": "S01ED",
+      "labels": {
+        "en": "Ophthalmic beta blockers",
+        "zh": "眼用β受体阻滞剂（滴眼液）"
+      },
+      "synonyms": [
+        "ophthalmic beta blocker",
+        "beta blocker eye drops",
+        "眼用β受体阻滞剂",
+        "滴眼液β受体阻滞剂"
+      ],
+      "ingredients": [
+        "betaxolol",
+        "timolol"
+      ],
+      "counted_local_forms": [
+        "eye",
+        "gel",
+        "drops"
+      ]
+    },
+    {
+      "class_id": "calcium_channel_blockers",
+      "atc": "C08",
+      "labels": {
+        "en": "Calcium channel blockers",
+        "zh": "钙通道拮抗剂（CCB）"
+      },
+      "synonyms": [
+        "calcium channel blocker",
+        "calcium channel blockers",
+        "CCB",
+        "calcium antagonist",
+        "钙通道拮抗剂",
+        "钙通道阻滞剂",
+        "钙离子拮抗剂"
+      ],
+      "ingredients": [
+        "amlodipine",
+        "clevidipine",
+        "diltiazem",
+        "felodipine",
+        "isradipine",
+        "nicardipine",
+        "nifedipine",
+        "nimodipine",
+        "nisoldipine",
+        "verapamil"
+      ]
+    },
+    {
+      "class_id": "dihydropyridine_calcium_channel_blockers",
+      "atc": "C08CA",
+      "labels": {
+        "en": "Dihydropyridine calcium channel blockers",
+        "zh": "二氢吡啶类（地平类）"
+      },
+      "synonyms": [
+        "dihydropyridine",
+        "dihydropyridines",
+        "dihydropyridine calcium channel blocker",
+        "dihydropyridine calcium channel blockers",
+        "dihydropyridine CCB",
+        "DHP CCB",
+        "地平类",
+        "二氢吡啶类",
+        "二氢吡啶类钙通道阻滞剂",
+        "二氢吡啶类钙拮抗剂"
+      ],
+      "ingredients": [
+        "amlodipine",
+        "clevidipine",
+        "felodipine",
+        "isradipine",
+        "nicardipine",
+        "nifedipine",
+        "nimodipine",
+        "nisoldipine"
+      ]
+    },
+    {
+      "class_id": "diuretics",
+      "atc": "C03",
+      "labels": {
+        "en": "Diuretics",
+        "zh": "利尿剂"
+      },
+      "synonyms": [
+        "diuretic",
+        "diuretics",
+        "利尿剂",
+        "利尿药"
+      ],
+      "ingredients": [
+        "amiloride",
+        "bumetanide",
+        "chlorothiazide",
+        "chlorthalidone",
+        "eplerenone",
+        "ethacrynic acid",
+        "furosemide",
+        "hydrochlorothiazide",
+        "indapamide",
+        "metolazone",
+        "spironolactone",
+        "torsemide",
+        "triamterene"
+      ]
+    },
+    {
+      "class_id": "opioids",
+      "atc": "N02A",
+      "labels": {
+        "en": "Opioids",
+        "zh": "阿片类药物"
+      },
+      "synonyms": [
+        "opioid",
+        "opioids",
+        "opioid analgesic",
+        "opioid analgesics",
+        "opioid agonist",
+        "opioid agonists",
+        "opiate",
+        "opiates",
+        "narcotic analgesic",
+        "阿片类药物",
+        "阿片类镇痛药",
+        "阿片类"
+      ],
+      "ingredients": [
+        "buprenorphine",
+        "butorphanol",
+        "codeine",
+        "dihydrocodeine",
+        "fentanyl",
+        "hydrocodone",
+        "hydromorphone",
+        "levorphanol",
+        "meperidine",
+        "methadone",
+        "morphine",
+        "nalbuphine",
+        "oxycodone",
+        "oxymorphone",
+        "pentazocine",
+        "remifentanil",
+        "sufentanil",
+        "tapentadol",
+        "tramadol"
+      ],
+      "counted_local_forms": [
+        "nasal",
+        "rectal"
+      ]
+    },
+    {
+      "class_id": "statins",
+      "atc": "C10AA",
+      "labels": {
+        "en": "Statins",
+        "zh": "他汀类药物"
+      },
+      "synonyms": [
+        "statin",
+        "statins",
+        "HMG-CoA reductase inhibitor",
+        "HMG-CoA reductase inhibitors",
+        "他汀",
+        "他汀类",
+        "他汀类药物"
+      ],
+      "ingredients": [
+        "atorvastatin",
+        "simvastatin",
+        "rosuvastatin",
+        "pravastatin",
+        "lovastatin",
+        "fluvastatin",
+        "pitavastatin"
+      ]
+    },
+    {
+      "class_id": "alpha_blockers",
+      "atc": "C02CA/G04CA",
+      "labels": {
+        "en": "Alpha-adrenergic blockers",
+        "zh": "α受体阻滞剂"
+      },
+      "synonyms": [
+        "alpha blocker",
+        "alpha blockers",
+        "alpha-blocker",
+        "alpha-adrenergic blocker",
+        "alpha-adrenergic receptor blocker",
+        "alpha-adrenergic antagonist",
+        "alpha adrenergic receptor blocker",
+        "α受体阻滞剂",
+        "α受体阻断剂",
+        "α1受体阻滞剂",
+        "α1受体阻断剂",
+        "α阻滞剂"
+      ],
+      "ingredients": [
+        "alfuzosin",
+        "doxazosin",
+        "prazosin",
+        "silodosin",
+        "tamsulosin",
+        "terazosin"
+      ]
+    },
+    {
+      "class_id": "beta2_agonists",
+      "atc": "R03AC/R03CC",
+      "labels": {
+        "en": "Beta-2 agonists",
+        "zh": "β2受体激动剂"
+      },
+      "synonyms": [
+        "beta-2 agonist",
+        "beta 2 agonist",
+        "beta2 agonist",
+        "beta-2 agonists",
+        "beta2-agonist",
+        "beta-2 adrenergic agonist",
+        "beta agonist",
+        "β2受体激动剂",
+        "β2激动剂",
+        "β2受体兴奋剂"
+      ],
+      "ingredients": [
+        "albuterol",
+        "salbutamol",
+        "arformoterol",
+        "formoterol",
+        "indacaterol",
+        "levalbuterol",
+        "olodaterol",
+        "procaterol",
+        "salmeterol",
+        "terbutaline",
+        "vilanterol"
+      ]
+    },
+    {
+      "class_id": "sama",
+      "atc": "R03BB01",
+      "labels": {
+        "en": "Short-acting muscarinic antagonists (SAMA)",
+        "zh": "短效抗胆碱能药（SAMA）"
+      },
+      "synonyms": [
+        "SAMA",
+        "short-acting muscarinic antagonist",
+        "short acting muscarinic antagonist",
+        "short-acting anticholinergic",
+        "短效抗胆碱能药",
+        "短效抗胆碱药",
+        "短效毒蕈碱受体拮抗剂",
+        "short-acting muscarinic receptor antagonist",
+        "short-acting antimuscarinic"
+      ],
+      "ingredients": [
+        "ipratropium"
+      ]
+    },
+    {
+      "class_id": "lama",
+      "atc": "R03BB",
+      "labels": {
+        "en": "Long-acting muscarinic antagonists (LAMA)",
+        "zh": "长效抗胆碱能药（LAMA）"
+      },
+      "synonyms": [
+        "LAMA",
+        "long-acting muscarinic antagonist",
+        "long acting muscarinic antagonist",
+        "long-acting anticholinergic",
+        "长效抗胆碱能药",
+        "长效抗胆碱药",
+        "长效毒蕈碱受体拮抗剂",
+        "long-acting muscarinic receptor antagonist",
+        "long-acting antimuscarinic"
+      ],
+      "ingredients": [
+        "aclidinium",
+        "glycopyrronium",
+        "revefenacin",
+        "tiotropium",
+        "umeclidinium"
+      ]
+    },
+    {
+      "class_id": "proton_pump_inhibitors",
+      "atc": "A02BC",
+      "labels": {
+        "en": "Proton pump inhibitors",
+        "zh": "质子泵抑制剂"
+      },
+      "synonyms": [
+        "proton pump inhibitor",
+        "proton pump inhibitors",
+        "PPI",
+        "PPIs",
+        "prophylactic proton pump inhibitor",
+        "质子泵抑制剂",
+        "PPI类",
+        "拉唑类"
+      ],
+      "ingredients": [
+        "dexlansoprazole",
+        "esomeprazole",
+        "lansoprazole",
+        "omeprazole",
+        "pantoprazole",
+        "rabeprazole"
+      ]
+    },
+    {
+      "class_id": "h2_receptor_blockers",
+      "atc": "A02BA",
+      "labels": {
+        "en": "H2 receptor blockers",
+        "zh": "H2 受体拮抗剂"
+      },
+      "synonyms": [
+        "H2 blocker",
+        "H2 blockers",
+        "H2 receptor antagonist",
+        "H2 receptor antagonists",
+        "H2RA",
+        "H2受体拮抗剂",
+        "H2阻滞剂"
+      ],
+      "ingredients": [
+        "cimetidine",
+        "famotidine",
+        "nizatidine",
+        "ranitidine"
+      ]
+    },
+    {
+      "class_id": "direct_oral_anticoagulants",
+      "atc": "B01AF",
+      "labels": {
+        "en": "Direct oral anticoagulants",
+        "zh": "直接口服抗凝药"
+      },
+      "synonyms": [
+        "direct oral anticoagulant",
+        "direct oral anticoagulants",
+        "DOAC",
+        "DOACs",
+        "NOAC",
+        "NOACs",
+        "novel oral anticoagulants",
+        "直接口服抗凝药",
+        "新型口服抗凝药"
+      ],
+      "ingredients": [
+        "apixaban",
+        "dabigatran",
+        "edoxaban",
+        "rivaroxaban"
+      ]
+    },
+    {
+      "class_id": "vitamin_k_antagonists",
+      "atc": "B01AA",
+      "labels": {
+        "en": "Vitamin K antagonists (warfarin)",
+        "zh": "维生素K拮抗剂（华法林）"
+      },
+      "synonyms": [
+        "vitamin K antagonist",
+        "vitamin K antagonists",
+        "VKA",
+        "VKAs",
+        "coumarin anticoagulant",
+        "coumarin anticoagulants",
+        "维生素K拮抗剂",
+        "香豆素类抗凝药"
+      ],
+      "ingredients": [
+        "warfarin"
+      ]
+    },
+    {
+      "class_id": "oral_anticoagulants",
+      "atc": "B01AA/B01AF",
+      "labels": {
+        "en": "Oral anticoagulants (warfarin, apixaban, dabigatran, edoxaban, rivaroxaban)",
+        "zh": "口服抗凝药（华法林、阿哌沙班、达比加群、依度沙班、利伐沙班）"
+      },
+      "synonyms": [
+        "oral anticoagulant",
+        "oral anticoagulants",
+        "OAC",
+        "OACs",
+        "oral anticoagulation",
+        "口服抗凝药",
+        "口服抗凝剂",
+        "口服抗凝治疗"
+      ],
+      "ingredients": [
+        "warfarin",
+        "apixaban",
+        "dabigatran",
+        "edoxaban",
+        "rivaroxaban"
+      ]
+    },
+    {
+      "class_id": "laxatives",
+      "atc": "A06A",
+      "labels": {
+        "en": "Laxatives",
+        "zh": "泻药"
+      },
+      "synonyms": [
+        "laxative",
+        "laxatives",
+        "泻药",
+        "缓泻剂"
+      ],
+      "ingredients": [
+        "bisacodyl",
+        "docusate",
+        "lactulose",
+        "polyethylene glycol",
+        "senna"
+      ],
+      "counted_local_forms": [
+        "rectal"
+      ]
+    },
+    {
+      "class_id": "stool_softeners",
+      "atc": "A06AA02",
+      "labels": {
+        "en": "Stool softeners (docusate)",
+        "zh": "大便软化剂（多库酯钠）"
+      },
+      "synonyms": [
+        "stool softener",
+        "stool softeners",
+        "大便软化剂",
+        "粪便软化剂"
+      ],
+      "ingredients": [
+        "docusate"
+      ],
+      "counted_local_forms": [
+        "rectal"
+      ]
+    },
+    {
+      "class_id": "antiarrhythmics",
+      "atc": "C01B",
+      "labels": {
+        "en": "Antiarrhythmic drugs",
+        "zh": "抗心律失常药"
+      },
+      "synonyms": [
+        "antiarrhythmic",
+        "antiarrhythmics",
+        "antiarrhythmic drug",
+        "antiarrhythmic drugs",
+        "other antiarrhythmic drugs",
+        "抗心律失常药",
+        "抗心律失常药物"
+      ],
+      "ingredients": [
+        "amiodarone",
+        "digoxin",
+        "dofetilide",
+        "flecainide",
+        "ibutilide",
+        "procainamide",
+        "propafenone",
+        "sotalol"
+      ]
+    },
+    {
+      "class_id": "ssris",
+      "atc": "N06AB",
+      "labels": {
+        "en": "Selective serotonin reuptake inhibitors",
+        "zh": "选择性 5-羟色胺再摄取抑制剂"
+      },
+      "synonyms": [
+        "SSRI",
+        "SSRIs",
+        "selective serotonin reuptake inhibitor",
+        "selective serotonin reuptake inhibitors",
+        "选择性5-羟色胺再摄取抑制剂",
+        "SSRI类"
+      ],
+      "ingredients": [
+        "citalopram",
+        "escitalopram",
+        "fluoxetine",
+        "fluvoxamine",
+        "paroxetine",
+        "sertraline"
+      ]
+    },
+    {
+      "class_id": "benzodiazepines",
+      "atc": "N05BA",
+      "labels": {
+        "en": "Benzodiazepines",
+        "zh": "苯二氮卓类"
+      },
+      "synonyms": [
+        "benzodiazepine",
+        "benzodiazepines",
+        "benzos",
+        "苯二氮卓类",
+        "苯二氮䓬类"
+      ],
+      "ingredients": [
+        "alprazolam",
+        "chlordiazepoxide",
+        "clonazepam",
+        "diazepam",
+        "lorazepam",
+        "midazolam",
+        "temazepam"
+      ]
+    },
+    {
+      "class_id": "systemic_corticosteroids",
+      "atc": "H02AB",
+      "labels": {
+        "en": "Systemic corticosteroids",
+        "zh": "全身用糖皮质激素"
+      },
+      "synonyms": [
+        "corticosteroid",
+        "corticosteroids",
+        "glucocorticoid",
+        "glucocorticoids",
+        "steroid",
+        "steroids",
+        "systemic corticosteroids",
+        "糖皮质激素",
+        "皮质类固醇",
+        "激素"
+      ],
+      "ingredients": [
+        "dexamethasone",
+        "hydrocortisone",
+        "methylprednisolone",
+        "prednisolone",
+        "prednisone"
+      ]
+    },
+    {
+      "class_id": "p2y12_inhibitors",
+      "atc": "B01AC",
+      "labels": {
+        "en": "P2Y12 inhibitors",
+        "zh": "P2Y12 受体拮抗剂"
+      },
+      "synonyms": [
+        "P2Y12 inhibitor",
+        "P2Y12 inhibitors",
+        "P2Y12 antagonists",
+        "antiplatelet P2Y12",
+        "P2Y12抑制剂"
+      ],
+      "ingredients": [
+        "clopidogrel",
+        "prasugrel",
+        "ticagrelor",
+        "ticlopidine"
+      ]
+    }
+  ]
+}

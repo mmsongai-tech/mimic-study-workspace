@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "rules_version": "1.1.0",
+  "provenance": "Thresholds follow common reporting practice: standardized mean difference below 0.1 for balance (Austin 2009), at least 10 events per model parameter (Peduzzi 1996), effective sample size and positivity checks for weighting (Cole & Hernan 2008). Reference rates are broad plausibility bounds for MIMIC-IV 3.1 adults, not expected values.",
+  "thresholds": {
+    "min_group_size": 50,
+    "min_events": 20,
+    "min_events_per_parameter": 10,
+    "exposure_share_low": 0.02,
+    "exposure_share_high": 0.98,
+    "smd_warn": 0.1,
+    "smd_fail": 0.25,
+    "effective_sample_share_warn": 0.3,
+    "ratio_effect_warn_low": 0.33,
+    "ratio_effect_warn_high": 3,
+    "complete_case_loss_warn": 0.3,
+    "heavy_tail_ratio_warn": 3,
+    "proportional_hazards_p_warn": 0.05
+  },
+  "severity_covariate_pattern": "sofa|apache|saps|oasis|lactate|vasopressor|norepinephrine|ventilat|severity|emergency admission",
+  "reference_rates": [
+    {
+      "mapping_ids": ["mimic-iv.all-cause-death.v1", "mimic-iv.in-hospital-mortality.v1"],
+      "applies_when": "outcome followed to the end of the index encounter",
+      "label": { "en": "death during the admission", "zh": "住院期间死亡" },
+      "hospital_admission": { "min": 0.003, "max": 0.15 },
+      "icu_admission": { "min": 0.02, "max": 0.5 }
+    }
+  ]
+}

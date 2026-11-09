@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/contracts/research-execution/multi-objective-report.schema.json",
+  "title": "Multi-objective terminal research report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "report_id", "created_at", "status", "original_question", "coverage_decision", "objective_counts", "objectives", "reproducibility_id", "integrity_id"],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "report_id": { "type": "string", "pattern": "^report:[a-f0-9]{20}$" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "status": { "enum": ["completed", "partial", "blocked"] },
+    "original_question": { "type": "string", "minLength": 1 },
+    "coverage_decision": { "enum": ["pass", "needs_review"] },
+    "objective_counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "completed", "blocked"],
+      "properties": {
+        "total": { "type": "integer", "minimum": 1 },
+        "completed": { "type": "integer", "minimum": 0 },
+        "blocked": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "objectives": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["objective_id", "relationship", "question", "status", "evidence_level", "diagnostic_decision", "blockers", "warnings"],
+        "properties": {
+          "objective_id": { "type": "string", "minLength": 1 },
+          "relationship": { "enum": ["primary", "secondary", "effect_modification", "mediation", "composite_component"] },
+          "question": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["completed", "blocked"] },
+          "evidence_level": { "enum": ["local_mimic_archive_execution", "pre_execution_block"] },
+          "diagnostic_decision": { "enum": ["reportable", "reportable_with_warnings", "blocked"] },
+          "run_id": { "type": "string", "pattern": "^run:[a-f0-9]{20}$" },
+          "run_reproducibility_id": { "$ref": "#/$defs/digest" },
+          "run_integrity_id": { "$ref": "#/$defs/digest" },
+          "cohort": { "type": "object" },
+          "analysis": { "type": "object" },
+          "blockers": { "type": "array", "items": { "$ref": "#/$defs/blocker" } },
+          "warnings": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+        }
+      }
+    },
+    "reproducibility_id": { "$ref": "#/$defs/digest" },
+    "integrity_id": { "$ref": "#/$defs/digest" }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "blocker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stage", "code", "message"],
+      "properties": {
+        "stage": { "type": "string", "minLength": 1 },
+        "code": { "type": "string", "minLength": 1 },
+        "message": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}
